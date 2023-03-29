@@ -72,7 +72,7 @@ main{
     background-color: #313e74;
     
 }
-.button-chaines, .button-creation{
+.button-chaines, .button-creation,.button-salon{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -81,13 +81,29 @@ main{
     width: 150px;
     height: 60px;
     border-radius: 20px;
+    margin-top: 20px;
     
 }
 .button-creationDiv{
     display: flex;
-    position: absolute;
+    position: fixed;
     bottom:0;
     flex-direction: column;
     justify-content: flex-end;
     row-gap: 20px;
+}
+.icone-parametre{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.nav-salon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 100%;
+    
 }
