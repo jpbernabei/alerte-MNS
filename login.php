@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
+<?php
+session_start();
+include 'includes/inc-top.php;'
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>login</title>
-</head>
-
-<body>
-
-    <form action="" method="post">
+    <form action="/login-POST.php" method="post">
         <div class="card">
             <div class="container">
                 <div class="title">
@@ -23,9 +12,15 @@
                 </div>
                 <div class="label">
                     <label for="email" class="police ">Email</label>
-                    <input class="champ" type="email" name="email" placeholder="Saisir votre email">
+                    <input id="email" class="champ" type="email" name="email" placeholder="Saisir votre email">
+                    <?php if(isset($_SESSION['errors']['email'])):?>
+                        <small class="text-errors"><?=$_SESSION['errors']['email']?></small>
+                        <?php endif; ?>
                     <label for="password" class="police ">Password</label>
-                    <input class="champ" type="password" name="password" placeholder="Saisir votre mot de passe">
+                    <input id="password" class="champ" type="password" name="password" placeholder="Saisir votre mot de passe">
+                    <?php if(isset($_SESSION['errors']['password'])): ?>
+                        <small class="text-danger"><?= $_SESSION['errors']['password'] ?></small>
+                        <?php endif; ?>
                     <div class="forgotPassword">
                         <a  href="#">Mot de passe oublié?</a>
                     </div>
@@ -40,6 +35,6 @@
             </div>
         </div>
     </form>
-</body>
+    <script src="script.js"></script>
 
-</html>
+<?php include 'includes/inc-bottom.php'; ?>
