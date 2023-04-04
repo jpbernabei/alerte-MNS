@@ -1,7 +1,11 @@
 <?php
 session_start();
 <<<<<<< HEAD
+<<<<<<< HEAD
 include 'includes/inc-top.php';
+=======
+include 'includes/inc-top.php;'
+>>>>>>> 923119bacc698a18c8883cc50561094cd92b1d2b
 =======
 include 'includes/inc-top.php;'
 >>>>>>> 923119bacc698a18c8883cc50561094cd92b1d2b

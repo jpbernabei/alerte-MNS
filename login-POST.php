@@ -24,7 +24,11 @@ if(!empty($_POST['submit']))
     $password = htmlspecialchars($_POST['password']);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     $sql = "SELECT * FROM utilisateur WHERE email_utilisateur = '" . $email . "'";
+=======
+    $sql = "SELECT * FROM utilisateru WHERE email_utilisateur = '" . $email . "'";
+>>>>>>> 923119bacc698a18c8883cc50561094cd92b1d2b
 =======
     $sql = "SELECT * FROM utilisateru WHERE email_utilisateur = '" . $email . "'";
 >>>>>>> 923119bacc698a18c8883cc50561094cd92b1d2b
