@@ -23,7 +23,11 @@ if(!empty($_POST['submit']))
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
 
+<<<<<<< HEAD
     $sql = "SELECT * FROM utilisateur WHERE email_utilisateur = '" . $email . "'";
+=======
+    $sql = "SELECT * FROM utilisateru WHERE email_utilisateur = '" . $email . "'";
+>>>>>>> 923119bacc698a18c8883cc50561094cd92b1d2b
     $result = $dbh->query($sql);
     $user = $result->fetch(PDO::FETCH_ASSOC);
 
