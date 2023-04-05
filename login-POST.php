@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'includes/inc-db-connect.php';
+require $_SERVER['DOCUMENT_ROOT']. 'includes/inc-db-connect.php';
 
 if(!empty($_POST['submit']))
 {
@@ -23,15 +23,9 @@ if(!empty($_POST['submit']))
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     $sql = "SELECT * FROM utilisateur WHERE email_utilisateur = '" . $email . "'";
-=======
-    $sql = "SELECT * FROM utilisateru WHERE email_utilisateur = '" . $email . "'";
->>>>>>> 923119bacc698a18c8883cc50561094cd92b1d2b
-=======
-    $sql = "SELECT * FROM utilisateru WHERE email_utilisateur = '" . $email . "'";
->>>>>>> 923119bacc698a18c8883cc50561094cd92b1d2b
+
     $result = $dbh->query($sql);
     $user = $result->fetch(PDO::FETCH_ASSOC);
 
@@ -50,7 +44,7 @@ if(!empty($_POST['submit']))
                 'firstname'=> $user['prenom_utilisateur'],
             ];
             // on redirige vers l'interface
-            header("Location: /interface-grid.php");
+            header("Location: /admin/index.php");
         }
         else{ // si mdp pas ok, on redirige vers la page login
             $_SESSION['errors'] = "Identifiants invalide.";

@@ -10,9 +10,9 @@ body {
     overflow: hidden;
     
 }
-.container-grid{
+.container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1300px 1fr;
+    grid-template-columns: 200px 200px 1fr 200px ;
     grid-template-rows: 130px 1fr;
     grid-template-areas: 
         "header header header header"
@@ -64,8 +64,8 @@ main{
 }
 .logo{
     justify-self: stretch;
-    width:150px;
-    height: 150px;
+    width:100px;
+    height: 100px;
 }
 .name-user{
     justify-self: start;
