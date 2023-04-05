@@ -21,40 +21,34 @@
         </header>
         <nav class="nav-chaine">
             <div>
-                <button class="button-chaines police">Utilisateurs</button>
+                <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;" ></i>Utilisateurs</button></a>
             </div>
             <div >
-                <button class="button-chaines police">Chaînes</button>
+                <a href="/admin/parametre-chaines/index.php"><button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button></a>
             </div>
             <div >
-                <button class="button-chaines police">Salons</button>
+                <a href="/admin/parametre-salons/index.php"><button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button></a>
             </div>
             <div >
-                <button class="button-chaines police">Réunions</button>
+                <a href="/admin/parametre-reunions/index.php"><button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button></a>
             </div>
             
             <div class="button-creation-container">
-                <button class="button-creation police"><i class="fa-solid fa-circle-plus"
-                        style="color: #ffffff;"></i>Créer une réunion</button>
-                <button class="button-creation police"><i class="fa-solid fa-circle-plus"
-                        style="color: #ffffff;"></i>Créer une chaine</button>
-                        <div class="icone-parametre"><a class="icone-parametre" href=""><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
+            
+                <a href="./index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
+                        
                 
             </div>
         </nav>
-        <nav class="nav-salon">
-        </nav>
         <main>
             <div class="button-parametre-admin-container">
-                <a href="interface-parametre-utilisateur.html"><button class="button-parametre-admin police">Utilisateurs</button></a>
-                <button class="button-parametre-admin police">Chaînes</button>
-                <button class="button-parametre-admin police">Salons</button>
-                <button class="button-parametre-admin police">Réunions</button>
+                <a href="/admin/parametre-utilisateurs/index.php"><button class="button-parametre-admin police"><i class="fa-solid fa-user fa-2xl" style="color: #ffffff ;" ></i>Utilisateurs</button></a>
+                <a href="/admin/parametre-chaines/index.php"><button class="button-parametre-admin police"><i class="fa-solid fa-fire fa-2xl" style="color: #ffffff;"></i>Chaînes</button></a>
+                <a href="/admin/parametre-salons/index.php"><button class="button-parametre-admin police"><i class="fa-solid fa-sitemap fa-2xl" style="color: #ffffff;"></i>Salons</button></a>
+                <a href="/admin/parametre-reunions/index.php"><button class="button-parametre-admin police"><i class="fa-solid fa-users fa-2xl " style="color: #ffffff;"></i>Réunions</button></a>
             </div>
         </main>
-        <div class="side">
-
-        </div>
+        
     </div>
 </body>
 </html>

@@ -17,7 +17,7 @@
             <div><div class="police name-chaine">nom de la chaine </div><div class="police name-salon">nom du salon</div></div>
             <input class="search" type="search">
             <a href=""><i class="fa-solid fa-users fa-xl" style="color: #ffffff;"></i></a>
-            <a href=""><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
+            <a href="../logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
         </header>
         <nav class="nav-chaine">
             <div>

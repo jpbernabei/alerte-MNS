@@ -1,5 +1,5 @@
 <?php
-$dsn = 'mysql:dbname=alerte;host=127.0.0.1;charset=utf8mb4';
+$dsn = 'mysql:dbname=alerte-mns;host=127.0.0.1;charset=utf8mb4';
 $user = 'root';
 $password = '';
 

@@ -124,11 +124,12 @@ main{
 }
 .button-parametre-admin{
     display: flex;
+    flex-direction: column;
     background-color: #ff6715;
     width: 200px;
     height: 200px;
     font-size: large;
-    justify-content: center;
+    justify-content:space-around;
     align-items: center;
     border-radius: 20px;
    
@@ -148,4 +149,7 @@ main{
     width: 200px;
     height: 100%;
     
+}
+a{
+    text-decoration: none;
 }
