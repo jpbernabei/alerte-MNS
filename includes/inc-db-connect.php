@@ -1,6 +1,5 @@
 <?php
-$dsn = 'mysql:dbname=alerte-mns;host=127.0.0.1;charset=utf8mb4';
-$user = 'root';
-$password = '';
+$pdo = new PDO("mysql:host=localhost;dbname=alerte-mns;charset=utf8mb4", "root", "", [
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+]);
 
-$dbh = new PDO($dsn, $user, $password);
