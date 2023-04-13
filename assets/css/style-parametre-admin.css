@@ -153,3 +153,12 @@ main{
 a{
     text-decoration: none;
 }
+
+.formNewUser
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+}
