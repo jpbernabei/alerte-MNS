@@ -26,7 +26,7 @@ if(!empty($_POST['submit']))
 
     $sql = "SELECT * FROM utilisateur WHERE email_utilisateur = '" . $email . "'";
 
-    $result = $dbh->query($sql);
+    $result = $pdo->query($sql);
     $user = $result->fetch(PDO::FETCH_ASSOC);
 
     //on test si l'utilisateur existe

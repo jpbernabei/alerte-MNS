@@ -2,27 +2,26 @@
 
 // Pour ajouter une chaine 
 
-require $_SERVER['DOCUMENT_ROOT'].'/managers.php';
+require $_SERVER['DOCUMENT_ROOT'].'/managers/chaine-manager.php';
 
 // Traiter le formulaire si envoyé
 if(isset($_POST['submit']))
 {
-
     $res = insertChaine($_POST['chaine']);
-    
+    var_dump($res);
     if($res)
     {
-        header("Location: index.php"); exit;
+        header("Location: /admin/parametre-chaines/index.php"); exit;
     }
     else
     {
         echo "Un erreur est survenue...";
     }
-
 }
 
 
 $chaine = getAllChaine();
+
 
 
 ?>
@@ -39,15 +38,12 @@ $chaine = getAllChaine();
 
     <div class="row">
         <div class="col col-md-6">
-            <form action="/new.php" method="POST" enctype="multipart/form-data">
+            <form action="/admin/parametre-chaines/new.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nom_chaine">Nom de la chaine</label>
                     <input type="text" class="form-control" name="chaine[nom_chaine]"/>
                 </div>
-                <div class="form-group">
-                    <label for="date_creation_chaine">Date de création de la chaîne</label>
-                    <input type="date" class="form-control" name="chaine[date_creation_chaine]"/>
-                </div>
+                    <input type="hidden" class="form-control" name="chaine[date_creation_chaine]" value="<?=date('Y-m-d')?>"/>
                 <div class="form-group">
                     <label for="actif_chaine">actif/desactif</label>
                     <textarea class="form-control" name="chaine[actif_chaine]"></textarea>
