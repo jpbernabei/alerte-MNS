@@ -28,3 +28,4 @@ document.querySelector("#email").addEventListener("input", function(e){
         document.querySelector("#email").style.border="solid 3px red"
     }
 })
+

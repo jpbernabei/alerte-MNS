@@ -1,9 +1,9 @@
 <?php
 include '../../includes/inc-db-connect.php';
 
-$dbh = $GLOBALS['dbh'];
+$pdo = $GLOBALS['pdo'];
 $sql = 'SELECT * FROM utilisateur';
-$query = $dbh->query($sql);
+$query = $pdo->query($sql);
 $utilisateurs=$query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -54,7 +54,7 @@ $utilisateurs=$query->fetchAll(PDO::FETCH_ASSOC);
                 <h1>Liste des Utilisateurs</h1>
                 <div class="">
         <span>Ajouter un utilisateur</span>
-        <a href="#" >
+        <a href="/admin/parametre-utilisateurs/new.php" >
              Nouvelle utilisateur
         </a>
         
