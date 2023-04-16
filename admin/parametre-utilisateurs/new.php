@@ -1,5 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/inc-db-connect.php';
+require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 
 //fonction qui permet d'ajouter un utilisateur
  function insertUser(array $data){
@@ -84,7 +85,7 @@ $roles = getAllRoles();
             </div>
         </nav>
         <main>
-<div >
+<div>
     <!-- formulaire pour l'ajout d'utilisateur -->
 <form class="formNewUser" action="/admin/parametre-utilisateurs/new.php" method="POST">
     <label for="utilisateur[email_utilisateur]">Email</label>
@@ -123,7 +124,7 @@ $roles = getAllRoles();
 
     <label for="">Actif</label>
     <input id="actifUser" type="checkbox" value="1" name="utilisateur[actif_utilisateur]">
-    <input id="noActifUser" type="hidden" value="0" name="utilisateur[actif_utilisateur]"  >
+    <input id="noActifUser" type="hidden" value="0" name="utilisateur[actif_utilisateur]" >
 
     <input type="hidden" name="utilisateur[date_creation_compte_utilisateur]" value="<?=date("Y-m-d")?>">
     <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
