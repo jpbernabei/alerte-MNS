@@ -1,6 +1,6 @@
 <?php 
 
-require $_SERVER['DOCUMENT_ROOT'].'/db-connect.php'; 
+require $_SERVER['DOCUMENT_ROOT'].'/includes/inc-db-connect.php'; 
 
 // La fonction qui récupere toutes les chaînes existantes avec ses utilisateurs pour l'admin 
 
@@ -10,6 +10,17 @@ function getAllChaine(){
     FROM chaine 
     LEFT JOIN chaine_utilisateur ON chaine.id_chaine = chaine_utilisateur.id_chaine 
     LEFT JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur "; 
+    return $pdo->query($sql)->fetchAll(); 
+}
+
+// Fonction qui recupere les utilisateurs d'une chaine
+
+function getUtilisateurChaine(array $data){
+    $pdo = $GLOBALS['pdo']; 
+    $sql = "SELECT utilisateur.nom_utilisateur, utilisateur.prenom_utilisateur
+    FROM chaine
+    JOIN chaine_utilisateur ON chaine.id_chaine = chaine_utilisateur.id_chaine 
+    JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur "; 
     return $pdo->query($sql)->fetchAll(); 
 }
 
@@ -31,13 +42,8 @@ function insertChaine(array $data){
     VALUES (:nom_chaine, :date_creation_chaine, :actif_chaine)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);
-    // $stmt->execute([
-    //     'nom_chaine'=>$data['nom_chaine'],
-    //     'date_creation_chaine'=>$data['date_creation_chaine'],
-    //     'actif_chaine'=>$data['actif_chaine'],
-    // ]);
 
-    // return $pdo->lastInsertId();
+    return $pdo->lastInsertId();
 }
 
 // Fonction qui ajoute un utilisateur par son prénom et son nom à une chaîne
@@ -72,13 +78,20 @@ function updateUtilisateur(array $data)
 function updateChaine(array $data)
 {
     $pdo = $GLOBALS['pdo'];
-    $sql = "UPDATE chaine, utilisateur
-    SET nom_chaine = :nom_chaine
-        date_creation = :date_creation
+    $sql = "UPDATE chaine
+    LEFT JOIN chaine_utilisateur ON chaine.id_chaine = chaine_utilisateur.id_chaine 
+    LEFT JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur
+    SET (nom_chaine = :nom_chaine
         actif_chaine = :actif_chaine
+        nom_utilisateur = :nom_utilisateur
+        prenom_utilisateur = :prenom_utilisateur)
     WHERE id_chaine = :id_chaine";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute($data);
+    $stmt->execute([
+        'nom_chaine'=>$data['nom_chaine'],
+        'date_creation_chaine'=>$data['date_creation_chaine'],
+        'actif_chaine'=>$data['actif_chaine'],
+    ]);
 
     return $stmt->rowCount();
 }

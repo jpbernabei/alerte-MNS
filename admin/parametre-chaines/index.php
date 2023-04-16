@@ -45,7 +45,7 @@
 
               <!-- Il faut faire le modal ici -->
     <?php 
-    require $_SERVER['DOCUMENT_ROOT'].'/managers.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/managers/chaine-manager.php';
     $chaines = getAllChaine();
     ?>
     
@@ -55,7 +55,7 @@
             <th>Id</th>
             <th>Date</th>
             <th>Nom chaîne</th>
-            <th>Les utilisateurs dans la chaîne</th>
+            <!-- <th>Les utilisateurs dans la chaîne</th> -->
             <th>Actif/Désactive</th>
         </tr>
     </thead>
@@ -65,17 +65,12 @@
             <td><?= $chaine['id_chaine'] ?></td>
             <td><?= $chaine['date_creation_chaine'] ?></td>
             <td><?= $chaine['nom_chaine'] ?></td>
-            <td><?= $chaine['nom_utilisateur'] ?></td>
-            <td><?= $chaine['prenom_utilisateur'] ?></td>
+            <!-- <td><?= $chaine['nom_utilisateur'] ?></td>
+            <td><?= $chaine['prenom_utilisateur'] ?></td> -->
             <td><?= $chaine['actif_chaine'] ?></td>
             
-            <td><a href="/edit.php?id=<?= $chaine['id_chaine'] ?>">Modifier les informations de la chaîne</a></td>
+            <td><a href="/admin/parametre-chaines/edit.php?id=<?= $chaine['id_chaine'] ?>">Modifier les informations de la chaîne</a></td>
             
-            <td>
-                <form action="/new.php" method="post" onsubmit="return confirm('Voulez-vous vraiment modifier cette chaîne ?')">
-                    <input type="hidden" name="id_chaine" value="<?= $chaine['id_chaine'] ?>">
-                    <input type="submit" value="Modifier" >
-                </form>
             <td>
                 <form action="/delete.php" method="post" onsubmit="return confirm('Voulez-vous vraiment désactiver cette chaîne ?')">
                     <input type="hidden" name="id_chaine" value="<?= $chaine['id_chaine'] ?>">
@@ -84,7 +79,7 @@
             </td>
         </tr>
         <?php endforeach; ?>
-        <td><a href="new.php">Créer une chaîne</a></td>
+        <td><a href="/admin/parametre-chaines/new.php">Créer une chaîne</a></td>
     </tbody>
 </table>
             </div>
