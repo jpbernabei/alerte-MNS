@@ -1,14 +1,14 @@
 <?php
-
 // Pour ajouter une chaine 
+session_start();
 
 require $_SERVER['DOCUMENT_ROOT'].'/managers/chaine-manager.php';
 
 // Traiter le formulaire si envoyé
 if(isset($_POST['submit']))
-{
+{ 
     $res = insertChaine($_POST['chaine']);
-    var_dump($res);
+    
     if($res)
     {
         header("Location: /admin/parametre-chaines/index.php"); exit;
@@ -18,10 +18,6 @@ if(isset($_POST['submit']))
         echo "Un erreur est survenue...";
     }
 }
-
-
-$chaine = getAllChaine();
-
 
 
 ?>
@@ -41,17 +37,19 @@ $chaine = getAllChaine();
             <form action="/admin/parametre-chaines/new.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nom_chaine">Nom de la chaine</label>
-                    <input type="text" class="form-control" name="chaine[nom_chaine]"/>
+                    <input type="text" class="form-control" name="chaine[nom_chaine]" >
                 </div>
                     <input type="hidden" class="form-control" name="chaine[date_creation_chaine]" value="<?=date('Y-m-d')?>"/>
+                    <input type="hidden" name="chaine[id_utilisateur]" value="<?=$_SESSION['user']['id'] ?>">
                 <div class="form-group">
                     <label for="actif_chaine">actif/desactif</label>
-                    <textarea class="form-control" name="chaine[actif_chaine]"></textarea>
+                    <input id="actifChaine" type="checkbox" value="1" name="chaine[actif_chaine]">
+                    <input id="noActifChaine" type="hidden" value="0" name="chaine[actif_chaine]">
                 </div>
 
-                <input type="submit" name="submit" value="Enregistrer" class="btn btn-primary">
+                <input type="submit" onclick='verificationActifChaine()' name="submit" value="Enregistrer" class="btn btn-primary">
             </form>
         </div>
     </div>
 </div>
-
+<script src="/assets/script/chaines-script.js"></script>

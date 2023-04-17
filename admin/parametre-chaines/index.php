@@ -56,7 +56,7 @@
             <th>Date</th>
             <th>Nom chaîne</th>
             <!-- <th>Les utilisateurs dans la chaîne</th> -->
-            <th>Actif/Désactive</th>
+            <th>Actif/Désactif</th>
         </tr>
     </thead>
     <tbody>
@@ -65,8 +65,6 @@
             <td><?= $chaine['id_chaine'] ?></td>
             <td><?= $chaine['date_creation_chaine'] ?></td>
             <td><?= $chaine['nom_chaine'] ?></td>
-            <!-- <td><?= $chaine['nom_utilisateur'] ?></td>
-            <td><?= $chaine['prenom_utilisateur'] ?></td> -->
             <td><?= $chaine['actif_chaine'] ?></td>
             
             <td><a href="/admin/parametre-chaines/edit.php?id=<?= $chaine['id_chaine'] ?>">Modifier les informations de la chaîne</a></td>

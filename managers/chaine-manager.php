@@ -7,9 +7,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/includes/inc-db-connect.php';
 function getAllChaine(){
     $pdo = $GLOBALS['pdo']; 
     $sql = "SELECT *
-    FROM chaine 
-    LEFT JOIN chaine_utilisateur ON chaine.id_chaine = chaine_utilisateur.id_chaine 
-    LEFT JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur "; 
+    FROM chaine"; 
     return $pdo->query($sql)->fetchAll(); 
 }
 
@@ -32,18 +30,20 @@ function getChaineId(int $id)
     $sql = "SELECT * FROM chaine WHERE id_chaine = :id"; 
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['id' => $id]);
+
     return $stmt->fetch();
 }
+
 // Fonction qui ajoute une chaine 
 
 function insertChaine(array $data){
     $pdo = $GLOBALS['pdo'];
-    $sql = "INSERT INTO chaine(nom_chaine, date_creation_chaine, actif_chaine) 
-    VALUES (:nom_chaine, :date_creation_chaine, :actif_chaine)";
+    $sql = "INSERT INTO chaine(nom_chaine, date_creation_chaine, actif_chaine, id_utilisateur) 
+    VALUES (:nom_chaine, :date_creation_chaine, :actif_chaine, :id_utilisateur)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);
-
-    return $pdo->lastInsertId();
+    $id_chaine=$pdo->lastInsertId();
+    return $id_chaine;
 }
 
 // Fonction qui ajoute un utilisateur par son prénom et son nom à une chaîne
@@ -87,12 +87,19 @@ function updateChaine(array $data)
         prenom_utilisateur = :prenom_utilisateur)
     WHERE id_chaine = :id_chaine";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        'nom_chaine'=>$data['nom_chaine'],
-        'date_creation_chaine'=>$data['date_creation_chaine'],
-        'actif_chaine'=>$data['actif_chaine'],
-    ]);
+    $stmt->execute($data);
 
+    return $stmt->rowCount();
+}
+
+function updateChaine1(array $data){
+    $pdo=$GLOBALS['pdo'];
+    $sql="UPDATE chaine
+    SET nom_chaine=:nom_chaine,
+        actif_chaine=:actif_chaine
+    WHERE id_chaine=:id_chaine";
+    $stmt =$pdo->prepare($sql);
+    $stmt->execute($data);
     return $stmt->rowCount();
 }
 

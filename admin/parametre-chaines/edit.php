@@ -1,38 +1,30 @@
 <?php
+session_start();
+require $_SERVER['DOCUMENT_ROOT'] . "/managers/chaine-manager.php";
 
-require $_SERVER['DOCUMENT_ROOT']. "/managers/chaine-manager.php"; 
 
-// Vérification du paramètre
+if(isset($_POST['submit'])){
+    $count = updateChaine1($_POST['chaine']);
+    if($count == 1){
+        echo ('Modifier réussi');
+    }else {
+        echo ("Une erreur s'est produit");
+    }
+}
+// Vérification du paramètre de l'id choisie pour modifier 
+
 if (empty($_GET['id'])) {
     header("Location: /admin/parametre-chaines/index.php");
     die;
+
 }
-
-// Traiter le formulaire si envoyé
-if (!empty($_POST['submit'])) {
-    
-    $chaine = updateChaine($_POST);
-    
-    if ($chaine) {
-        echo "Chaîne modifiée avec succès !";
-    } else {
-        echo "Un erreur est survenue...";
-    }
-}
-
-
-// Récupération des informations de la chaine à modifier
-$chaine = getChaineId($_GET['id']);
 
 // On vérifie si les chaines sont bien présent en BDD
-if (!$chaine) {
+$chaine = getChaineId($_GET['id']);
+if(!$chaine){
     header("Location: /admin/parametre-chaines/index.php");
     die;
 }
-
-// Pour récuperer les utilisateurs dans une chaine
-
-$chaines = getUtilisateurChaine($_POST);
 
 ?>
 <div class="container py-5">
@@ -48,33 +40,25 @@ $chaines = getUtilisateurChaine($_POST);
 
     <div class="row">
         <div class="col col-md-6">
-            <form action="/admin/parametre-chaines/edit.php?id=<?= $chaine['id_chaine'] ?>" method="POST">
-                <input type="hidden" name="chaine[id_chaine]" value="<?= $chaine['nom_chaine'] ?>">
+            <form action="/admin/parametre-chaines/edit.php?id=<?= $_GET['id'] ?>" method="POST">
+                <input type="hidden" name="chaine[id_chaine]" value="<?= $chaine['id_chaine'] ?>">
                 <div class="form-group">
                     <label for="titre">Nom de la chaine</label>
-                    <input type="text" class="form-control" name="nom_chaine" value="<?= $chaine['nom_chaine'] ?>" />
-                </div>
-                <div class="form-group">
-                    <label for="titre">Date de création de la chaîne</label>
-                    <input type="text" class="form-control" name="date_creation_chaine" value="<?= $chaine['date_creation_chaine'] ?>" />
+                    <input type="text" class="form-control" name="chaine[nom_chaine]" value="<?= $chaine['nom_chaine'] ?>" />
                 </div>
                 <div class="form-group">
                     <label for="titre">Actif du chaine</label>
-                    <input type="text" class="form-control" name="actif_chaine" value="<?= $chaine['actif_chaine'] ?>" />
+                    <!-- Pour le bouton actif\desactif-->
+                <input id="actifChaine" type="checkbox" value="<?= $chaine['actif_chaine'] ?>" name="chaine[actif_chaine]">
+                <input id="noActifChaine" type="hidden" value="0" name="chaine[actif_chaine]">
                 </div>
-
                 <!-- Pour faire apparaitre les utilisateurs qui sont dans la chaine
             Faire une fonction qui recupere les utilisateurs d'une chaine et après met dans la boucle-->
-                
-                <?php foreach($chaines as $chaine): ?>
-        <tr>
-            <td><?= $chaine['nom_utilisateur'] ?></td>
-            <td><?= $chaine['prenom_utilisateur'] ?></td>
-        </tr>
-        <?php endforeach; ?>
-                <input type="submit" name="submit" value="Enregistre les modifications" class="btn btn-primary">
+
+        <input type="submit" onclick='verificationActifChaine()' name="submit">
             </form>
         </div>
-     
+
     </div>
+    <script src="/assets/script/chaines-script.js"></script>
 </div>
