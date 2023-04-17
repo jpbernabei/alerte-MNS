@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+
+
 require $_SERVER['DOCUMENT_ROOT']. '/includes/inc-db-connect.php';
 
 if(!empty($_POST['submit']))

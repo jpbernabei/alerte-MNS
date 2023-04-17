@@ -4,6 +4,6 @@ function verificationActifUser(){
     if (!isChecked){
         isNotChecked.value = 0;
     } else {
-        isNotChecked.value = 1
+        isNotChecked.value = 1;
     }
 }
