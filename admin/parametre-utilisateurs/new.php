@@ -7,7 +7,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
     $pdo = $GLOBALS['pdo'];
     $sql = "INSERT INTO utilisateur(email_utilisateur, mot_de_passe_utilisateur, nom_utilisateur, prenom_utilisateur, num_adresse_utilisateur, rue_adresse_utilisateur, code_postal_utilisateur, ville_adresse_utilisateur, date_creation_compte_utilisateur, actif_utilisateur, id_role) 
     VALUES (:email_utilisateur,:mot_de_passe_utilisateur,:nom_utilisateur,:prenom_utilisateur,:num_adresse_utilisateur,:rue_adresse_utilisateur,:code_postal_utilisateur,:ville_adresse_utilisateur,:date_creation_compte_utilisateur,:actif_utilisateur,:id_role)";
-
+    $data['mot_de_passe_utilisateur']= password_hash($data['mot_de_passe_utilisateur'], PASSWORD_DEFAULT);
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);
     $id_user= $pdo->lastInsertId();
@@ -24,6 +24,7 @@ function getAllRoles(){
 //on vérifie si le formulaire est envoyé
 if(isset($_POST['submit']))
 {
+
     //si il est envoyé on appel la fonction insertUser et on stock l'id de l'utilisateur ajouté dans une varible
     $id = insertUser($_POST['utilisateur']);
 
@@ -121,10 +122,14 @@ $roles = getAllRoles();
      <?php endforeach ?>
     </select>
     
-
-    <label for="">Actif</label>
-    <input id="actifUser" type="checkbox" value="1" name="utilisateur[actif_utilisateur]">
+<!-- toggle switch pour actif utilisateur -->
+    <label class="toggle">
+    <input id="actifUser" class="toggle-checkbox" type="checkbox" value="1" name="utilisateur[actif_utilisateur]">
+    <div class="toggle-switch"></div>
+    <span class="toggle-label"></span>
+    </label>
     <input id="noActifUser" type="hidden" value="0" name="utilisateur[actif_utilisateur]" >
+    
 
     <input type="hidden" name="utilisateur[date_creation_compte_utilisateur]" value="<?=date("Y-m-d")?>">
     <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
