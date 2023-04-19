@@ -4,12 +4,13 @@ session_start();
 
 require $_SERVER['DOCUMENT_ROOT'].'/managers/chaine-manager.php';
 
+
 // Traiter le formulaire si envoyé
 if(isset($_POST['submit']))
 { 
-    $res = insertChaine($_POST['chaine']);
+    $chaine = insertChaine($_POST['chaine']);
     
-    if($res)
+    if($chaine)
     {
         header("Location: /admin/parametre-chaines/index.php"); exit;
     }
@@ -18,6 +19,7 @@ if(isset($_POST['submit']))
         echo "Un erreur est survenue...";
     }
 }
+
 
 
 ?>
@@ -46,7 +48,6 @@ if(isset($_POST['submit']))
                     <input id="actifChaine" type="checkbox" value="1" name="chaine[actif_chaine]">
                     <input id="noActifChaine" type="hidden" value="0" name="chaine[actif_chaine]">
                 </div>
-
                 <input type="submit" onclick='verificationActifChaine()' name="submit" value="Enregistrer" class="btn btn-primary">
             </form>
         </div>

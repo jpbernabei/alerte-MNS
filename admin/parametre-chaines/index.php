@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index-chaine.css">
+    <link rel="stylesheet" href="/assets/css/style-parametre-admin.css">
     <script src="https://kit.fontawesome.com/18cbf17047.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Chaîne</title>
 </head>
 <body>
     <div class="container-grid">
@@ -35,7 +35,7 @@
             
             <div class="button-creation-container">
             
-                <a href="./index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
+                <a href="../parametre-admin.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
                         
                 
             </div>
@@ -57,6 +57,9 @@
             <th>Nom chaîne</th>
             <!-- <th>Les utilisateurs dans la chaîne</th> -->
             <th>Actif/Désactif</th>
+            <th>Modifier un utilisateur</th>
+            <th></th>
+            <th>Ajouter un utilisateur</th>
         </tr>
     </thead>
     <tbody>
@@ -75,6 +78,7 @@
                     <input type="submit" value="Supprimer" >
                 </form>
             </td>
+            <td><a href="/admin/parametre-chaines/addUser.php?id=<?= $chaine['id_chaine'] ?>">Ajouter des utilisateurs</a></td>
         </tr>
         <?php endforeach; ?>
         <td><a href="/admin/parametre-chaines/new.php">Créer une chaîne</a></td>

@@ -13,12 +13,13 @@ function getAllChaine(){
 
 // Fonction qui recupere les utilisateurs d'une chaine
 
-function getUtilisateurChaine(array $data){
+function getUtilisateur(array $data){
     $pdo = $GLOBALS['pdo']; 
     $sql = "SELECT utilisateur.nom_utilisateur, utilisateur.prenom_utilisateur
     FROM chaine
-    JOIN chaine_utilisateur ON chaine.id_chaine = chaine_utilisateur.id_chaine 
-    JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur "; 
+    LEFT JOIN chaine_utilisateur ON chaine.id_chaine = chaine_utilisateur.id_chaine 
+    LEFT JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur 
+    WHERE  chaine.id_utilisateur=utilisateur.id_utilisateur"; 
     return $pdo->query($sql)->fetchAll(); 
 }
 
@@ -51,8 +52,8 @@ function insertChaine(array $data){
 function insertUtilisateur (array $data)
 {
     $pdo = $GLOBALS['pdo'];
-    $sql = "INSERT INTO utilisateur (nom_utilisateur, prenom_utilisateur) 
-    VALUES (:nom_utilisateur, :prenom_utilisateur)";
+    $sql = "INSERT INTO utilisateur (id_utilisateur, nom_utilisateur, prenom_utilisateur) 
+    VALUES (:id_utilisateur, :nom_utilisateur, :prenom_utilisateur)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);
 
@@ -99,6 +100,16 @@ function updateChaine1(array $data){
         actif_chaine=:actif_chaine
     WHERE id_chaine=:id_chaine";
     $stmt =$pdo->prepare($sql);
+    $stmt->execute($data);
+    return $stmt->rowCount();
+}
+// Fonction qui permet d'insérer dans une chaine un utilisateur
+ 
+function insertUserChaine(array $data)
+{
+    $pdo = $GLOBALS['pdo'];
+    $sql = "INSERT INTO chaine_utilisateur (id_utilisateur,id_chaine) VALUES(:id_utilisateur,:id_chaine)"; 
+    $stmt = $pdo->prepare($sql);
     $stmt->execute($data);
     return $stmt->rowCount();
 }
