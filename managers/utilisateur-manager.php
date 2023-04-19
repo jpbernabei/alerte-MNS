@@ -62,16 +62,5 @@ function getAllRoles(){
 }
 
 
-function insertUserChaine( array $chaines){
-    $id_utilisateur = $_POST['id_utilisateur'];
-    foreach($chaines as $id_chaine){
-    $pdo = $GLOBALS['pdo'];
-    $sql = "INSERT INTO chaine_utilisateur (id_utilisateur,id_chaine) VALUES(:id_utilisateur,:id_chaine)"; 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        'id_utilisateur'=>$id_utilisateur,
-        'id_chaine'=>$id_chaine
-    ]);}
-    
-}
+
 // SELECT nom_utilisateur,nom_chaine FROM `utilisateur` JOIN chaine_utilisateur ON utilisateur.id_utilisateur = chaine_utilisateur.id_utilisateur JOIN chaine ON chaine_utilisateur.id_chaine = chaine.id_chaine;

@@ -104,14 +104,58 @@ function updateChaine1(array $data){
     return $stmt->rowCount();
 }
 // Fonction qui permet d'insérer dans une chaine un utilisateur
- 
-function insertUserChaine(array $data)
+
+// function insertUserChaine(array $data)
+// {
+//     $pdo = $GLOBALS['pdo'];
+    
+//     if(count($data)){
+
+//         foreach($data as $data)
+//         {
+//             $sql = "INSERT INTO chaine_utilisateur (id_utilisateur,id_chaine) 
+//             VALUES(:id_utilisateur,:id_chaine)"; 
+//             $stmt = $pdo->prepare($sql);
+//             $stmt->execute($data);
+//         }
+//     }
+   
+//     return $stmt->rowCount();
+// }
+
+
+function insertUserChaine(array $utilisateurs)
 {
     $pdo = $GLOBALS['pdo'];
-    $sql = "INSERT INTO chaine_utilisateur (id_utilisateur,id_chaine) VALUES(:id_utilisateur,:id_chaine)"; 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute($data);
-    return $stmt->rowCount();
+
+     if(count($utilisateurs) > 0)
+     {
+        foreach ($utilisateurs as $utilisateur)
+        {
+            $sql = "INSERT INTO chaine_utilisateur (id_utilisateur) 
+            VALUES(:id_utilisateur)"; 
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute
+            ([
+                'id_utilisateur' => $utilisateur,
+        
+            ]);
+        }
+    }
+     
+
+     return $stmt->rowCount();
+}
+// A l'intérieur de la chaine, supprimer les utilisateurs 
+
+function deleteUserChaine (int $id) {
+    $pdo = $GLOBALS['pdo'];
+    $sql = "DELETE FROM chaine_utilisateur
+            WHERE id_utilisateur=:id_utilisateur";
+     $stmt =$pdo->prepare($sql);
+     $stmt->execute(['id'=>$id]);
+
+     return $stmt->rowCount(); 
 }
 
-// Algorithme qui permet de désactiver une chaîne par l'admin
+

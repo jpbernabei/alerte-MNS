@@ -22,6 +22,7 @@ if (isset($_POST['submit'])) {
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -83,6 +84,7 @@ if (isset($_POST['submit'])) {
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Ajouter</th>
+                                <th>Supprimer</th>
                             </thead>
                             <tbody>
 

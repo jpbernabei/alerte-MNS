@@ -57,9 +57,9 @@
             <th>Nom chaîne</th>
             <!-- <th>Les utilisateurs dans la chaîne</th> -->
             <th>Actif/Désactif</th>
-            <th>Modifier un utilisateur</th>
-            <th></th>
+            <th>Modifier les informations de la chaîne</th>
             <th>Ajouter un utilisateur</th>
+            <th>Supprimer un utilisateur de la chaîne</th>
         </tr>
     </thead>
     <tbody>
@@ -69,16 +69,11 @@
             <td><?= $chaine['date_creation_chaine'] ?></td>
             <td><?= $chaine['nom_chaine'] ?></td>
             <td><?= $chaine['actif_chaine'] ?></td>
-            
-            <td><a href="/admin/parametre-chaines/edit.php?id=<?= $chaine['id_chaine'] ?>">Modifier les informations de la chaîne</a></td>
-            
-            <td>
-                <form action="/delete.php" method="post" onsubmit="return confirm('Voulez-vous vraiment désactiver cette chaîne ?')">
-                    <input type="hidden" name="id_chaine" value="<?= $chaine['id_chaine'] ?>">
-                    <input type="submit" value="Supprimer" >
-                </form>
-            </td>
+      
+            <td><a href="/admin/parametre-chaines/edit.php?id=<?= $chaine['id_chaine'] ?>">Modifier </a></td>
             <td><a href="/admin/parametre-chaines/addUser.php?id=<?= $chaine['id_chaine'] ?>">Ajouter des utilisateurs</a></td>
+            <td><a href="/admin/parametre-chaines/delete.php?id=<?= $chaine['id_chaine'] ?>">Supprimer les utilisateurs de <?= $chaine['nom_chaine'] ?> </a></td>
+         
         </tr>
         <?php endforeach; ?>
         <td><a href="/admin/parametre-chaines/new.php">Créer une chaîne</a></td>
