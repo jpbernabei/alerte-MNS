@@ -4,8 +4,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/inc-db-connect.php';
 //fonction qui permet d'ajouter un utilisateur
 function insertUser(array $data){
     $pdo = $GLOBALS['pdo'];
-    $sql = "INSERT INTO utilisateur(email_utilisateur, mot_de_passe_utilisateur, nom_utilisateur, prenom_utilisateur, num_adresse_utilisateur, rue_adresse_utilisateur, code_postal_utilisateur, ville_adresse_utilisateur, date_creation_compte_utilisateur, actif_utilisateur, id_role) 
-    VALUES (:email_utilisateur,:mot_de_passe_utilisateur,:nom_utilisateur,:prenom_utilisateur,:num_adresse_utilisateur,:rue_adresse_utilisateur,:code_postal_utilisateur,:ville_adresse_utilisateur,:date_creation_compte_utilisateur,:actif_utilisateur,:id_role)";
+    $sql = "INSERT INTO utilisateur(email_utilisateur, mot_de_passe_utilisateur, nom_utilisateur, prenom_utilisateur, num_adresse_utilisateur, rue_adresse_utilisateur, code_postal_utilisateur, ville_adresse_utilisateur, date_creation_compte_utilisateur,is_admin_utilisateur, actif_utilisateur, id_role) 
+    VALUES (:email_utilisateur,:mot_de_passe_utilisateur,:nom_utilisateur,:prenom_utilisateur,:num_adresse_utilisateur,:rue_adresse_utilisateur,:code_postal_utilisateur,:ville_adresse_utilisateur,:date_creation_compte_utilisateur,:is_admin_utilisateur,:actif_utilisateur,:id_role)";
     $data['mot_de_passe_utilisateur']= password_hash($data['mot_de_passe_utilisateur'], PASSWORD_DEFAULT);
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);

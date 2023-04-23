@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION['user']['id']);
+var_dump($_SESSION['user']);
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/reunion-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 
@@ -10,7 +10,7 @@ if(isset($_POST['submit']))
 {
 
     //si il est envoyé on appel la fonction insertReunion et on stock l'id de la reunion ajouté dans une varible
-    $id = insertReunion($_POST['reunion'],$_POST['utilisateur']);
+    $id = insertReunion($_POST['reunion'],$_POST['utilisateur'],$_SESSION['user']['id'] );
 
 
     //si il y a bien un id on redirige vers l'index
@@ -48,7 +48,7 @@ $utilisateurs = getAllUser();
             <div><div class="police name-chaine">nom de la chaine </div><div class="police name-salon">nom du salon</div></div>
             <input class="search" type="search">
             <a href=""><i class="fa-solid fa-users fa-xl" style="color: #ffffff;"></i></a>
-            <a href="../logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
+            <a href="/logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
         </header>
         <nav class="nav-chaine">
             <div>
@@ -109,6 +109,9 @@ $utilisateurs = getAllUser();
     <span class="toggle-label"></span>
     </label>
     <input id="noActifReunion" type="hidden" value="0" name="reunion[actif_reunion]" >
+
+    <input type="hidden" value="<?=$_SESSION['user']['id'] ?>" name="">
+    
     
     <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
         <input  type="submit" onclick='verificationActifReunion()'  name="submit">

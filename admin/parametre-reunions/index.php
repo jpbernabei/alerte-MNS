@@ -4,7 +4,7 @@ session_start();
 include '../../includes/inc-db-connect.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/reunion-manager.php";
 
-$reunions = getAllReunion();
+$reunions = getAllReunionActif();
 
 ?>
 

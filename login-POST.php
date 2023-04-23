@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-
-
 require $_SERVER['DOCUMENT_ROOT']. '/includes/inc-db-connect.php';
 
 if(!empty($_POST['submit']))
@@ -45,13 +43,19 @@ if(!empty($_POST['submit']))
             $_SESSION['user'] = [
                 'id' => $user['id_utilisateur'],
                 'firstname'=> $user['prenom_utilisateur'],
+                'is_admin_utilisateur'=> $user['is_admin_utilisateur']
             ];
-            // on redirige vers l'interface
+            if($user['is_admin_utilisateur'] == 1)
+            {
+            // on redirige vers l'interface admin
             header("Location: /admin/index.php");
+            }else{
+                header("Location: /index.php");
+            }
         }
         else{ // si mdp pas ok, on redirige vers la page login
             $_SESSION['errors'] = "Identifiants invalide.";
-            header("Location: /login.php"); die;
+            header("Location: /index.php"); die;
         }
     }
 
