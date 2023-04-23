@@ -1,27 +1,18 @@
 <?php
 session_start();
-
-include '../../includes/inc-db-connect.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/chaine-manager.php";
 
-if(!empty($_POST['id_utilisateur']))
-{
-    $count = deleteUserChaine($_POST['id_utilisateur']);
 
-    if($count == 1)
-    {
-        header("Location: /admin/parametre-chaines/index.php"); exit;
-    }
-    else
-    {
-        echo "Une erreur s'est produite lors de la suppression...";
-    }
-}
-else
-{
-    header("Location: /admin/parametre-chaines/delete.php"); exit;
-}
+if(isset($_GET['id']))
+{ 
 
+    // ------------La deuxieme étape est de récuperer les utilisateurs lié à cette chaine 
+    $utilisateurs = getUserChaine($_GET['id']);
+
+
+} else{
+    header("Location: /admin/parametre-chaines/index.php");
+}
 
 ?> 
 
@@ -66,57 +57,35 @@ else
             <div>
                 <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
             </div>
-
             <div class="button-creation-container">
-
                 <a href="/admin/parametre-admin.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
-
-
             </div>
         </nav>
         <main>
 
             <div>
-                <h1>Ajout des utilisateurs</h1>
+                <h1>Voir des utilisateurs</h1>
                 <main>
                     <div>
-                        <form action="/admin/parametre-chaines/delete.php" method="post">
+                        <form action="delete.php" method="POST">
                         <table>
                             <thead>
-                                <th>ID</th>
-                                <th>Email</th>
-                                <th>Nom</th>
                                 <th>Prénom</th>
-                                <th>Ajouter</th>
-                                <th>Supprimer</th>
+                                <th>Nom</th>
                             </thead>
                             <tbody>
-
-                                <?php foreach ($utilisateurs as $utilisateur) : ?>
+                                <?php foreach($utilisateurs as  $utilisateur) : ?>
                                     <tr>
-                                        <td><?= $utilisateur['id_utilisateur'] ?></td>
-                                        <td><?= $utilisateur['email_utilisateur'] ?></td>
                                         <td><?= $utilisateur['nom_utilisateur'] ?></td>
                                         <td><?= $utilisateur['prenom_utilisateur'] ?></td>
-                                        <td>   
-                                        <label>
-                                            <input type="checkbox" name="chaine_utilisateur[id_utilisateur]" value="<?= $utilisateur["id_utilisateur"] ?>">
-                                        </label>
-                                        </td>
-                                        <input type="hidden" name="chaine_utilisateur[id_chaine]" value="<?=$_GET['id']?>">
                                     </tr>
-                                <?php
-                                endforeach;  ?>
+                                <?php endforeach;  ?>
                             </tbody>
                         </table>
-                        <input type="submit"  name="submit" value="Enregistrer" class="btn btn-primary">
+                        
                         </form>
                     </div>
-
                 </main>
-
-            </div>
-            
+            </div>   
 </body>
-
 </html>

@@ -137,13 +137,10 @@ function insertUserChaine(array $utilisateurs)
             $stmt = $pdo->prepare($sql);
             $stmt->execute
             ([
-                'id_utilisateur' => $utilisateur,
-        
+                'id_utilisateur' => $utilisateur
             ]);
         }
     }
-     
-
      return $stmt->rowCount();
 }
 // A l'intérieur de la chaine, supprimer les utilisateurs 
@@ -156,6 +153,20 @@ function deleteUserChaine (int $id) {
      $stmt->execute(['id'=>$id]);
 
      return $stmt->rowCount(); 
+}
+
+// Voir les utilisateurs d'une chaine 
+
+function getUserChaine(int $idChaine)
+{
+    $pdo = $GLOBALS['pdo'];
+    $sql = "SELECT utilisateur.nom_utilisateur, utilisateur.prenom_utilisateur
+    FROM chaine_utilisateur
+    JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur
+    WHERE id_chaine = $idChaine";
+    $stmt =$pdo->prepare($sql);
+    $stmt->execute(['id_chaine'=>$idChaine]);
+    return $stmt->fetchAll();
 }
 
 

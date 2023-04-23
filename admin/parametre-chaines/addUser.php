@@ -11,12 +11,16 @@ $utilisateurs = getAllUser();
 if (isset($_POST['submit'])) {
 
     $id = insertUserChaine($_POST['chaine_utilisateur']);
+
     if ($id) {
       
         header("Location: /admin/parametre-chaines/index.php"); exit;
         echo ("reussi");
-    } else {
-        echo ("Une erreur est survenu");
+
+    } else 
+    
+    {
+        echo ("Une erreur est survenu lors de l'ajout des utilisateurs");
     }
 }
 
