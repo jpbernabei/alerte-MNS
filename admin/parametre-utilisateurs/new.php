@@ -2,25 +2,6 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/inc-db-connect.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 
-//fonction qui permet d'ajouter un utilisateur
- function insertUser(array $data){
-    $pdo = $GLOBALS['pdo'];
-    $sql = "INSERT INTO utilisateur(email_utilisateur, mot_de_passe_utilisateur, nom_utilisateur, prenom_utilisateur, num_adresse_utilisateur, rue_adresse_utilisateur, code_postal_utilisateur, ville_adresse_utilisateur, date_creation_compte_utilisateur, actif_utilisateur, id_role) 
-    VALUES (:email_utilisateur,:mot_de_passe_utilisateur,:nom_utilisateur,:prenom_utilisateur,:num_adresse_utilisateur,:rue_adresse_utilisateur,:code_postal_utilisateur,:ville_adresse_utilisateur,:date_creation_compte_utilisateur,:actif_utilisateur,:id_role)";
-    $data['mot_de_passe_utilisateur']= password_hash($data['mot_de_passe_utilisateur'], PASSWORD_DEFAULT);
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute($data);
-    $id_user= $pdo->lastInsertId();
-    return $id_user;
-}
-
-//fonction qui permet de récupérer les rôles
-function getAllRoles(){
-    $pdo = $GLOBALS['pdo'];
-    $sql = "SELECT * FROM role ";
-    return $pdo->query($sql)->fetchAll();
-}
-
 //on vérifie si le formulaire est envoyé
 if(isset($_POST['submit']))
 {
@@ -129,11 +110,18 @@ $roles = getAllRoles();
     <span class="toggle-label"></span>
     </label>
     <input id="noActifUser" type="hidden" value="0" name="utilisateur[actif_utilisateur]" >
+
+    <label class="toggle">
+    <input id="actifAdmin" class="toggle-checkbox" type="checkbox" value="1" name="utilisateur[is_admin_utilisateur]">
+    <div class="toggle-switch"></div>
+    <span class="toggle-label"></span>
+    </label>
+    <input id="noActifAdmin" type="hidden" value="0" name="utilisateur[is_admin_utilisateur]" >
     
 
     <input type="hidden" name="utilisateur[date_creation_compte_utilisateur]" value="<?=date("Y-m-d")?>">
     <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
-        <input  type="submit" onclick='verificationActifUser()'  name="submit">
+        <input  type="submit" onclick='verificationActifUser(),verificationActifAdmin()'   name="submit">
 </form>
 </div>
         </main>

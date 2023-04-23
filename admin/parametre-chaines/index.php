@@ -37,7 +37,6 @@
             
                 <a href="../parametre-admin.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
                         
-                
             </div>
         </nav>
         <main>
