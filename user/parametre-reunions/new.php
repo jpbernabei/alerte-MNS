@@ -1,7 +1,7 @@
 <?php
+require $_SERVER['DOCUMENT_ROOT']. '/includes/inc-top.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/reunion-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
-require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
 
 //on vérifie si le formulaire est envoyé
@@ -15,7 +15,7 @@ if(isset($_POST['submit']))
     //si il y a bien un id on redirige vers l'index
     if($id)
     {
-        header("Location: /admin/parametre-reunions/index.php"); exit;
+        header("Location: /index.php"); exit;
     }
     else
     {
@@ -27,30 +27,29 @@ if(isset($_POST['submit']))
 $utilisateurs = getAllUser();
 
 ?>
-        <nav class="nav-chaine">
+<nav class="nav-chaine">
             <div>
-                <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;" ></i>Utilisateurs</button></a>
+                <button class="button-chaines police">Messagerie</button>
             </div>
             <div >
-                <a href="/admin/parametre-chaines/index.php"><button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button></a>
+                <button class="button-chaines police">MNS-Infos</button>
             </div>
-            <div >
-                <a href="/admin/parametre-salons/index.php"><button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button></a>
-            </div>
-            <div >
-                <a href="/admin/parametre-reunions/index.php"><button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button></a>
-            </div>
-            
             <div class="button-creation-container">
-            
-                <a href="./index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
-                        
+                <button class="button-creation police"><i class="fa-solid fa-circle-plus"
+                        style="color: #ffffff;"></i>Créer une réunion</button>
+                <button class="button-creation police"><i class="fa-solid fa-circle-plus"
+                        style="color: #ffffff;"></i>Créer une chaine</button>
+                        <div class="icone-parametre"><a class="icone-parametre" href="./admin/parametre-admin.html"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
+                
             </div>
+        </nav>
+        <nav class="nav-salon">
+
         </nav>
         <main>
         <div>
-    <!-- formulaire pour la creation d'une reunion -->
-<form class="formNewUser" action="/admin/parametre-reunions/new.php" method="POST">
+    <!-- formulaire pour l'ajout d'utilisateur -->
+<form class="formNewUser" action="/user/parametre-reunions/new.php" method="POST">
     <label for="reunion[nom_reunion]">Nom de la réunion</label>
     <input type="text" name="reunion[nom_reunion]" >
 
@@ -95,8 +94,11 @@ $utilisateurs = getAllUser();
 </form>
 </div>
         </main>
-        
+        <div class="side">
+
+        </div>
     </div>
     <script src="/assets/script/reunion-script.js" ></script>
 </body>
 </html>
+      

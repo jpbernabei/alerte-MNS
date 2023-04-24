@@ -105,3 +105,19 @@ function insertUserReunion(array $data)
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);
 }
+
+function getUserNotInReunion(int $id)
+{
+    $pdo = $GLOBALS['pdo'];
+    $sql = "SELECT utilisateur.nom_utilisateur, utilisateur.prenom_utilisateur, utilisateur.id_utilisateur
+    FROM utilisateur
+    WHERE NOT EXISTS (
+      SELECT *
+      FROM reunion_utilisateur
+      WHERE reunion_utilisateur.id_utilisateur = utilisateur.id_utilisateur
+        AND reunion_utilisateur.id_reunion = :id_reunion
+    )";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id_reunion' => $id]);
+    return $stmt->fetchAll();
+}
