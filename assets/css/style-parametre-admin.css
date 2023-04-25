@@ -53,6 +53,9 @@ header{
 }
 
 main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     grid-area: main;
     background-color: aliceblue;
     height: 100%;

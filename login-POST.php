@@ -42,6 +42,7 @@ if(!empty($_POST['submit']))
 
             $_SESSION['user'] = [
                 'id' => $user['id_utilisateur'],
+                'name'=> $user['nom_utilisateur'],
                 'firstname'=> $user['prenom_utilisateur'],
                 'is_admin_utilisateur'=> $user['is_admin_utilisateur']
             ];

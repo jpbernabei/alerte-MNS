@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if($_SESSION['user']['is_admin_utilisateur'] == 0)
+{
+    header("Location: /logout.php");die;
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,12 +13,12 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style-parametre-admin.css">
     <script src="https://kit.fontawesome.com/18cbf17047.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container-grid">
         <header>
             <img class="logo" src="/images/LOGO_ALERT_MNS_transparent.ico" alt="">
             <a href=""><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a>
