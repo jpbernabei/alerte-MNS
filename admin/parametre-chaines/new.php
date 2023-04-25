@@ -3,12 +3,13 @@
 session_start();
 
 require $_SERVER['DOCUMENT_ROOT'].'/managers/chaine-manager.php';
+require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 
 
 // Traiter le formulaire si envoyé
 if(isset($_POST['submit']))
 { 
-    $chaine = insertChaine($_POST['chaine']);
+    $chaine = insertChaine($_POST['chaine'],$_POST['utilisateur'], $_SESSION['user']['id']);
     
     if($chaine)
     {
@@ -18,7 +19,9 @@ if(isset($_POST['submit']))
     {
         echo "Un erreur est survenue...";
     }
+
 }
+$utilisateurs = getAllUser();
 
 
 

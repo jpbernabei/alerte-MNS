@@ -70,8 +70,6 @@ if (isset($_POST['submit'])) {
             <div class="button-creation-container">
 
                 <a href="/admin/parametre-admin.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
-
-
             </div>
         </nav>
         <main>
@@ -91,7 +89,6 @@ if (isset($_POST['submit'])) {
                                 <th>Supprimer</th>
                             </thead>
                             <tbody>
-
                                 <?php foreach ($utilisateurs as $utilisateur) : ?>
                                     <tr>
                                         <td><?= $utilisateur['id_utilisateur'] ?></td>
@@ -112,11 +109,7 @@ if (isset($_POST['submit'])) {
                         <input type="submit"  name="submit" value="Enregistrer" class="btn btn-primary">
                         </form>
                     </div>
-
                 </main>
-
-            </div>
-            
+            </div>  
 </body>
-
 </html>

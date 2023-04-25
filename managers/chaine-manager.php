@@ -37,13 +37,41 @@ function getChaineId(int $id)
 
 // Fonction qui ajoute une chaine 
 
-function insertChaine(array $data){
+function insertChaine(array $data, array $utilisateurs){
     $pdo = $GLOBALS['pdo'];
     $sql = "INSERT INTO chaine(nom_chaine, date_creation_chaine, actif_chaine, id_utilisateur) 
     VALUES (:nom_chaine, :date_creation_chaine, :actif_chaine, :id_utilisateur)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);
+    
     $id_chaine=$pdo->lastInsertId();
+
+    $id_createur= $_SESSION['user']['id'];
+
+    $sql = "INSERT INTO chaine_utilisateur (id_utilisateur,id_chaine) 
+    VALUES (:id_utilisateur,:id_chaine)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute
+           ([
+               'id_utilisateur' => $id_createur,
+               'id_chaine' => $id_chaine
+           ]);
+
+    if(count($utilisateurs) > 0)
+    {
+       foreach ($utilisateurs as $id_utilisateur)
+       {
+           $sql = "INSERT INTO chaine_utilisateur (id_utilisateur,id_chaine) 
+           VALUES (:id_utilisateur,:id_chaine)";
+           $stmt = $pdo->prepare($sql);
+           $stmt->execute
+           ([
+               'id_utilisateur' => $id_utilisateur,
+               'id_chaine' => $id_chaine
+           ]);
+       }
+   }
+    
     return $id_chaine;
 }
 
@@ -103,45 +131,16 @@ function updateChaine1(array $data){
     $stmt->execute($data);
     return $stmt->rowCount();
 }
-// Fonction qui permet d'insérer dans une chaine un utilisateur
-
-// function insertUserChaine(array $data)
-// {
-//     $pdo = $GLOBALS['pdo'];
-    
-//     if(count($data)){
-
-//         foreach($data as $data)
-//         {
-//             $sql = "INSERT INTO chaine_utilisateur (id_utilisateur,id_chaine) 
-//             VALUES(:id_utilisateur,:id_chaine)"; 
-//             $stmt = $pdo->prepare($sql);
-//             $stmt->execute($data);
-//         }
-//     }
-   
-//     return $stmt->rowCount();
-// }
 
 
 function insertUserChaine(array $utilisateurs)
 {
     $pdo = $GLOBALS['pdo'];
 
-     if(count($utilisateurs) > 0)
-     {
-        foreach ($utilisateurs as $utilisateur)
-        {
-            $sql = "INSERT INTO chaine_utilisateur (id_utilisateur) 
-            VALUES(:id_utilisateur)"; 
+            $sql = "INSERT INTO chaine_utilisateur (id_utilisateur, id_chaine) 
+            VALUES(:id_utilisateur, :id_chaine)"; 
             $stmt = $pdo->prepare($sql);
-            $stmt->execute
-            ([
-                'id_utilisateur' => $utilisateur
-            ]);
-        }
-    }
-     return $stmt->rowCount();
+            $stmt->execute($utilisateurs);
 }
 // A l'intérieur de la chaine, supprimer les utilisateurs 
 

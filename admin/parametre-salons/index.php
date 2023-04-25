@@ -5,7 +5,7 @@
     <?php
     require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
     
-    $salons = getAllSalon();
+    $chaines = getAllChaine();
     ?>
 
     <table class="">
@@ -15,27 +15,24 @@
                 <th class="">Date</th>
                 <th class="">Nom des salons</th>
                 <th class="">Actif/Désactif</th>
+                <th>Voir tous les salons </th>
              
 
             </tr>
         </thead>
         <tbody class="">
-            <?php foreach ($salons as $salon) : ?>
+            <?php foreach ($chaines as $chaine) : ?>
                 <tr>
-                    <td class=""><?= $salon['id_salon'] ?></td>
-                    <td class=""><?= $salon['date_creation_salon'] ?></td>
-                    <td class=""><?= $salon['nom_salon'] ?></td>
-                    <td class=""><?= $salon['actif_salon'] ?></td>
-                    <td class=""><a href="/admin/parametre-chaines/edit.php?id=<?= $chaine['id_chaine'] ?>">Modifier un salon</a></td>
+                    <td class=""><?= $chaine['id_chaine'] ?></td>
+                    <td class=""><?= $chaine['date_creation_chaine'] ?></td>
+                    <td class=""><?= $chaine['nom_chaine'] ?></td>
+                    <td class=""><?= $chaine['actif_chaine'] ?></td>
+                    <td class=""><a href="/admin/parametre-salons/AllSalons?id=<?= $chaine['id_chaine'] ?>">
+                    Voir tous les salons de<td class=""><?= $chaine['nom_chaine'] ?></td></a></td>
 
                 </tr>
             <?php endforeach; ?>
         </tbody>
-        <tfoot class="">
-            <tr class="">
-                <td class=""><a class="afoot" href="/admin/parametre-chaines/new.php">Créer des salons</a></td>
-            </tr>
-        </tfoot>
     </table>
 
 </div>
