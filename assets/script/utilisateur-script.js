@@ -7,6 +7,15 @@ function verificationActifUser(){
         isNotCheckedUser.value = 1;
     }
 }
+let userActive = document.getElementById("actifUser").value;
+let userToggle = document.getElementById("actifUser");
+
+if(userActive == 1)
+{
+    userToggle.checked = true;
+}else{
+    userToggle.checked = false;
+}
 
 function verificationActifAdmin(){
     let isCheckedAdmin = document.getElementById("actifAdmin").checked;
@@ -20,15 +29,7 @@ function verificationActifAdmin(){
 
 
 
-let userActive = document.getElementById("actifUser").value;
-let userToggle = document.getElementById("actifUser");
 
-if(userActive == 1)
-{
-    userToggle.checked = true;
-}else{
-    userToggle.checked = false;
-}
 
 let adminActif = document.getElementById("actifAdmin").value;
 let adminToggle = document.getElementById("actifAdmin");

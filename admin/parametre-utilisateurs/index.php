@@ -4,6 +4,17 @@ include '../../includes/inc-db-connect.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
+if (!empty($_POST['isActive'])) {
+    $isActive = isset($_POST['actif_utilisateur']) ? 1 : 0;
+
+    $sql = "UPDATE utilisateur SET actif_utilisateur = :actif_utilisateur WHERE id_utilisateur = :id_utilisateur";
+    $query = $pdo->prepare($sql);
+    $active = $query->execute([
+        'actif_utilisateur' => $isActive,
+        'id_utilisateur' => $_POST['id_utilisateur']
+    ]);
+}
+
 $utilisateurs = getAllUser();
 
 ?>
@@ -31,19 +42,18 @@ $utilisateurs = getAllUser();
         </nav>
         <main>
 
-            <div>
+            <div class="container">
                 <h1>Liste des Utilisateurs</h1>
-                <div class="">
-                    <span>Ajouter un utilisateur</span>
-                    <a href="/admin/parametre-utilisateurs/new.php">
-                        Nouvelle utilisateur
-                    </a>
-
-                </div>
-                <main>
-                    <div>
+                
+                <div class="direction-right ">
+                <a class="direction-right" href="/admin/parametre-utilisateurs/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus"
+                        style="color: #ffffff;"></i>Utilisateur
+                    </button></a></div>
+                
+                
+                    <div class="container-table desigend-scrollbar ">
                         <table>
-                            <thead>
+                            <thead >
                                 <th>ID</th>
                                 <th>Email</th>
                                 <th>Nom</th>
@@ -61,31 +71,38 @@ $utilisateurs = getAllUser();
                                         <td><?= $utilisateur['nom_utilisateur'] ?></td>
                                         <td><?= $utilisateur['prenom_utilisateur'] ?></td>
                                         <td><a href="/admin/parametre-utilisateurs/edit.php?id=<?= $utilisateur['id_utilisateur'] ?>">Modifier</a></td>
-                                        <td> <label class="toggle">
-                                                <input id="actifUser" class="toggle-checkbox" type="checkbox" value="<?= $utilisateur['actif_utilisateur'] ?>" name="utilisateur[actif_utilisateur]">
+                                        <td>
+                                            <form action="/admin/parametre-utilisateurs/index.php" method="post">
+                                            <label class="toggle">
+                                                <input type="hidden" name="id_utilisateur" value="<?= $utilisateur['id_utilisateur'] ?>">
+                                                <input class="toggle-checkbox" type="checkbox" <?= $utilisateur['actif_utilisateur'] == 1 ? 'checked' : ''?> name="actif_utilisateur">
+                                              
                                                 <div class="toggle-switch"></div>
                                                 <span class="toggle-label"></span>
                                             </label>
-                                            <input id="noActifUser" type="hidden" value="0" name="utilisateur[actif_utilisateur]">
+
                                         </td>
-                                        <td>
+                                        <td>  <input class="button-lien" type="submit" name="isActive" value="valider"></td></form> 
+                                        <!-- <td>
                                             <form action="/admin/parametre-utilisateurs/delete.php" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ctte utilisateur ?')">
                                                 <input type="hidden" name="id_utilisateur" value="<?= $utilisateur['id_utilisateur'] ?>">
                                                 <input type="submit" value="Supprimer">
                                             </form>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 <?php
                                 endforeach;  ?>
                             </tbody>
+                            
                         </table>
 
 
                     </div>
 
-                </main>
+                
 
             </div>
+        </main>
             <script src="/assets/script/utilisateur-script.js"></script>
 </body>
 

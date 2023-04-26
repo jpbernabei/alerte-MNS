@@ -5,10 +5,14 @@
 }
 html,
 body {
+    font-family: 'Prompt', sans-serif;
     height: 100vh;
     width: 100%;
     overflow: hidden;
     
+}
+h1{
+    text-align: center;
 }
 .container-grid{
     display: grid;
@@ -59,6 +63,7 @@ main{
     grid-area: main;
     background-color: aliceblue;
     height: 100%;
+    width: 100%;
 }
 
 .side{
@@ -82,6 +87,7 @@ main{
     font-family: 'Prompt', sans-serif;
     color: white;
 }
+
 .button-chaines, .button-creation,.button-salon{
     display: flex;
     flex-direction: column;
@@ -93,20 +99,23 @@ main{
     border-radius: 20px;
     margin-top: 20px;
 }
-.button-chaines, .button-creation,.button-salon{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ff6715;
-    width: 150px;
-    height: 60px;
-    border-radius: 20px;
-    margin-top: 20px;
+.button-parametre-admin:hover{
+    background-color: #ffb289;
+    color: black;
+}
+.button-creation:hover{
+    background-color: #ffb289;
+    color: black;
     
 }
-.button-creation{
-    margin-bottom: 20px;
+.button-chaines:hover{
+    background-color: #ffb289;
+    color: black;
+}
+
+button{
+    border:0px;
+    text-decoration: none;
 }
 .button-creation-container{
     display: flex;
@@ -114,6 +123,7 @@ main{
     bottom:0;
     flex-direction: column;
     justify-content: flex-end;
+    
 }
 .button-parametre-admin-container{
     display: grid;
@@ -123,7 +133,8 @@ main{
     justify-content: center;
     align-items: center;
     column-gap: 300px;
-    
+    background-color: #81a4cdff;
+    ;
 }
 .button-parametre-admin{
     display: flex;
@@ -155,6 +166,7 @@ main{
 }
 a{
     text-decoration: none;
+    color: white;
 }
 
 .formNewUser
@@ -176,6 +188,7 @@ a{
 .toggle {
     cursor: pointer;
     display: inline-block;
+    margin: 10px;
   }
   
   .toggle-switch {
@@ -187,6 +200,7 @@ a{
     position: relative;
     vertical-align: middle;
     transition: background 0.25s;
+
   }
   .toggle-switch:before, .toggle-switch:after {
     content: "";
@@ -224,3 +238,108 @@ a{
     position: relative;
     top: 2px;
   }
+
+  /*------------- parametre admin utilisateur ------------- */
+
+.container{
+    height: 100%;
+    width: 100%;
+    background-color: #81a4cdff;
+}
+
+.container-table{
+    background-color: #313e74;
+    width: 70%;
+    border-radius: 50px;
+    min-height: 500px;
+    padding: 20px;
+    color: #81a4cdff;
+    margin-left: 15%;
+    margin-top: 4%;
+}
+
+.container-table table {
+    width: 100%;
+}
+
+.container-table table thead {
+    color:#ff6715;
+    font-weight: bold;
+}
+
+.container-table table td {
+    text-align: center;
+}
+
+.button-lien{
+   
+    background-color: #ff6715;
+    border-radius: 5px;
+    width: 100px;
+    text-align: center;
+    height: 30px;
+}
+.direction-right{
+    margin-right: 20px;
+}
+
+input[type="submit"] {
+    margin: 0;
+    padding: 0;
+    width: 150px;
+    height: 20px;
+    line-height: 100%; /* Si ça fonctionne pas mets 0 */
+    border-radius: 10px;
+    border: 0;
+    background:#ff6715; /* ou transparent je sais plus... */
+    color: white;
+     /* Normalement */text-decoration: none;
+    
+}
+input[type="submit"]:hover{
+    background-color:#ffb289;
+    color: black;
+}
+
+/* ----------------Creer un utilisateur ----------------*/
+
+.container-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #313e74;
+    color: #81a4cdff;
+    width: 70%;
+    border-radius: 50px;
+    min-height: 100px;
+    padding: 20px;
+    margin-left: 15%;
+    margin-top: 4%;
+}
+
+input[type="text"],[type="email"],[type="password"]{
+    background-color: #81a4cdff;
+    height: 30px;
+    width: 300px;
+    border-radius: 20px;
+    border:none;
+}
+
+.desigend-scrollbar
+{
+    height: 45%;
+    overflow: auto;
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: rgb(253, 253, 253);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: rgb(97, 95, 93);
+    border-radius: 5px;
+}
