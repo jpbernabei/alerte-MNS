@@ -87,12 +87,13 @@ function getUserReunion(int $id){
     return $stmt->fetchAll();
 }
 
-function deleteUserReunion(int $id)
+function deleteUserReunion(int $id,int $idReunion)
 {
     $pdo = $GLOBALS['pdo'];
-    $sql = "DELETE FROM reunion_utilisateur WHERE id_utilisateur = :id";
+    $sql = "DELETE FROM reunion_utilisateur WHERE id_utilisateur = :id AND id_reunion = $idReunion";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(['id' => $id]);
+    $stmt->execute(['id' => $id,
+                    ]);
 
     return $stmt->rowCount();
 }
@@ -120,4 +121,16 @@ function getUserNotInReunion(int $id)
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['id_reunion' => $id]);
     return $stmt->fetchAll();
+}
+
+function desactiverReunion(array $data,int $idReunion)
+{
+    $pdo = $GLOBALS['pdo'];
+    $sql = "UPDATE reunion 
+    SET active_reunion = :active_reunion
+    WHERE id_reunion = $idReunion";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($data);
+
+    return $stmt->rowCount();
 }

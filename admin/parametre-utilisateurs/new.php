@@ -4,108 +4,111 @@ require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
 //on vérifie si le formulaire est envoyé
-if(isset($_POST['submit']))
-{
+if (isset($_POST['submit'])) {
 
     //si il est envoyé on appel la fonction insertUser et on stock l'id de l'utilisateur ajouté dans une varible
     $id = insertUser($_POST['utilisateur']);
 
     //si il y a bien un id on redirige vers l'index
-    if($id)
-    {
-        header("Location: /admin/parametre-utilisateurs/index.php"); exit;
-    }
-    else
-    {
+    if ($id) {
+        header("Location: /admin/parametre-utilisateurs/index.php");
+        exit;
+    } else {
         echo "Un erreur est survenue...";
     }
-
 }
 
 $roles = getAllRoles();
 
 ?>
 
-        <nav class="nav-chaine">
-            <div>
-            <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;" ></i>Utilisateurs</button></a>
-            </div>
-            <div >
-                <button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button>
-            </div>
-            <div >
-                <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
-            </div>
-            <div >
-                <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
-            </div>
+<nav class="nav-chaine">
+    <div>
+        <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;"></i>Utilisateurs</button></a>
+    </div>
+    <div>
+        <button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button>
+    </div>
+    <div>
+        <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
+    </div>
+    <div>
+        <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
+    </div>
+
+    <div class="button-creation-container">
+
+        <a href="../index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
+
+
+    </div>
+</nav>
+
+    <main>
+        <div class="container">
+            <h1>Créer un utilisateur</h1>
+        <div class="container-form">
+
+            <!-- formulaire pour l'ajout d'utilisateur -->
+            <form class="formNewUser" action="/admin/parametre-utilisateurs/new.php" method="POST">
             
-            <div class="button-creation-container">
-            
-                <a href="../index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
-                        
-                
-            </div>
-        </nav>
-        <main>
-<div>
-    <!-- formulaire pour l'ajout d'utilisateur -->
-<form class="formNewUser" action="/admin/parametre-utilisateurs/new.php" method="POST">
-    <label for="utilisateur[email_utilisateur]">Email</label>
-    <input type="email" name="utilisateur[email_utilisateur]" required>
+                <label for="utilisateur[email_utilisateur]">Email</label>
+                <input type="email" name="utilisateur[email_utilisateur]" required>
 
-    <label for="utilisateur[mot_de_passe_utilisateur]">Mot de passe</label>
-    <input type="password" name="utilisateur[mot_de_passe_utilisateur]" required>
+                <label for="utilisateur[mot_de_passe_utilisateur]">Mot de passe</label>
+                <input type="password" name="utilisateur[mot_de_passe_utilisateur]" required>
 
-    <label for="">Nom</label>
-    <input type="text" name="utilisateur[nom_utilisateur]">
+                <label for="">Nom</label>
+                <input type="text" name="utilisateur[nom_utilisateur]">
 
-    <label for="">Prénom</label>
-    <input type="text" name="utilisateur[prenom_utilisateur]">
+                <label for="">Prénom</label>
+                <input type="text" name="utilisateur[prenom_utilisateur]">
 
-    <label for="">Numéro de la rue</label>
-    <input type="text" name="utilisateur[num_adresse_utilisateur]">
+                <label for="">Numéro de la rue</label>
+                <input type="text" name="utilisateur[num_adresse_utilisateur]">
 
-    <label for="">Nom de la rue</label>
-    <input type="text" name="utilisateur[rue_adresse_utilisateur]">
+                <label for="">Nom de la rue</label>
+                <input type="text" name="utilisateur[rue_adresse_utilisateur]">
 
-    <label for="">Code postal</label>
-    <input type="text" name="utilisateur[code_postal_utilisateur]">
+                <label for="">Code postal</label>
+                <input type="text" name="utilisateur[code_postal_utilisateur]">
 
-    <label for="">Ville</label>
-    <input type="text" name="utilisateur[ville_adresse_utilisateur]">
+                <label for="">Ville</label>
+                <input type="text" name="utilisateur[ville_adresse_utilisateur]">
 
-    
-    <label for="">Rôle</label>
-    <!-- on récupere les roles avec foreach et on les mets dans un select -->
-    <select name="utilisateur[id_role]" id="">
-    <?php foreach($roles as $role): ?>
-        <option value="<?= $role['id_role'] ?>"><?= $role['libelle_role'] ?></option>
-     <?php endforeach ?>
-    </select>
-    
-<!-- toggle switch pour actif utilisateur -->
-    <label class="toggle">
-    <input id="actifUser" class="toggle-checkbox" type="checkbox" value="1" name="utilisateur[actif_utilisateur]">
-    <div class="toggle-switch"></div>
-    <span class="toggle-label"></span>
-    </label>
-    <input id="noActifUser" type="hidden" value="0" name="utilisateur[actif_utilisateur]" >
 
-    <label class="toggle">
-    <input id="actifAdmin" class="toggle-checkbox" type="checkbox" value="1" name="utilisateur[is_admin_utilisateur]">
-    <div class="toggle-switch"></div>
-    <span class="toggle-label"></span>
-    </label>
-    <input id="noActifAdmin" type="hidden" value="0" name="utilisateur[is_admin_utilisateur]" >
-    
+                <label for="">Rôle</label>
+                <!-- on récupere les roles avec foreach et on les mets dans un select -->
+                <select name="utilisateur[id_role]" id="">
+                    <?php foreach ($roles as $role) : ?>
+                        <option value="<?= $role['id_role'] ?>"><?= $role['libelle_role'] ?></option>
+                    <?php endforeach ?>
+                </select>
 
-    <input type="hidden" name="utilisateur[date_creation_compte_utilisateur]" value="<?=date("Y-m-d")?>">
-    <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
-        <input  type="submit" onclick='verificationActifUser(),verificationActifAdmin()'   name="submit">
-</form>
+                <!-- toggle switch pour actif utilisateur -->
+                <label class="toggle">Utilisateur actif
+                    <input id="actifUser" class="toggle-checkbox" type="checkbox" value="1" name="utilisateur[actif_utilisateur]">
+                    <div class="toggle-switch"></div>
+                    <span class="toggle-label"></span>
+                </label>
+                <input id="noActifUser" type="hidden" value="0" name="utilisateur[actif_utilisateur]">
+
+                <label class="toggle">Administrateur
+                    <input id="actifAdmin" class="toggle-checkbox" type="checkbox" value="1" name="utilisateur[is_admin_utilisateur]">
+                    <div class="toggle-switch"></div>
+                    <span class="toggle-label"></span>
+                </label>
+                <input id="noActifAdmin" type="hidden" value="0" name="utilisateur[is_admin_utilisateur]">
+
+
+                <input type="hidden" name="utilisateur[date_creation_compte_utilisateur]" value="<?= date("Y-m-d") ?>">
+                <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
+                <input type="submit" onclick='verificationActifUser(),verificationActifAdmin()' name="submit">
+            </form>
+        </div>
+    </main>
 </div>
-        </main>
-        <script src="/assets/script/utilisateur-script.js"></script>
-    </body>
+<script src="/assets/script/utilisateur-script.js"></script>
+</body>
+
 </html>

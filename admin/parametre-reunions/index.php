@@ -5,6 +5,11 @@ include '../../includes/inc-db-connect.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/reunion-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
+if(isset($_POST['desactiverReunion'])){
+$count = desactiverReunion($_POST['reunion'],$_POST['id_reunion']);
+}
+
+
 $reunions = getAllReunionActif();
 
 ?>
@@ -65,12 +70,17 @@ $reunions = getAllReunionActif();
                                 <td><?= $reunion['heure_prevu_reunion'] ?></td>
                                 <td><a href="/admin/parametre-reunions/edit.php?id=<?= $reunion['id_reunion'] ?>">Modifier</a></td>
                                 <td> <label class="toggle">
-                                        <input id="actifUser" class="toggle-checkbox" type="checkbox" value="<?= $reunion['actif_reunion'] ?>" name="reunion[actif_reunion]">
+                                    <form action="/admin/parametre-reunions/index.php" method="POST">
+                                    <input type="hidden" name="reunion[id_reunion]" value="<?= $reunion['id_reunion'] ?>">
+                                        <input id="actifUser" class="toggle-checkbox" type="checkbox" <?= $reunion['actif_reunion'] == 1 ? 'checked' : 0?> name="reunion[actif_reunion]">
+                                        
                                         <div class="toggle-switch"></div>
                                         <span class="toggle-label"></span>
                                     </label>
-                                    <input id="noActifUser" type="hidden" value="0" name="reunion[actif_reunion]">
+                                    <!-- <input id="noActifUser" type="hidden" value="0" name="reunion[actif_reunion]"> -->
+                                </form>
                                 </td>
+                                <td><input type="submit" value="désactiver" name="desactiverReunion"></td>
                                 <td><?= $reunion['id_utilisateur'] ?></td>
                                 <td>
                                     <form action="/admin/parametre-reunion/delete.php" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette réunion ?')">

@@ -2,6 +2,8 @@
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/reunion-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
+
+// Verification de l'envoie du formulaire updateReunion:
 if (isset($_POST['submit'])) {
     $count = updateReunion($_POST['reunion']);
 
@@ -10,11 +12,11 @@ if (isset($_POST['submit'])) {
         exit;
     }
 }
-
-if (isset($_POST['retirer']))
-
+// Verification de l'envoie du formulaire deleteUserReunion:
+if (isset($_POST['retirer'])){
+// verification de l'envoie de l'id_utilisateur à retirer 
     if (!empty($_POST['id_utilisateur'])) {
-        $countRetirerUser = deleteUserReunion($_POST['id_utilisateur']);
+        $countRetirerUser = deleteUserReunion($_POST['id_utilisateur'],$_POST['id_reunion']);
         if ($countRetirerUser == 1) {
             header("Location: /admin/parametre-reunions/edit.php?id=");
             exit;
@@ -25,20 +27,22 @@ if (isset($_POST['retirer']))
         header("Location: /admin/parametre-reunions/edit.php");
         exit;
     }
-
+}
+// Verification de l'envoie du formulaire insertuserReunion:
 if (isset($_POST['ajouter'])) {
     $idNewUserReunion = insertUserReunion($_POST['reunion_utilisateur']);
     if (!$idNewUserReunion) {
         header("Location: /admin/parametre-reunions/edit.php");
     }
 }
-
+// verification de la récupération de l'id de la réunion
 if (empty($_GET['id'])) {
     header("Location: /admin/parametre-reunions/index.php");
     exit;
 }
 
 $reunion = getReunionById($_GET['id']);
+
 $utilisateurReunions = getUserReunion($_GET['id']);
 if (!$reunion) {
     header("Location: /parametre-reunion");
@@ -94,21 +98,13 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                             <label for="">Heure de la réunion</label>
                             <input type="time" name="reunion[heure_prevu_reunion]" value="<?= $reunion['heure_prevu_reunion'] ?>">
 
-                            <label for="">Invités</label>
-                            <!-- on récupere les utilisateur avec foreach et on les mets dans un select -->
 
-                            <?php foreach ($utilisateurReunions as $utilisateurReunion) : ?>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" name="reunion_utilisateur[]" value="<?= $utilisateurReunion["id_utilisateur"] ?>">
-                                        <?= $utilisateurReunion['nom_utilisateur'] ?>
-                                    </label>
-                                </p>
-                            <?php endforeach ?>
+
+                
 
 
                             <!-- toggle switch pour actif reunion -->
-                            <label class="toggle">
+                            <label class="toggle"> Réunion Actif
                                 <input id="actifReunion" class="toggle-checkbox" type="checkbox" value="<?= $reunion['actif_reunion'] ?>" name="reunion[actif_reunion]">
                                 <div class="toggle-switch"></div>
                                 <span class="toggle-label"></span>
@@ -137,8 +133,9 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                                         <td><?= $utilisateurReunion['nom_utilisateur'] ?></td>
                                         <td><?= $utilisateurReunion['prenom_utilisateur'] ?></td>
                                         <td>
-                                            <form action="/admin/parametre-reunions/edit/new.php" method="POST">
+                                            <form action="/admin/parametre-reunions/edit.php" method="POST">
                                                 <input type="hidden" name="id_utilisateur" value=<?= $utilisateurReunion['id_utilisateur'] ?>>
+                                                <input type="hidden" name="id_reunion" value=<?= $_GET['id'] ?>>
                                                 <input type="submit" value="Retirer" name="retirer">
                                             </form>
                                         </td>
@@ -165,7 +162,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                                         <td><?= $utilisateur['nom_utilisateur'] ?></td>
                                         <td><?= $utilisateur['prenom_utilisateur'] ?></td>
                                         <td>
-                                            <form action="/admin/parametre-reunions/edit/new.php" method="POST">
+                                            <form action="/admin/parametre-reunions/edit.php" method="POST">
                                                 <input type="hidden" name="reunion_utilisateur[id_reunion]" value=<?= $_GET['id'] ?>>
                                                 <input type="hidden" name="reunion_utilisateur[id_utilisateur]" value=<?= $utilisateur['id_utilisateur'] ?>>
                                                 <input type="submit" value="Ajouter" name="ajouter">
