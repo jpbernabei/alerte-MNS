@@ -33,7 +33,7 @@ $roles = getAllRoles();
         <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
     </div>
     <div>
-        <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
+    <a href="/admin/parametre-reunions/index.php">  <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button></a>
     </div>
 
     <div class="button-creation-container">
@@ -46,8 +46,10 @@ $roles = getAllRoles();
 
     <main>
         <div class="container">
-            <h1>Créer un utilisateur</h1>
-        <div class="container-form">
+            <h1>Ajouter un utilisateur</h1>
+            <div class="buttonAjout">
+                <a href="/admin/parametre-utilisateurs/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a></div>
+        <div class="container-form ">
 
             <!-- formulaire pour l'ajout d'utilisateur -->
             <form class="formNewUser" action="/admin/parametre-utilisateurs/new.php" method="POST">

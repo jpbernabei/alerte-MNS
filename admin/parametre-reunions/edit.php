@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $count = updateReunion($_POST['reunion']);
 
     if ($count == 1) {
-        header("Location: admin/parametre-reunions/index.php");
+        header("Location: admin/parametre-reunions/edit.php");
         exit;
     }
 }
@@ -18,7 +18,7 @@ if (isset($_POST['retirer'])){
     if (!empty($_POST['id_utilisateur'])) {
         $countRetirerUser = deleteUserReunion($_POST['id_utilisateur'],$_POST['id_reunion']);
         if ($countRetirerUser == 1) {
-            header("Location: /admin/parametre-reunions/edit.php?id=");
+            header("Location: /admin/parametre-reunions/edit.php?id=" . $_GET['id']);
             exit;
         } else {
             echo "Une erreur s'est produite lors de la suppression...";
@@ -32,7 +32,7 @@ if (isset($_POST['retirer'])){
 if (isset($_POST['ajouter'])) {
     $idNewUserReunion = insertUserReunion($_POST['reunion_utilisateur']);
     if (!$idNewUserReunion) {
-        header("Location: /admin/parametre-reunions/edit.php");
+        header("Location: /admin/parametre-reunions/edit.php?id=" . $_GET['id']);
     }
 }
 // verification de la récupération de l'id de la réunion
@@ -55,7 +55,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
 ?>
         <nav class="nav-chaine">
             <div>
-                <button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;"></i>Utilisateurs</button>
+                <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;"></i>Utilisateurs</button></a>
             </div>
             <div>
                 <button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button>
@@ -76,13 +76,14 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
         </nav>
         <main>
 
-            <div>
+            <div class="container">
                 <h1>Modification de réunion</h1>
-
-                <main>
-                    <div>
+                <div class="buttonAjout">
+                <a href="/admin/parametre-reunions/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a></div>
+               <div class="flexFormTab">
+                    <div class="container-formEditReunion">
                         <!-- formulaire pour l'ajout d'utilisateur -->
-                        <form class="formNewUser" action="/admin/parametre-reunions/edit/new.php" method="POST">
+                        <form class="formNewUser" action="/admin/parametre-reunions/edit.php"  method="POST">
 
                             <input type="hidden" name="reunion[id_reunion]" value="<?= $reunion['id_reunion'] ?>">
 
@@ -97,11 +98,6 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
 
                             <label for="">Heure de la réunion</label>
                             <input type="time" name="reunion[heure_prevu_reunion]" value="<?= $reunion['heure_prevu_reunion'] ?>">
-
-
-
-                
-
 
                             <!-- toggle switch pour actif reunion -->
                             <label class="toggle"> Réunion Actif
@@ -118,7 +114,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                     
                     <div>
 
-                        <table>
+                        <table class="container-tableEditReunion">
                             <thead>
                                 <tr>
                                     <th>Nom</th>
@@ -133,7 +129,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                                         <td><?= $utilisateurReunion['nom_utilisateur'] ?></td>
                                         <td><?= $utilisateurReunion['prenom_utilisateur'] ?></td>
                                         <td>
-                                            <form action="/admin/parametre-reunions/edit.php" method="POST">
+                                            <form action="/admin/parametre-reunions/edit.php?id=<?= $_GET['id'] ?>" method="POST">
                                                 <input type="hidden" name="id_utilisateur" value=<?= $utilisateurReunion['id_utilisateur'] ?>>
                                                 <input type="hidden" name="id_reunion" value=<?= $_GET['id'] ?>>
                                                 <input type="submit" value="Retirer" name="retirer">
@@ -147,12 +143,12 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                     </div>
                     <div>
 
-                        <table>
+                        <table class="container-tableEditReunion">
                             <thead>
                                 <tr>
                                     <th>Nom</th>
                                     <th>Prénom</th>
-                                    <th>Retirer de la réunion</th>
+                                    <th>Ajouter à la réunion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -162,7 +158,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                                         <td><?= $utilisateur['nom_utilisateur'] ?></td>
                                         <td><?= $utilisateur['prenom_utilisateur'] ?></td>
                                         <td>
-                                            <form action="/admin/parametre-reunions/edit.php" method="POST">
+                                            <form action="/admin/parametre-reunions/edit.php?id=<?= $_GET['id'] ?>" method="POST">
                                                 <input type="hidden" name="reunion_utilisateur[id_reunion]" value=<?= $_GET['id'] ?>>
                                                 <input type="hidden" name="reunion_utilisateur[id_utilisateur]" value=<?= $utilisateur['id_utilisateur'] ?>>
                                                 <input type="submit" value="Ajouter" name="ajouter">
@@ -173,6 +169,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                             </tbody>
                         </table>
 
+                    </div>
                     </div>
                 </main>
 

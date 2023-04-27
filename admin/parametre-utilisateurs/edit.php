@@ -42,7 +42,7 @@ if (!$user) // $user == null
                 <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
             </div>
             <div>
-                <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
+                <a href="/admin/parametre-reunions/index.php"><button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button></a>
             </div>
 
             <div class="button-creation-container">
@@ -53,6 +53,11 @@ if (!$user) // $user == null
             </div>
         </nav>
         <main>
+            <div class="container">
+                <h1>Modifier l'utilisateur</h1>
+                <div class="buttonAjout">
+                <a href="/admin/parametre-utilisateurs/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a></div>
+                <div class="container-form">
             <form class="formNewUser" action="/admin/parametre-utilisateurs/edit.php?id=<?= $_GET['id'] ?>" method="POST">
                 <input type="hidden" name="utilisateur[id_utilisateur]" value="<?= $user['id_utilisateur'] ?>">
 
@@ -85,6 +90,8 @@ if (!$user) // $user == null
 
                 <input type="submit" onclick='verificationActifUser()' name="submit">
             </form>
+            </div>
+            </div>
         </main>
 
     </div>

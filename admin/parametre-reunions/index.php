@@ -5,10 +5,16 @@ include '../../includes/inc-db-connect.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/reunion-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
-if(isset($_POST['desactiverReunion'])){
-$count = desactiverReunion($_POST['reunion'],$_POST['id_reunion']);
-}
+if (!empty($_POST['isActive'])) {
+    $isActive = isset($_POST['actif_reunion']) ? 1 : 0;
 
+    $sql = "UPDATE reunion SET actif_reunion = :actif_reunion WHERE id_reunion = :id_reunion";
+    $query = $pdo->prepare($sql);
+    $active = $query->execute([
+        'actif_reunion' => $isActive,
+        'id_reunion' => $_POST['id_reunion']
+    ]);
+}
 
 $reunions = getAllReunionActif();
 
@@ -35,16 +41,14 @@ $reunions = getAllReunionActif();
             </div>
         </nav>
         <main>
-        <div>
+        <div class="container">
                 <h1>Liste des Réunions</h1>
-                <div class="">
-                    
-                    <a href="/admin/parametre-reunions/new.php">
-                        Créer une réunion
-                    </a>
-
-                </div>
-            <div>
+                <div class="buttonAjout">
+                <a href="/admin/parametre-admin.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
+                <a class="direction-right" href="/admin/parametre-reunions/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus"
+                        style="color: #ffffff;"></i>Réunion
+                    </button></a></div>
+            <div class="container-table desigend-scrollbar ">
                 <table>
                     <thead>
                         <th>ID</th>
@@ -53,10 +57,12 @@ $reunions = getAllReunionActif();
                         <th>Date de création</th>
                         <th>Date prévu</th>
                         <th>Heure prévu</th>
+                        <th>Id créateur de la réunion</th>
                         <th></th>
                         <th>Activé/Désactivé</th>
-                        <th>Id créateur de la réunion</th>
-                        <th>suprimer</th>
+                        
+                        <th></th>
+                    
                     </thead>
                     <tbody>
 
@@ -68,26 +74,18 @@ $reunions = getAllReunionActif();
                                 <td><?= $reunion['date_creation_reunion'] ?></td>
                                 <td><?= $reunion['date_prevu_reunion'] ?></td>
                                 <td><?= $reunion['heure_prevu_reunion'] ?></td>
-                                <td><a href="/admin/parametre-reunions/edit.php?id=<?= $reunion['id_reunion'] ?>">Modifier</a></td>
+                                <td><?= $reunion['id_utilisateur'] ?></td>
+                                <td><a class="button-a"  href="/admin/parametre-reunions/edit.php?id=<?= $reunion['id_reunion'] ?>">Modifier</a></td>
                                 <td> <label class="toggle">
                                     <form action="/admin/parametre-reunions/index.php" method="POST">
-                                    <input type="hidden" name="reunion[id_reunion]" value="<?= $reunion['id_reunion'] ?>">
-                                        <input id="actifUser" class="toggle-checkbox" type="checkbox" <?= $reunion['actif_reunion'] == 1 ? 'checked' : 0?> name="reunion[actif_reunion]">
-                                        
+                                    <input type="hidden" name="id_reunion" value="<?= $reunion['id_reunion'] ?>">
+                                        <input  class="toggle-checkbox" type="checkbox" <?= $reunion['actif_reunion'] == 1 ? 'checked' : ''?> name="actif_reunion">
                                         <div class="toggle-switch"></div>
                                         <span class="toggle-label"></span>
-                                    </label>
-                                    <!-- <input id="noActifUser" type="hidden" value="0" name="reunion[actif_reunion]"> -->
-                                </form>
+                                    </label>                              
                                 </td>
-                                <td><input type="submit" value="désactiver" name="desactiverReunion"></td>
-                                <td><?= $reunion['id_utilisateur'] ?></td>
-                                <td>
-                                    <form action="/admin/parametre-reunion/delete.php" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette réunion ?')">
-                                        <input type="hidden" name="id_reunion" value="<?= $reunion['id_reunion'] ?>">
-                                        <input type="submit" value="Supprimer">
-                                    </form>
-                                </td>
+                                <td><input type="submit" value="Valider" name="isActive"></td></form>
+                                
                             </tr>
                         <?php
                         endforeach;  ?>

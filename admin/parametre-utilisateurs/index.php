@@ -45,8 +45,9 @@ $utilisateurs = getAllUser();
             <div class="container">
                 <h1>Liste des Utilisateurs</h1>
                 
-                <div class="direction-right ">
-                <a class="direction-right" href="/admin/parametre-utilisateurs/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus"
+                <div class="buttonAjout">
+                <a href="/admin/parametre-admin.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
+                <a href="/admin/parametre-utilisateurs/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus"
                         style="color: #ffffff;"></i>Utilisateur
                     </button></a></div>
                 
@@ -70,7 +71,7 @@ $utilisateurs = getAllUser();
                                         <td><?= $utilisateur['email_utilisateur'] ?></td>
                                         <td><?= $utilisateur['nom_utilisateur'] ?></td>
                                         <td><?= $utilisateur['prenom_utilisateur'] ?></td>
-                                        <td><a href="/admin/parametre-utilisateurs/edit.php?id=<?= $utilisateur['id_utilisateur'] ?>">Modifier</a></td>
+                                        <td><a class="button-a" href="/admin/parametre-utilisateurs/edit.php?id=<?= $utilisateur['id_utilisateur'] ?>">Modifier</a></td>
                                         <td>
                                             <form action="/admin/parametre-utilisateurs/index.php" method="post">
                                             <label class="toggle">

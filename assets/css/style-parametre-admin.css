@@ -13,6 +13,8 @@ body {
 }
 h1{
     text-align: center;
+    color:#313e74;
+    margin-top: 50px;
 }
 .container-grid{
     display: grid;
@@ -286,10 +288,10 @@ a{
 input[type="submit"] {
     margin: 0;
     padding: 0;
-    width: 150px;
-    height: 20px;
+    width: 100px;
+    height: 40px;
     line-height: 100%; /* Si ça fonctionne pas mets 0 */
-    border-radius: 10px;
+    border-radius: 20px;
     border: 0;
     background:#ff6715; /* ou transparent je sais plus... */
     color: white;
@@ -317,17 +319,22 @@ input[type="submit"]:hover{
     margin-top: 4%;
 }
 
-input[type="text"],[type="email"],[type="password"]{
+input[type="text"],[type="email"],[type="password"],[type="textarea"]{
     background-color: #81a4cdff;
     height: 30px;
     width: 300px;
     border-radius: 20px;
     border:none;
 }
+textarea{
+    background-color: #81a4cdff;
+    border-radius: 20px;
+    border:none;
+}
 
 .desigend-scrollbar
 {
-    height: 45%;
+    height: 70%;
     overflow: auto;
 }
 
@@ -342,4 +349,74 @@ input[type="text"],[type="email"],[type="password"]{
 {
     background-color: rgb(97, 95, 93);
     border-radius: 5px;
+}
+.buttonAjout{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.button-creationRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff6715;
+    width: 150px;
+    height: 60px;
+    border-radius: 20px;
+    margin-top: 20px;
+
+}
+
+/*----------- parametre reunion------------ */
+
+.button-a{
+outline: none;
+  text-decoration: none;
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  background-color: #ff6715;
+  color: white;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 2.5;
+}
+.button-a:hover{
+    background-color:#ffb289;
+    color:black;
+
+}
+
+/*---------- edit réunion ----------*/
+
+.container-formEditReunion{
+  
+    flex-direction: column;
+    align-items: center;
+    background-color: #313e74;
+    color: #81a4cdff;
+    width: 25%;
+    border-radius: 50px;
+    min-height: 100px;
+    padding: 20px;
+    margin-left: 15%;
+    margin-top: 4%;
+}
+.container-tableEditReunion{
+    background-color: #313e74;
+    width: 30%;
+    border-radius: 50px;
+    min-height: 500px;
+    padding: 20px;
+    color: #81a4cdff;
+    margin-left: 15%;
+    margin-top: 4%;
+}
+.flexFormTab{
+    display: flex;
+    flex-direction: row;
 }
