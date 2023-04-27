@@ -1,5 +1,5 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top.php"; 
-session_start();
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php"; 
+
 
 require $_SERVER['DOCUMENT_ROOT'].'/managers/salons-managers.php';
 
@@ -38,7 +38,27 @@ if(!$salon)
 
 ?> 
 
+<nav class="nav-chaine">
+            <div>
+            <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;" ></i>Utilisateurs</button></a>
+            </div>
+            <div>
+                <button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button>
+            </div>
+            <div>
+                <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
+            </div>
+            <div>
+                <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
+            </div>
 
+            <div class="button-creation-container">
+
+                <a href="../index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
+            </div>
+        </nav>
+
+<main>
 <div class="container py-5">
     <h1>Modifier les informations du salon</h1>
     <div class="row mb-4">
@@ -63,10 +83,13 @@ if(!$salon)
                     <input id="actifSalon" type="checkbox" value="<?= $salon['actif_salon'] ?>" name="salon[actif_salon]">
                     <input id="noActifsalon" type="hidden" value="0" name="salon[actif_salon]">
                 </div>
+                <div>
+                <input type="submit" onclick='verificationActifChaine()' value="submit">
+                </div>
             </form>
         </div>
     </div>
 </div>
 <script src="/assets/script/salons-script.js"></script>
-
+</main>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-bottom.php"; ?>

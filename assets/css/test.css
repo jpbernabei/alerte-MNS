@@ -1,0 +1,37 @@
+
+/* ------------------Pour mon Bouton des chaines à gauche --------------------------------*/
+.button-new-chaines{
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff6715;
+    width: 150px;
+    height: 60px;
+    border-radius: 20px;
+    margin-top: 20px;
+    scrollbar-color: grey black;
+}
+
+
+/*---------------------------Pour faire le scroll bar de navbar Chaines--------------------*/
+
+.desigend-scrollbar
+{
+    height: 45%;
+    overflow: auto;
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: rgb(253, 253, 253);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: rgb(97, 95, 93);
+    border-radius: 5px;
+}

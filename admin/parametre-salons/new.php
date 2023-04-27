@@ -1,7 +1,7 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top.php";
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
 // Pour ajouter une chaine 
-session_start();
+
 
 require $_SERVER['DOCUMENT_ROOT'].'/managers/salons-managers.php';
 
@@ -22,6 +22,28 @@ if(isset($_POST['submit']))
 }
 
 ?>
+
+<nav class="nav-chaine">
+            <div>
+            <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;" ></i>Utilisateurs</button></a>
+            </div>
+            <div>
+                <button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button>
+            </div>
+            <div>
+                <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
+            </div>
+            <div>
+                <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
+            </div>
+
+            <div class="button-creation-container">
+
+                <a href="../index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
+            </div>
+        </nav>
+
+        <main>
 <div class="container py-5">
     <h1>Ajouter un salon </h1>
     <div class="row mb-4">
@@ -54,5 +76,5 @@ if(isset($_POST['submit']))
     </div>
 </div>
 <script src="/assets/script/salons-script.js"></script>
-
+</main>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-bottom.php"; ?>

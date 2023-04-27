@@ -65,5 +65,18 @@ function getSalonId(int $id)
     return $stmt-> fetch();
 }
 
-// Requete pour désactiver un salon d'une chaine 
+// la fonction pour récuperer les salons en fonction de l'ID des chaines 
+
+function getSalonIdChaine(int $id)
+{
+    $pdo = $GLOBALS['pdo'];
+    $sql = "SELECT salon.nom_salon
+    FROM chaine
+    INNER JOIN salon ON salon.id_chaine=chaine.id_chaine
+    WHERE chaine.id_chaine=$id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($id);
+
+    return $stmt->rowCount(); 
+} 
 

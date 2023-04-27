@@ -37,7 +37,8 @@ function getChaineId(int $id)
 
 // Fonction qui ajoute une chaine 
 
-function insertChaine(array $data, array $utilisateurs){
+function insertChaine(array $data, array $utilisateurs)
+{
     $pdo = $GLOBALS['pdo'];
     $sql = "INSERT INTO chaine(nom_chaine, date_creation_chaine, actif_chaine, id_utilisateur) 
     VALUES (:nom_chaine, :date_creation_chaine, :actif_chaine, :id_utilisateur)";
@@ -75,18 +76,6 @@ function insertChaine(array $data, array $utilisateurs){
     return $id_chaine;
 }
 
-// Fonction qui ajoute un utilisateur par son prénom et son nom à une chaîne
-
-function insertUtilisateur (array $data)
-{
-    $pdo = $GLOBALS['pdo'];
-    $sql = "INSERT INTO utilisateur (id_utilisateur, nom_utilisateur, prenom_utilisateur) 
-    VALUES (:id_utilisateur, :nom_utilisateur, :prenom_utilisateur)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute($data);
-
-    return $pdo->lastInsertId();
-}
 
 // Fonction pour mettre à jour un utilisateur dans une chaîne 
 
@@ -104,24 +93,7 @@ function updateUtilisateur(array $data)
 }
 
 // Fonction pour mettre à jour les chaines
-function updateChaine(array $data)
-{
-    $pdo = $GLOBALS['pdo'];
-    $sql = "UPDATE chaine
-    LEFT JOIN chaine_utilisateur ON chaine.id_chaine = chaine_utilisateur.id_chaine 
-    LEFT JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur
-    SET (nom_chaine = :nom_chaine
-        actif_chaine = :actif_chaine
-        nom_utilisateur = :nom_utilisateur
-        prenom_utilisateur = :prenom_utilisateur)
-    WHERE id_chaine = :id_chaine";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute($data);
-
-    return $stmt->rowCount();
-}
-
-function updateChaine1(array $data){
+function updateChaine(array $data){
     $pdo=$GLOBALS['pdo'];
     $sql="UPDATE chaine
     SET nom_chaine=:nom_chaine,
@@ -159,13 +131,41 @@ function deleteUserChaine (int $id) {
 function getUserChaine(int $idChaine)
 {
     $pdo = $GLOBALS['pdo'];
-    $sql = "SELECT utilisateur.nom_utilisateur, utilisateur.prenom_utilisateur
+    $sql = "SELECT utilisateur.nom_utilisateur, utilisateur.prenom_utilisateur, utilisateur.id_utilisateur
     FROM chaine_utilisateur
     JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur
-    WHERE id_chaine = $idChaine";
+    WHERE id_chaine = :id_chaine";
     $stmt =$pdo->prepare($sql);
     $stmt->execute(['id_chaine'=>$idChaine]);
     return $stmt->fetchAll();
 }
 
+// Fonction les utilisateurs qui ne sont pas dans la chaine 
 
+function getUserNotInChaine(int $id)
+{
+    $pdo = $GLOBALS['pdo'];
+    $sql = "SELECT utilisateur.nom_utilisateur, utilisateur.prenom_utilisateur, utilisateur.id_utilisateur
+    FROM utilisateur
+    WHERE NOT EXISTS (
+      SELECT *
+      FROM chaine_utilisateur
+      WHERE chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur
+      AND chaine_utilisateur.id_chaine = :id_chaine
+    )";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id_chaine' => $id]);
+    return $stmt->fetchAll();
+}
+
+// Fonction qui retire un utilisateur d'une chaine 
+
+function deleteUserInChaine(int $id, int $idchaine)
+{
+    $pdo = $GLOBALS['pdo'];
+    $sql = "DELETE FROM chaine_utilisateur WHERE id_utilisateur = :id AND id_chaine=$idchaine";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $id]);
+
+    return $stmt->rowCount();
+}
