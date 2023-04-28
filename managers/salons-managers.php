@@ -3,12 +3,12 @@ require $_SERVER['DOCUMENT_ROOT'].'/includes/inc-db-connect.php';
 
 // Requete pour récupérer toutes les chaines 
 
-function getAllChaine(){
-    $pdo = $GLOBALS['pdo']; 
-    $sql = "SELECT *
-    FROM chaine"; 
-    return $pdo->query($sql)->fetchAll(); 
-}
+// function getAllChaine(){
+//     $pdo = $GLOBALS['pdo']; 
+//     $sql = "SELECT *
+//     FROM chaine"; 
+//     return $pdo->query($sql)->fetchAll(); 
+// }
 // Requete pour récuperer les salons avec ID de la chaine
 
 function getAllSalon(int $id){

@@ -27,6 +27,7 @@
 <div class="button-parametre-admin-container">
     <?php
     require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/managers/chaine-manager.php';
     
     $chaines = getAllChaine();
     ?>

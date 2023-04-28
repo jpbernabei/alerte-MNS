@@ -59,12 +59,14 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
             </div>
 
         </nav>
-        <nav class="nav-salon">
-            <!-- Ici l'apparition des salons de chaque chaine lors d'une clique à faire en JS -->
-       
-            <!-- <?php foreach ($salons as $salon) : ?>
+        <nav class="nav-salon" id="mesSalons">
+            <?php 
+            require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
+            $salons=getAllSalon();
+            ?>
+             <?php foreach ($salons as $salon) : ?>
                     <button class="button-new-salons"><?= $chaine['nom_salon'] ?></button>
-            <?php endforeach; ?> -->
+            <?php endforeach; ?>
         
         </nav>
 
@@ -76,7 +78,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
 
         </div>
     </div>
-
+<script src="/assets/script/json-salon.js"></script>
 </body>
 
 </html>

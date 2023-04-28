@@ -3,20 +3,36 @@
 require $_SERVER['DOCUMENT_ROOT'].'/includes/inc-db-connect.php'; 
 require $_SERVER['DOCUMENT_ROOT'].'/managers/salons-managers.php';
 
-//----------------------------------------------------------------
-// Traitement de la requete 
 
-if($_GET['salon']== "nom_salon")
-{
-    $salons = getSalonIdChaine($_POST['salon']);
-} else{
-    echo "Vous ne pouvez pas ou il n'y'a pas des salons dans cette chaine";
-}
+// Permet de specifier qu'on manipule un fichier en json 
+header('Content-Type: application/json; charset=UTF-8"');
 
-// Récuperer la requete qui selectionne  les salons en fontion de l'ID de la chaine 
+//---------------------------Récuperer l'ID de la chaine 
+
+$chaineId = $_REQUEST['id_chaine']; // tableau des ID des chaines 
+
+// Pour séparer les données du tableau en explode 
+
+$idExplode = explode("-", $chaineId); 
+
+// ----------------------La requete Sql 
+
+    $pdo = $GLOBALS['pdo'];
+    $sql = "SELECT salon.nom_salon
+    FROM chaine
+    LEFT JOIN salon ON chaine.id_chaine=salon.id_chaine
+    WHERE chaine.id_chaine=$id AND salon.id_chaine= chaine.id_chaine";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($id);
+
+    return $stmt->rowCount();
+
+// Permet de specifier qu'on manipule un fichier en json 
+header('Content-Type: application/json; charset=UTF-8"');
+
+echo json_encode($stmt);
 
 
-// $salons= json_encode($salons);
 
 ?>
 
