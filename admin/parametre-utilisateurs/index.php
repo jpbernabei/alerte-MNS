@@ -1,6 +1,6 @@
 <?php
 
-include '../../includes/inc-db-connect.php';
+require $_SERVER['DOCUMENT_ROOT']. '/includes/inc-db-connect.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
@@ -81,15 +81,8 @@ $utilisateurs = getAllUser();
                                                 <div class="toggle-switch"></div>
                                                 <span class="toggle-label"></span>
                                             </label>
-
                                         </td>
                                         <td>  <input class="button-lien" type="submit" name="isActive" value="valider"></td></form> 
-                                        <!-- <td>
-                                            <form action="/admin/parametre-utilisateurs/delete.php" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ctte utilisateur ?')">
-                                                <input type="hidden" name="id_utilisateur" value="<?= $utilisateur['id_utilisateur'] ?>">
-                                                <input type="submit" value="Supprimer">
-                                            </form>
-                                        </td> -->
                                     </tr>
                                 <?php
                                 endforeach;  ?>

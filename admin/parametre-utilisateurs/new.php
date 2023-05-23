@@ -4,8 +4,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
 //on vérifie si le formulaire est envoyé
-if (isset($_POST['submit'])) {
-
+if (isset($_POST['submitForm'])) {
     //si il est envoyé on appel la fonction insertUser et on stock l'id de l'utilisateur ajouté dans une varible
     $id = insertUser($_POST['utilisateur']);
 
@@ -49,35 +48,26 @@ $roles = getAllRoles();
             <h1>Ajouter un utilisateur</h1>
             <div class="buttonAjout">
                 <a href="/admin/parametre-utilisateurs/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a></div>
-        <div class="container-form ">
+            <div class="container-form desigend-scrollbar">
 
             <!-- formulaire pour l'ajout d'utilisateur -->
-            <form class="formNewUser" action="/admin/parametre-utilisateurs/new.php" method="POST">
+            <form id="form" class="formNewUser" action="/admin/parametre-utilisateurs/new.php" method="POST">
             
                 <label for="utilisateur[email_utilisateur]">Email</label>
-                <input type="email" name="utilisateur[email_utilisateur]" required>
+                <input id="email" type="email"  name="utilisateur[email_utilisateur]" required >
+                <div id="emailError" ></div>
 
                 <label for="utilisateur[mot_de_passe_utilisateur]">Mot de passe</label>
-                <input type="password" name="utilisateur[mot_de_passe_utilisateur]" required>
+                <input id="password" type="password" name="utilisateur[mot_de_passe_utilisateur]" required>
+                <div id="passwordError"></div>
 
                 <label for="">Nom</label>
-                <input type="text" name="utilisateur[nom_utilisateur]">
+                <input id="nom" type="text" name="utilisateur[nom_utilisateur]" required>
+                <div id="nameError" ></div>
 
                 <label for="">Prénom</label>
-                <input type="text" name="utilisateur[prenom_utilisateur]">
-
-                <label for="">Numéro de la rue</label>
-                <input type="text" name="utilisateur[num_adresse_utilisateur]">
-
-                <label for="">Nom de la rue</label>
-                <input type="text" name="utilisateur[rue_adresse_utilisateur]">
-
-                <label for="">Code postal</label>
-                <input type="text" name="utilisateur[code_postal_utilisateur]">
-
-                <label for="">Ville</label>
-                <input type="text" name="utilisateur[ville_adresse_utilisateur]">
-
+                <input id="prenom" type="text" name="utilisateur[prenom_utilisateur]" required>
+                <div id="prenomError"></div>
 
                 <label for="">Rôle</label>
                 <!-- on récupere les roles avec foreach et on les mets dans un select -->
@@ -89,11 +79,11 @@ $roles = getAllRoles();
 
                 <!-- toggle switch pour actif utilisateur -->
                 <label class="toggle">Utilisateur actif
-                    <input id="actifUser" class="toggle-checkbox" type="checkbox" value="1" name="utilisateur[actif_utilisateur]">
+                    <input id="actifUser" class="toggle-checkbox" type="checkbox" value="1" >
                     <div class="toggle-switch"></div>
                     <span class="toggle-label"></span>
                 </label>
-                <input id="noActifUser" type="hidden" value="0" name="utilisateur[actif_utilisateur]">
+                <input id="noActifUser" type="hidden" value="1" name="utilisateur[actif_utilisateur]">
 
                 <label class="toggle">Administrateur
                     <input id="actifAdmin" class="toggle-checkbox" type="checkbox" value="1" name="utilisateur[is_admin_utilisateur]">
@@ -102,10 +92,10 @@ $roles = getAllRoles();
                 </label>
                 <input id="noActifAdmin" type="hidden" value="0" name="utilisateur[is_admin_utilisateur]">
 
-
+                
                 <input type="hidden" name="utilisateur[date_creation_compte_utilisateur]" value="<?= date("Y-m-d") ?>">
                 <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
-                <input type="submit" onclick='verificationActifUser(),verificationActifAdmin()' name="submit">
+                <input id="envoie"  type="submit" onclick='verificationActifUser(),verificationActifAdmin()' name="submitForm">
             </form>
         </div>
     </main>

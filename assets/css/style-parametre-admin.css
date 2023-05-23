@@ -9,7 +9,6 @@ body {
     height: 100vh;
     width: 100%;
     overflow: hidden;
-    
 }
 h1{
     text-align: center;
@@ -241,6 +240,23 @@ a{
     top: 2px;
   }
 
+  /* _________Affiche réunions Admin______________ */
+
+
+  .containerAffichageReunion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+    width: 100%;
+    background-color: #81a4cdff;
+}
+.contenuReunion{
+    color:#ff6715;
+    font-size: 15px;
+}
+
+
   /*------------- parametre admin utilisateur ------------- */
 
 .container{
@@ -254,6 +270,7 @@ a{
     width: 70%;
     border-radius: 50px;
     min-height: 500px;
+    max-height: 600px ;
     padding: 20px;
     color: #81a4cdff;
     margin-left: 15%;
@@ -298,6 +315,7 @@ input[type="submit"] {
      /* Normalement */text-decoration: none;
     
 }
+
 input[type="submit"]:hover{
     background-color:#ffb289;
     color: black;
@@ -313,19 +331,21 @@ input[type="submit"]:hover{
     color: #81a4cdff;
     width: 70%;
     border-radius: 50px;
-    min-height: 100px;
+    min-height: 300px;
+    max-height: 400px ;
     padding: 20px;
     margin-left: 15%;
     margin-top: 4%;
 }
 
-input[type="text"],[type="email"],[type="password"],[type="textarea"]{
+/* input[type="text"],[type="email"],[type="password"],[type="textarea"]{
     background-color: #81a4cdff;
     height: 30px;
     width: 300px;
     border-radius: 20px;
     border:none;
-}
+    
+} */
 textarea{
     background-color: #81a4cdff;
     border-radius: 20px;
@@ -419,4 +439,40 @@ outline: none;
 .flexFormTab{
     display: flex;
     flex-direction: row;
+}
+
+/* _______________________Media Query____________________________________ */
+
+@media screen and (min-width:0px ) and (max-width: 1400px){
+    h1{
+        text-align: center;
+        color:#313e74;
+        margin-top: 10px;
+    }
+    .container-table{
+        background-color: #313e74;
+        width: 80%;
+        border-radius: 50px;
+        min-height: 100px;
+        max-height: 300px ;
+        padding: 20px;
+        color: #81a4cdff;
+        margin-left: 10%;
+        margin-top: 4%;
+    }
+    .container-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #313e74;
+        color: #81a4cdff;
+        width: 70%;
+        border-radius: 50px;
+        min-height: 100px;
+        max-height: 350px;
+        padding: 20px;
+        margin-left: 15%;
+        margin-top: 4%;
+    }
+    
 }

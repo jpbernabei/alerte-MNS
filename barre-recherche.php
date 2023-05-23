@@ -1,49 +1,25 @@
 <?php
-session_start();
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/inc-db-connect.php';
+require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 
-if(isset($_GET['user'])){
-    $user = (string) trim($_GET['user']);
-
-    $pdo = $GLOBALS['pdo'];
-    $stmt = $pdo->prepare("SELECT * FROM utilisateur
-    WHERE nom_utilisateur LIKE ? LIMIT 10");
-    $stmt->execute(["%$user%"]);
-    $result = $stmt->fetchAll();
-
-    foreach($result as $r){
-    ?>
-    <div><?=$r['nom_utilisateur'] . " " . $r['prenom_utilisateur'] ?></div>
-    <?php
-    }
-}
 ?>
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <script src="https://kit.fontawesome.com/18cbf17047.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img class="logo noMobile" src="/images/LOGO_ALERT_MNS_transparent.ico" alt="">
-            <a href="/parametre-utilisateur.php"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a>
-            <div class="police name-user noMobile"><?=$_SESSION['user']['firstname'] ?> <?=$_SESSION['user']['name'] ?></div>
-            <div><div class="police name-chaine noMobile">nom de la chaine </div><div class="police name-salon noMobile">nom du salon</div></div>
-            <div><input type="text" id='search-user' value="" placeholder="Rechercher"></div>
+ 
+<input type="text" id='search-user' value="" placeholder="Rechercher">
+<div>
+    <div id="result-search"></div>
+</div>
 
-    
 
-            <a href="/affiche-reunion.php"><i class="fa-solid fa-users fa-xl" style="color: #ffffff;"></i></a>
-            <a href="/logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
-        </header>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script
   src="https://code.jquery.com/jquery-3.7.0.js"
   integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
@@ -82,3 +58,5 @@ if(isset($_GET['user'])){
     });
 
 </script>
+</body>
+</html>

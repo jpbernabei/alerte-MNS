@@ -56,7 +56,7 @@ if(!empty($_POST['submit']))
         }
         else{ // si mdp pas ok, on redirige vers la page login
             $_SESSION['errors'] = "Identifiants invalide.";
-            header("Location: /index.php"); die;
+            header("Location: /login.php"); die;
         }
     }
 

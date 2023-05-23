@@ -116,7 +116,7 @@ function getUserNotInReunion(int $id)
       SELECT *
       FROM reunion_utilisateur
       WHERE reunion_utilisateur.id_utilisateur = utilisateur.id_utilisateur
-        AND reunion_utilisateur.id_reunion = :id_reunion
+    AND reunion_utilisateur.id_reunion = :id_reunion
     )";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['id_reunion' => $id]);
@@ -133,4 +133,17 @@ function desactiverReunion(array $data,int $idReunion)
     $stmt->execute($data);
 
     return $stmt->rowCount();
+}
+
+function getReunionByIdUser($id){
+    $pdo = $GLOBALS['pdo'];
+    $sql = "SELECT reunion.id_reunion,reunion.nom_reunion,reunion.sujet_reunion,reunion.date_prevu_reunion,reunion.heure_prevu_reunion,reunion.actif_reunion
+    FROM reunion
+    JOIN reunion_utilisateur ON reunion.id_reunion = reunion_utilisateur.id_reunion
+    JOIN utilisateur ON reunion_utilisateur.id_utilisateur = utilisateur.id_utilisateur
+    WHERE reunion_utilisateur.id_utilisateur = :id_utilisateur AND reunion.actif_reunion = 1";
+     $stmt = $pdo->prepare($sql);
+     $stmt->execute(['id_utilisateur' => $id]);
+     return $stmt->fetchAll();
+
 }

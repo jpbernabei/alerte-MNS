@@ -45,11 +45,12 @@ $utilisateurs = getAllUser();
 </nav>
 <main>
     <div class="container">
-    <h1>Créer une réunion</h1>
-    <div class="buttonAjout">
-                <a href="/admin/parametre-reunions/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a></div>
+        <h1>Créer une réunion</h1>
+        <div class="buttonAjout">
+            <a href="/admin/parametre-reunions/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
+        </div>
         <div class="container-form desigend-scrollbar">
-            
+
             <!-- formulaire pour la creation d'une reunion -->
             <form class="formNewUser" action="/admin/parametre-reunions/new.php" method="POST">
                 <label for="reunion[nom_reunion]">Nom de la réunion :</label>
@@ -70,15 +71,17 @@ $utilisateurs = getAllUser();
                 <label for="">Invités :</label>
                 <!-- on récupere les utilisateur avec foreach et on les mets dans un select -->
                 <div>
-                <?php foreach ($utilisateurs as $utilisateur) : ?>
-                    <p>
-                        <label>
-                            <input type="checkbox" name="utilisateur[]" value="<?= $utilisateur["id_utilisateur"] ?>">
-                            <?= $utilisateur['prenom_utilisateur'] ?> <?= $utilisateur['nom_utilisateur'] ?>
-                        </label>
-                    </p>
-                <?php endforeach ?>
-            </div>
+                    <?php foreach ($utilisateurs as $utilisateur) : ?>
+                        <p>
+                            <?php if ($utilisateur["id_utilisateur"] != $_SESSION['user']['id']) : ?>
+                                <label>
+                                    <input type="checkbox" name="utilisateur[]" value="<?= $utilisateur["id_utilisateur"] ?>">
+                                    <?= $utilisateur["prenom_utilisateur"] ?> <?= $utilisateur['nom_utilisateur'] ?>
+                                <?php endif; ?>
+                                </label>
+                        </p>
+                    <?php endforeach ?>
+                </div>
 
 
                 <!-- toggle switch pour actif reunion -->
