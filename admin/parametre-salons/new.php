@@ -44,19 +44,14 @@ if(isset($_POST['submit']))
         </nav>
 
         <main>
-<div class="container py-5">
+<div class="container">
     <h1>Ajouter un salon </h1>
-    <div class="row mb-4">
-        <div class="col-auto">
-            <a href="/admin/parametre-salons/index.php" class="btn btn-secondary">
-                <i class="bi bi-arrow-left"></i> Revenir à la page précédente
-            </a>
+    <div class="buttonAjout">
+            <a href="/admin/parametre-salons/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
-        
-    </div>
 
-    <div class="row">
-        <div class="col col-md-6">
+   
+        <div class="container-table desigend-scrollbar">
             <form action="/admin/parametre-salons/new.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nom_salon">Nom du salon</label>
@@ -73,7 +68,7 @@ if(isset($_POST['submit']))
                 <input type="submit" onclick='verificationActifChaine()' name="submit" value="Enregistrer" class="btn btn-primary">
             </form>
         </div>
-    </div>
+  
 </div>
 <script src="/assets/script/salons-script.js"></script>
 </main>

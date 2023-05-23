@@ -46,42 +46,51 @@ $utilisateurs = getAllUser();
     </div>
 </nav>
 <main>
-    <div class="container py-5">
+    <div class="container">
         <h1>Ajouter une chaîne</h1>
-        <div class="row mb-4">
-            <div class="col-auto">
-                <a href="chaine-index.php" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left"></i> Revenir...
-                </a>
-            </div>
 
+        <div class="buttonAjout">
+            <a href="/admin/parametre-chaines/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
 
-        <div class="row">
-            <div class="col col-md-6">
-                <form action="/admin/parametre-chaines/new.php" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="nom_chaine">Nom de la chaine</label>
-                        <input type="text" class="form-control" name="chaine[nom_chaine]">
-                    </div>
-                    <input type="hidden" class="form-control" name="chaine[date_creation_chaine]" value="<?= date('Y-m-d') ?>" />
-                    <input type="hidden" name="chaine[id_utilisateur]" value="<?= $_SESSION['user']['id'] ?>">
-                    <div class="form-group">
-                        <label for="actif_chaine">actif/desactif</label>
-                        <input id="actifChaine" type="checkbox" value="1" name="chaine[actif_chaine]">
-                        <input id="noActifChaine" type="hidden" value="0" name="chaine[actif_chaine]">
-                    </div>
-                    <?php foreach ($utilisateurs as $utilisateur) : ?>
-                        <p>
+
+
+        <div class="container-table desigend-scrollbar">
+
+            <form action="/admin/parametre-chaines/new.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nom_chaine">Nom de la chaine</label>
+                    <input type="text" class="form-control" name="chaine[nom_chaine]">
+                </div>
+                <input type="hidden" class="form-control" name="chaine[date_creation_chaine]" value="<?= date('Y-m-d') ?>" />
+                <input type="hidden" name="chaine[id_utilisateur]" value="<?= $_SESSION['user']['id'] ?>">
+
+                    <label class="toggle">Chaîne actif
+                        <input id="actifChaine" class="toggle-checkbox" type="checkbox" value="1" name="chaine[actif_chaine]">
+                        <div class="toggle-switch"></div>
+                        <span class="toggle-label"></span>
+                    </label>
+                    <input id="noActifChaine" type="hidden" value="0" name="chaine[actif_chaine]">
+               
+                <?php foreach ($utilisateurs as $utilisateur) : ?>
+                    <p>
+                        <?php if ($utilisateur['id_utilisateur'] != $_SESSION['user']['id']) : ?>
                             <label>
                                 <input type="checkbox" name="utilisateur[]" value="<?= $utilisateur["id_utilisateur"] ?>">
-                                <?= $utilisateur['nom_utilisateur'] ?>
+                                <?= $utilisateur['prenom_utilisateur'] ?> <?= $utilisateur['nom_utilisateur'] ?>
                             </label>
-                        </p>
-                    <?php endforeach ?>
-                    <input type="submit" onclick='verificationActifChaine()' name="submit" value="Enregistrer" class="btn btn-primary">
-                </form>
-            </div>
+                        <?php endif ?>
+                    </p>
+                <?php endforeach ?>
+
+                <input type="hidden" value="<?= date('Y-m-d') ?>" name="salon[date_creation_salon]">
+                <input type="hidden" value="Général" name="salon[nom_salon]">
+                <input type="hidden" value="1" name="salon[actif_salon]">
+                <input type="hidden" value="<?=$id_chaine?>" name="salon[id_chaine]">
+
+                <input type="submit" onclick='verificationActifChaine()' name="submit" value="Enregistrer" class="btn btn-primary">
+            </form>
+
         </div>
     </div>
     <script src="/assets/script/chaines-script.js"></script>

@@ -4,7 +4,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/includes/inc-db-connect.php';
 
 // La fonction qui récupere toutes les chaînes existantes avec ses utilisateurs pour l'admin 
 
-function getAllChaine(){
+function getAllChaine()
+{
     $pdo = $GLOBALS['pdo']; 
     $sql = "SELECT *
     FROM chaine"; 
@@ -39,6 +40,10 @@ function getChaineId(int $id)
 
 function insertChaine(array $data, array $utilisateurs)
 {
+    // Protection contre les injections SQL
+
+    $data['nom_chaine'] = htmlspecialchars($data['nom_chaine']);
+
     $pdo = $GLOBALS['pdo'];
     $sql = "INSERT INTO chaine(nom_chaine, date_creation_chaine, actif_chaine, id_utilisateur) 
     VALUES (:nom_chaine, :date_creation_chaine, :actif_chaine, :id_utilisateur)";
@@ -48,6 +53,21 @@ function insertChaine(array $data, array $utilisateurs)
     $id_chaine=$pdo->lastInsertId();
 
     $id_createur= $_SESSION['user']['id'];
+
+    // Requete pour créer automatiquement un salon lors de la creation d'une chaine
+    
+    $sql = "INSERT INTO salon (date_creation_salon,nom_salon,actif_salon,id_chaine)  
+    VALUES (:date_creation_salon,:nom_salon ,:actif_salon,:id_chaine )";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute
+           ([
+                'date_creation_salon'=> 'date_creation_salon',
+               'nom_salon' => 'Général',
+               'actif_salon'=>'actif_salon',
+               'id_chaine' => $id_chaine
+           ]);
+    
+           // Requete pour inserer des utilisateurs 
 
     $sql = "INSERT INTO chaine_utilisateur (id_utilisateur,id_chaine) 
     VALUES (:id_utilisateur,:id_chaine)";
@@ -93,7 +113,12 @@ function updateUtilisateur(array $data)
 }
 
 // Fonction pour mettre à jour les chaines
-function updateChaine(array $data){
+function updateChaine(array $data)
+{
+    // Contre les injections 
+
+    $data['nom_chaine'] = htmlspecialchars($data['nom_chaine']);
+
     $pdo=$GLOBALS['pdo'];
     $sql="UPDATE chaine
     SET nom_chaine=:nom_chaine,
@@ -116,7 +141,8 @@ function insertUserChaine(array $utilisateurs)
 }
 // A l'intérieur de la chaine, supprimer les utilisateurs 
 
-function deleteUserChaine (int $id) {
+function deleteUserChaine (int $id) 
+{
     $pdo = $GLOBALS['pdo'];
     $sql = "DELETE FROM chaine_utilisateur
             WHERE id_utilisateur=:id_utilisateur";
@@ -169,3 +195,5 @@ function deleteUserInChaine(int $id, int $idchaine)
 
     return $stmt->rowCount();
 }
+
+

@@ -107,12 +107,7 @@ $utilisateurNotInChaines = getUserNotInChaine($_GET['id']);
                         <label for="titre">Nom de la chaine</label>
                         <input type="text" class="form-control" name="chaine[nom_chaine]" value="<?= $chaine['nom_chaine'] ?>" />
                     </div>
-                    <div class="form-group">
-                        <label for="titre">Actif du chaine</label>
-                        <!-- Pour le bouton actif\desactif-->
-                        <input id="actifChaine" type="checkbox" value="<?= $chaine['actif_chaine'] ?>" name="chaine[actif_chaine]">
-                        <input id="noActifChaine" type="hidden" value="0" name="chaine[actif_chaine]">
-                    </div>
+                    
                     <!-- Pour faire apparaitre les utilisateurs qui sont dans la chaine
             Faire une fonction qui recupere les utilisateurs d'une chaine et après met dans la boucle-->
 
@@ -121,15 +116,15 @@ $utilisateurNotInChaines = getUserNotInChaine($_GET['id']);
             </div>
         </div>
         <script src="/assets/script/chaines-script.js"></script>
-    </div>
+    
 
     <!--Affichage Pour insérer un utilisateur dans une chaine -->
 
-    <main>
+    
 
         <div>
             <h2>Retirer des utilisateurs</h2>
-            <main>
+            
                 <div>
 
                     <table>
@@ -194,4 +189,5 @@ $utilisateurNotInChaines = getUserNotInChaine($_GET['id']);
                 </div>
 
         </div>
-    </main>
+        </div>
+</main>

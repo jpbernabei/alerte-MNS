@@ -2,44 +2,40 @@
 
 require $_SERVER['DOCUMENT_ROOT'].'/includes/inc-db-connect.php'; 
 require $_SERVER['DOCUMENT_ROOT'].'/managers/salons-managers.php';
+require $_SERVER['DOCUMENT_ROOT'].'/managers/chaine-manager.php';
 
 
 // Permet de specifier qu'on manipule un fichier en json 
 header('Content-Type: application/json; charset=UTF-8"');
 
-//---------------------------Récuperer l'ID de la chaine 
+//---------------------------Récuperer l'ID de la chaine----------------------------------------------------
 
-$chaineId = $_REQUEST['id_chaine']; // tableau des ID des chaines 
-
-// Pour séparer les données du tableau en explode 
-
-$idExplode = explode("-", $chaineId); 
-
-// ----------------------La requete Sql 
-
+    $idChaine = $_REQUEST['id_chaine']; // tableau des ID des chaines 
     $pdo = $GLOBALS['pdo'];
-    $sql = "SELECT salon.nom_salon
+    $sql = "SELECT salon.nom_salon, nom_chaine
     FROM chaine
     LEFT JOIN salon ON chaine.id_chaine=salon.id_chaine
-    WHERE chaine.id_chaine=$id AND salon.id_chaine= chaine.id_chaine";
+    WHERE chaine.id_chaine=:id_chaine AND salon.id_chaine= chaine.id_chaine";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute($id);
+    $stmt->execute(["id_chaine" => $idChaine]);
+    $salons = $stmt->fetchAll();
 
-    return $stmt->rowCount();
+echo json_encode($salons);
 
-// Permet de specifier qu'on manipule un fichier en json 
-header('Content-Type: application/json; charset=UTF-8"');
+//---------------------------Récuperer l'ID des salons pour afficher les messages----------------------------------------------------
 
-echo json_encode($stmt);
+$idSalon = $_REQUEST['id_salon']; // tableau des ID des chaines 
+$pdo = $GLOBALS['pdo'];
+$sql = "SELECT salon.nom_salon, nom_chaine
+FROM chaine
+LEFT JOIN salon ON chaine.id_chaine=salon.id_chaine
+WHERE chaine.id_chaine=:id_chaine AND salon.id_chaine= chaine.id_chaine";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(["id_chaine" => $idSalon]);
+$message = $stmt->fetchAll();
 
+echo json_encode($message);
 
 
 ?>
 
-<!-- ----------------------------------------------------------------
-
-file_put_contents('data.json', $salons);
-
-$decoding= json_decode($salons, JSON_OBJECT_AS_ARRAY);
-
-echo $decoding->nom_salon; -->

@@ -21,11 +21,26 @@ function getAllSalon(int $id){
     return $pdo->query($sql)->fetchAll();     
 }
 
+// Les salons 
+
+function getAllSalon9(){
+    $pdo = $GLOBALS['pdo']; 
+    $sql = "SELECT *
+    FROM salon
+    LEFT JOIN chaine ON chaine.id_chaine=salon.id_chaine
+    WHERE salon.id_chaine=chaine.id_chaine"; 
+    
+    return $pdo->query($sql)->fetchAll();     
+}
 
 // Récuperer l'ID du salon 
 // Requete pour créer un salon d'une chaine 
 
-function insertSalon(array $data){
+function insertSalon(array $data)
+{
+    // Contre les injections 
+    $data['nom_salon'] = htmlspecialchars($data['nom_salon']);
+
     $pdo = $GLOBALS['pdo'];
     $sql = "INSERT INTO salon(nom_salon, date_creation_salon, actif_salon, id_chaine) 
     VALUES (:nom_salon, :date_creation_salon, :actif_salon, :id_chaine)";
@@ -38,6 +53,8 @@ function insertSalon(array $data){
 
 function updateSalon(array $data)
 {
+    $data['nom_salon'] = htmlspecialchars($data['nom_salon']);
+    
     $pdo = $GLOBALS['pdo'];
     $sql = "UPDATE salon
             SET nom_salon=:nom_salon
@@ -79,4 +96,19 @@ function getSalonIdChaine(int $id)
 
     return $stmt->rowCount(); 
 } 
+
+// La fonction qui recupere les salons dans la nav bar 
+
+function getSalonNav(int $id)
+{
+    $pdo = $GLOBALS['pdo'];
+    $sql = "SELECT salon.nom_salon
+    FROM chaine
+    LEFT JOIN salon ON chaine.id_chaine=salon.id_chaine
+    WHERE chaine.id_chaine=$id AND salon.id_chaine= chaine.id_chaine";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($id);
+
+    return $stmt->rowCount();
+}
 
