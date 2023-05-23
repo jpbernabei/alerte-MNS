@@ -3,23 +3,33 @@
     padding: 0;
     box-sizing: border-box;
 }
-html,
-body {
+html,body {
+    font-family: 'Prompt', sans-serif;
     height: 100vh;
     width: 100%;
     overflow: hidden;
-    
 }
 .container{
     display: grid;
     grid-template-columns: 200px 200px 1fr 200px ;
-    grid-template-rows: 130px 1fr;
+    grid-template-rows: 100px 1fr;
     grid-template-areas: 
         "header header header header"
         "nav-chaine nav-salon main side";
     height: 100%;
         
 }
+
+h1{
+    text-align: center;
+    color:#313e74;
+    margin-top: 50px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
 
 header{
     grid-area: header;
@@ -52,9 +62,13 @@ header{
 }
 
 main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     grid-area: main;
     background-color: aliceblue;
     height: 100%;
+    width: 100%;
 }
 
 .side{
@@ -103,6 +117,14 @@ main{
 }
 .button-creation{
     margin-bottom: 20px;
+}
+.buttonAjout{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 .button-creation-container{
     display: flex;
@@ -216,3 +238,159 @@ main{
     position: relative;
     top: 2px;
   }
+/* _______________________________creation reunion___________________________________ */
+.container-reunion{
+    height: 100%;
+    width: 100%;
+    background-color: #81a4cdff;
+}
+.container-formReunion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #313e74;
+    color: #81a4cdff;
+    width: 70%;
+    border-radius: 50px;
+    padding: 20px;
+    margin-left: 15%;
+    margin-top: 4%;
+}
+
+input[type="submit"] {
+    margin: 10px;
+    padding: 0;
+    width: 100px;
+    height: 40px;
+    line-height: 100%; /* Si ça fonctionne pas mets 0 */
+    border-radius: 20px;
+    border: 0;
+    background:#ff6715; /* ou transparent je sais plus... */
+    color: white;
+     /* Normalement */text-decoration: none;
+    
+}
+
+input[type="submit"]:hover{
+    background-color:#ffb289;
+    color: black;
+}
+  /* -------------affiche reunion --------------*/
+
+.containerAffichageReunion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+    width: 100%;
+    background-color: #81a4cdff;
+}
+
+.container-table{
+    background-color: #313e74;
+    width: 500px;
+    border-radius: 50px;
+    min-height: 55px;
+    max-height: 600px;
+    padding: 20px;
+    color: #81a4cdff;
+    
+    margin-top: 4%;
+}
+
+.contenuReunion{
+    color:#ff6715;
+    font-size: 15px;
+}
+
+/* -------------scrollbarr---------- */
+.desigend-scrollbar
+{
+    height: 70%;
+    overflow: auto;
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: rgb(253, 253, 253);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: rgb(97, 95, 93);
+    border-radius: 5px;
+}
+
+
+
+/* ---------------parametres utilisateur------------------------------ */
+.container-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #313e74;
+    color: #81a4cdff;
+    width: 70%;
+    border-radius: 50px;
+    min-height: 300px;
+    max-height: 350px;
+    padding: 20px;
+    margin-left: 15%;
+    margin-top: 4%;
+}
+
+.containerParamUser{
+        height: 100%;
+        width: 100%;
+        background-color: #81a4cdff;
+}
+
+/* ________________________________________________barre de recherche____________________________________ */
+.container-search{
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+#result-search{
+    
+    
+    
+}
+
+
+/* ______________________________________________________media query laptop_________________________________________________________________________ */
+
+@media screen and (min-width:1050px ) and (max-width: 1400px){
+.container-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #313e74;
+    color: #81a4cdff;
+    width: 70%;
+    border-radius: 50px;
+    max-height: 200px;
+    padding: 20px;
+    margin-left: 15%;
+    margin-top: 4%;
+}
+}
+
+/* _________________________________________________Media query  Mobile_________________________________________________ */
+
+@media screen and (max-width:1050px){
+    
+
+.container{
+   display: flex;
+   flex-direction: column;
+        
+}
+.noMobile{
+    display: none;
+}
+
+}

@@ -23,6 +23,9 @@ require $_SERVER['DOCUMENT_ROOT'].'/includes/inc-top.php';
         </nav>
         <main>
 
+        <div id="result-search" class="container-search">
+        </div>
+
         </main>
         <div class="side">
 
