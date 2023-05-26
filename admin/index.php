@@ -2,7 +2,6 @@
 session_start();
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/chaine-manager.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
-// require $_SERVER['DOCUMENT_ROOT'] . '/assets/script/json-salon.js';
 $chaines = getAllChaine();
 $salons = getAllSalon9();
 
@@ -23,6 +22,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/test.css">
     
     <script src="https://kit.fontawesome.com/18cbf17047.js" crossorigin="anonymous"></script>
     <title>Accueil</title>

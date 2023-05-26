@@ -10,7 +10,10 @@ function valid_donnees($donnees){
 }
 //fonction qui permet d'ajouter un utilisateur
 function insertUser(array $data){
-    $data['auteur_livre'] = htmlspecialchars($data['auteur_livre']);
+    $data['email_utilisateur'] = valid_donnees($data['email_utilisateur']);
+    $data['mot_de_passe_utilisateur'] = valid_donnees($data['mot_de_passe_utilisateur']);
+    $data['prenom_utilisateur'] = valid_donnees($data['prenom_utilisateur']);
+    $data['nom_utilisateur'] = valid_donnees($data['nom_utilisateur']);
     $pdo = $GLOBALS['pdo'];
     $sql = "INSERT INTO utilisateur(email_utilisateur, mot_de_passe_utilisateur, nom_utilisateur, prenom_utilisateur, date_creation_compte_utilisateur,is_admin_utilisateur, actif_utilisateur, id_role) 
     VALUES (:email_utilisateur,:mot_de_passe_utilisateur,:nom_utilisateur,:prenom_utilisateur,:date_creation_compte_utilisateur,:is_admin_utilisateur,:actif_utilisateur,:id_role)";

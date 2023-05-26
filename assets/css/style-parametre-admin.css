@@ -414,27 +414,27 @@ outline: none;
 /*---------- edit réunion ----------*/
 
 .container-formEditReunion{
-  
+  display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #313e74;
     color: #81a4cdff;
-    width: 25%;
+    width: 20%;
     border-radius: 50px;
-    min-height: 100px;
     padding: 20px;
-    margin-left: 15%;
+    margin-left: 5%;
     margin-top: 4%;
 }
 .container-tableEditReunion{
     background-color: #313e74;
-    width: 30%;
+    width: 35%;
     border-radius: 50px;
     min-height: 500px;
     padding: 20px;
     color: #81a4cdff;
-    margin-left: 15%;
+    margin-left: 10%;
     margin-top: 4%;
+    margin-right: 5%; 
 }
 .flexFormTab{
     display: flex;
@@ -472,7 +472,41 @@ outline: none;
         max-height: 350px;
         padding: 20px;
         margin-left: 15%;
+        margin-top: 1%;
+    }
+
+    /* edit reunion */
+    
+
+    .container-formEditReunion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #313e74;
+        color: #81a4cdff;
+        height: 450px;
+        width: 25%;
+        border-radius: 50px;
+        margin-left: 5%;
+        margin-top: 4%;
+        margin-right: 10px;
+    }
+    .container-tableEditReunion{
+        background-color: #313e74;
+        border-radius: 50px;
+        height: 100%;
+        color: #81a4cdff;
+        width: 100%;
+        margin: 0;
+        margin-right: 10px;
         margin-top: 4%;
     }
-    
+    .flexFormTab{
+        display: flex;
+        flex-direction: row;
+        min-height: 200px;
+        max-height: 350px;
+        
+        
+    }
 }

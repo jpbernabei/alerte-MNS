@@ -1,12 +1,12 @@
-function verificationActifUser(){
-    let isCheckedUser = document.getElementById("actifUser").checked;
-    let isNotCheckedUser = document.getElementById("noActifUser");
-    if (!isCheckedUser){
-        isNotCheckedUser.value = 0;
-    } else {
-        isNotCheckedUser.value = 1;
-    }
-}
+// function verificationActifUser(){
+//     let isCheckedUser = document.getElementById("actifUser").checked;
+//     let isNotCheckedUser = document.getElementById("noActifUser");
+//     if (!isCheckedUser){
+//         isNotCheckedUser.value = 0;
+//     } else {
+//         isNotCheckedUser.value = 1;
+//     }
+// }
 // let userActive = document.getElementById("actifUser").value;
 // let userToggle = document.getElementById("actifUser");
 
