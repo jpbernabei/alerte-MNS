@@ -4,12 +4,13 @@ require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
 
 
 
-if (!empty($_POST['isActive'])) {
+if (!empty($_POST['isActive'])) 
+{
     $isActive = isset($_POST['actif_salon']) ? 1 : 0;
-
+    
     $sql = "UPDATE salon 
             SET actif_salon = :actif_salon 
-            WHERE id_salon = :id_salon";
+            WHERE id_salon = :id";
     $query = $pdo->prepare($sql);
     $active = $query->execute([
         'actif_salon' => $isActive,
@@ -18,6 +19,8 @@ if (!empty($_POST['isActive'])) {
 }
 
 $salons = getAllSalon($_GET['id']);
+
+
 ?>
 
 
@@ -56,8 +59,9 @@ $salons = getAllSalon($_GET['id']);
                         <th class="">Id</th>
                         <th class="">Date</th>
                         <th class="">Nom des salons</th>
-                        <th class="">Actif/Désactif</th>
                         <th>Modifier les informations du salon</th>
+                        <th class="">Actif/Désactif</th>
+                        
 
                     </tr>
                 </thead>
@@ -70,9 +74,9 @@ $salons = getAllSalon($_GET['id']);
                             <td class=""><a href="/admin/parametre-salons/edit.php?id=<?= $salon['id_salon'] ?>">Modifier </a></td>
 
                             <td>
-                                <form action="/admin/parametre-salons/index.php" method="post">
+                                <form action="/admin/parametre-salons/AllSalons.php" method="post">
                                     <label class="toggle">
-                                        <input type="hidden" name="id_salon" value="<?= $salon['id_salon'] ?>">
+                                        <input type="hidden" name="salon[id_salon]" value="<?= $salon['id_salon'] ?>">
                                         <input class="toggle-checkbox" type="checkbox" <?= $salon['actif_salon'] == 1 ? 'checked' : '' ?> name="actif_salon">
 
                                         <div class="toggle-switch"></div>
@@ -80,7 +84,7 @@ $salons = getAllSalon($_GET['id']);
                                     </label>
 
                             </td>
-                            <td> <input class="button-lien" type="submit" name="isActive" value="valider">
+                            <td> <input class="button-lien" onclick='verificationActifSalon()' type="submit" name="isActive" value="valider">
                             </td>
                             </form>
                         </tr>
