@@ -5,9 +5,11 @@ require $_SERVER['DOCUMENT_ROOT'] . "/managers/chaine-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 
 # 1. ---------------------Verification pour la modification de la chaine--------------------------------
-if (isset($_POST['submit'])) {
+if (isset($_POST['modifier'])) {
     $count = updateChaine($_POST['chaine']);
     if ($count == 1) {
+        header("Location: /admin/parametre-chaines/edit.php");
+        exit;
         echo ('Modifier réussi');
     } else {
         echo ("Une erreur s'est produit");
@@ -15,8 +17,7 @@ if (isset($_POST['submit'])) {
 }
 
 // Verification de retirer un utilisateur et d'ajouter un utilisateur 
-if (isset($_POST['retirer'])) 
-{
+if (isset($_POST['retirer'])) {
     if (!empty($_POST['id_utilisateur'])) {
         $retirerUser = deleteUserInChaine($_POST['id_utilisateur'], $_POST['id_chaine']);
         if ($retirerUser == 1) {
@@ -71,7 +72,7 @@ $utilisateurNotInChaines = getUserNotInChaine($_GET['id']);
         <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;"></i>Utilisateurs</button></a>
     </div>
     <div>
-        <button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button>
+        <a href="/admin/parametre-chaines/index.php"><button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button></a>
     </div>
     <div>
         <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
@@ -79,115 +80,98 @@ $utilisateurNotInChaines = getUserNotInChaine($_GET['id']);
     <div>
         <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
     </div>
-
     <div class="button-creation-container">
 
         <a href="../index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
-
-
     </div>
 </nav>
-<main>
-    <div class="container py-5">
-        <h1>Modifier les informations de la chaîne</h1>
-        <div class="row mb-4">
-            <div class="col-auto">
-                <a href="/admin/parametre-chaines/index.php" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left"></i> revenir ..........
-                </a>
-            </div>
 
+<main>
+    <div class="container">
+        <h1>Modifier les informations de la chaîne</h1>
+        <div class="buttonAjout">
+            <a href="/admin/parametre-chaines/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
 
-        <div class="row">
-            <div class="col col-md-6">
-                <form action="/admin/parametre-chaines/edit.php?id=<?= $_GET['id'] ?>" method="POST">
+        <div class="flexFormTab">
+            <div class="container-formEditReunion">
+                <form class="formNewUser" action="/admin/parametre-chaines/edit.php" method="POST">
                     <input type="hidden" name="chaine[id_chaine]" value="<?= $chaine['id_chaine'] ?>">
-                    <div class="form-group">
-                        <label for="titre">Nom de la chaine</label>
-                        <input type="text" class="form-control" name="chaine[nom_chaine]" value="<?= $chaine['nom_chaine'] ?>" />
-                    </div>
-                    
+                    <label for="nomChaine">Nom de la chaine</label>
+                    <input for="nomChaine" type="text"  name="chaine[nom_chaine]" value="<?= $chaine['nom_chaine'] ?>" />
+
+
                     <!-- Pour faire apparaitre les utilisateurs qui sont dans la chaine
             Faire une fonction qui recupere les utilisateurs d'une chaine et après met dans la boucle-->
 
-                    <input type="submit" onclick='verificationActifChaine()' name="submit">
+                    <input type="submit"  name="modifier" value="modifier">
                 </form>
             </div>
-        </div>
-        <script src="/assets/script/chaines-script.js"></script>
-    
+            <script src="/assets/script/chaines-script.js"></script>
 
-    <!--Affichage Pour insérer un utilisateur dans une chaine -->
 
-    
+            <!--Affichage Pour insérer un utilisateur dans une chaine -->
 
-        <div>
-            <h2>Retirer des utilisateurs</h2>
-            
-                <div>
+            <div>
+                <table class="container-tableEditReunion">
+                    <thead>
 
-                    <table>
-                        <thead>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Retirer</th>
 
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Retirer</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($utilisateurs as $utilisateur) : ?>
+                            <tr>
 
-                        </thead>
-                        <tbody>
-                            <?php foreach ($utilisateurs as $utilisateur) : ?>
-                                <tr>
+                                <td><?= $utilisateur['nom_utilisateur'] ?></td>
+                                <td><?= $utilisateur['prenom_utilisateur'] ?></td>
+                                <td>
+                                    <form action="/admin/parametre-chaines/edit.php" method="post">
 
-                                    <td><?= $utilisateur['nom_utilisateur'] ?></td>
-                                    <td><?= $utilisateur['prenom_utilisateur'] ?></td>
-                                    <td><form action="/admin/parametre-chaines/edit.php" method="post">
-                                        
                                         <input type="hidden" name="id_utilisateur" value="<?= $utilisateur['id_utilisateur'] ?>">
                                         <input type="hidden" name="id_chaine" value="<?= $_GET['id'] ?>">
-                                        <input type="submit" name="retirer" value="retirer" >
+                                        <input type="submit" name="retirer" value="retirer">
                                     </form>
                                 </td>
-                                </tr>
-                            <?php
-                            endforeach;  ?>
-                        </tbody>
-                    </table>
-                    <!--Affichage Pour retirer un utilisateur dans une chaine -->
-                    <div>
-                        <h2>Ajouter un utilisateur d'une chaine</h2>
-                        <table>
-                            <thead>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Ajouter</th>
+                            </tr>
+                        <?php
+                        endforeach;  ?>
+                    </tbody>
+                </table>
+            </div>
+            <!--Affichage Pour retirer un utilisateur dans une chaine -->
+            <div>
 
-                            </thead>
-                            <tbody>
-                                <?php foreach ($utilisateurNotInChaines as $utilisateurNotInChaine) : ?>
-                                    <tr>
+                <table class="container-tableEditReunion">
+                    <thead>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Ajouter</th>
 
-                                        <td><?= $utilisateurNotInChaine['nom_utilisateur'] ?></td>
-                                        <td><?= $utilisateurNotInChaine['prenom_utilisateur'] ?></td>
-                                        <td>
-                                            <form action="/admin/parametre-chaines/edit.php" method="post">
-                                                <label>
-                                                <input type="hidden" name="chaine_utilisateur[id_chaine]" value=<?= $_GET['id'] ?>>
-                                                <input type="hidden" name="chaine_utilisateur[id_utilisateur]" value=<?= $utilisateurNotInChaine['id_utilisateur'] ?>>
-                                                <input type="submit" name="ajouter" value="ajouter" class="btn btn-primary">
-                                                </label>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php
-                                endforeach;  ?>
-                            </tbody>
-                        </table>
-
-
-                    </div>
-                </div>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($utilisateurNotInChaines as $utilisateurNotInChaine) : ?>
+                            <tr>
+                                <td><?= $utilisateurNotInChaine['nom_utilisateur'] ?></td>
+                                <td><?= $utilisateurNotInChaine['prenom_utilisateur'] ?></td>
+                                <td>
+                                    <form action="/admin/parametre-chaines/edit.php" method="post">
+                                        <label>
+                                            <input type="hidden" name="chaine_utilisateur[id_chaine]" value=<?= $_GET['id'] ?>>
+                                            <input type="hidden" name="chaine_utilisateur[id_utilisateur]" value=<?= $utilisateurNotInChaine['id_utilisateur'] ?>>
+                                            <input type="submit" name="ajouter" value="ajouter" class="btn btn-primary">
+                                        </label>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php
+                        endforeach;  ?>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
-        </div>
+    </div>
 </main>

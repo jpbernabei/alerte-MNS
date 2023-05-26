@@ -86,7 +86,7 @@ $utilisateurs = getAllUser();
                 <input type="hidden" value="<?= date('Y-m-d') ?>" name="salon[date_creation_salon]">
                 <input type="hidden" value="Général" name="salon[nom_salon]">
                 <input type="hidden" value="1" name="salon[actif_salon]">
-                <input type="hidden" value="<?=$id_chaine?>" name="salon[id_chaine]">
+                <input type="hidden" value="salon[id_chaine]" name="salon[id_chaine]">
 
                 <input type="submit" onclick='verificationActifChaine()' name="submit" value="Enregistrer" class="btn btn-primary">
             </form>

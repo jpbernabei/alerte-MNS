@@ -2,8 +2,14 @@
 session_start();
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/chaine-manager.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
+<<<<<<< HEAD
+=======
+
+>>>>>>> c1474fb2b4ce51b1f36eb39ad47f8f67c3175f23
 $chaines = getAllChaine();
 $salons = getAllSalon9();
+// $userChaines = getUtilisateur($_GET['id']);
+
 
 
 
@@ -23,7 +29,12 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/../assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/test.css">
+<<<<<<< HEAD
     
+=======
+
+
+>>>>>>> c1474fb2b4ce51b1f36eb39ad47f8f67c3175f23
     <script src="https://kit.fontawesome.com/18cbf17047.js" crossorigin="anonymous"></script>
     <title>Accueil</title>
 </head>
@@ -36,7 +47,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
             <div class="police name-user"><?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['name'] ?></div>
             <div id="titre">
                 <div id="titre">
-                    
+
                 </div>
                 <!-- <div id="titreSalons">
                     <p class="salon"></p>
@@ -72,11 +83,12 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
         <main>
 
         </main>
-        <div class="side">
-
+        <div class="desigend-scrollbar" id="side">
+            <!-- Affichage les utilisateurs qui sont connectés-->
         </div>
     </div>
     <script src="/assets/script/json-salon.js"></script>
+    
 </body>
 
 </html>

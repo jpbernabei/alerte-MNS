@@ -7,12 +7,3 @@ function verificationActifSalon(){
         isNotChecked.value = 1;
     }
 }
-let salonActive = document.getElementById("actifSalon").value;
-let salonToggle = document.getElementById("actifSalon");
-
-if(salonActive == 1)
-{
-    salonToggle.checked = true;
-}else{
-    salonToggle.checked = false;
-}

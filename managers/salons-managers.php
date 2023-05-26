@@ -58,8 +58,7 @@ function updateSalon(array $data)
     $pdo = $GLOBALS['pdo'];
     $sql = "UPDATE salon
             SET nom_salon=:nom_salon
-                date_cration_salon=:date_creation_salon
-            WHERE id_chaine=:id_chaine";
+            WHERE id_salon=:id_salon";
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);

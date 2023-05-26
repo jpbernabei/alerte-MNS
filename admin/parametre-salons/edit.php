@@ -8,8 +8,10 @@ require $_SERVER['DOCUMENT_ROOT'].'/managers/salons-managers.php';
 if(isset($_POST['submit']))
 {
     $count = updateSalon($_POST['salon']); 
+
     if($count == 1)
     {
+        
         echo('Modifier de ce salon réussi');
     }
     else
@@ -29,8 +31,6 @@ if(empty($_GET['id']))
 // On verifie si le salon est bien présent en BDD 
 
 $salon = getSalonId($_GET['id']);
-
-
 
 if(!$salon)
 {
@@ -67,19 +67,13 @@ if(!$salon)
             <div class="buttonAjout">
             <a href="/admin/parametre-salons/AllSalons.php?id=<?= $salon['id_chaine']?>"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>   
         </div>
-    
-       
             <form action="/admin/parametre-salons/edit.php?id=<?= $_GET['id']?>" method="post">
                 <input type="hidden" name="salon[id_salon]" value="<?= $salon['id_salon'] ?>">
 
-                <div class="form-group">
                     <label for="nom">Nom du salon</label>
-                    <input type="text" class="form-control" value="<?=$salon['nom_salon']?>">
-                </div>
-
-                
+                    <input type="text" class="form-control" name="salon[nom_salon]" value="<?=$salon['nom_salon']?>">
                 <div>
-                <input type="submit" onclick='verificationActifChaine()' value="submit">
+                <input type="submit" onclick='verificationActifSalon()' name="submit" value="submit">
                 </div>
             </form>
      

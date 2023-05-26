@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+.titre{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
+.image404 {
+    background-attachment: fixed; /*Pour fixer une image au fond afin que les contenus bougent simplement*/
+    background-size: cover;
+    max-width: 70%;
+    max-height: 100%;
+   
+}

@@ -14,14 +14,15 @@ function getAllChaine()
 
 // Fonction qui recupere les utilisateurs d'une chaine
 
-function getUtilisateur(array $data){
+function getUtilisateur(int $idChaine){
     $pdo = $GLOBALS['pdo']; 
-    $sql = "SELECT utilisateur.nom_utilisateur, utilisateur.prenom_utilisateur
-    FROM chaine
-    LEFT JOIN chaine_utilisateur ON chaine.id_chaine = chaine_utilisateur.id_chaine 
-    LEFT JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur 
-    WHERE  chaine.id_utilisateur=utilisateur.id_utilisateur"; 
-    return $pdo->query($sql)->fetchAll(); 
+        $sql = "SELECT utilisateur.nom_utilisateur, utilisateur.prenom_utilisateur
+        FROM chaine_utilisateur 
+        LEFT JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur
+        WHERE chaine_utilisateur.id_chaine=:id_chaine"; 
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['id_chaine'=>$idChaine]);
+        $UserInChaine =$stmt->fetchAll();
 }
 
 // Fonction qui recupere l'Id de la chaine 
@@ -121,8 +122,7 @@ function updateChaine(array $data)
 
     $pdo=$GLOBALS['pdo'];
     $sql="UPDATE chaine
-    SET nom_chaine=:nom_chaine,
-        actif_chaine=:actif_chaine
+    SET nom_chaine=:nom_chaine
     WHERE id_chaine=:id_chaine";
     $stmt =$pdo->prepare($sql);
     $stmt->execute($data);
