@@ -2,10 +2,6 @@
 session_start();
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/chaine-manager.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
-<<<<<<< HEAD
-=======
-
->>>>>>> c1474fb2b4ce51b1f36eb39ad47f8f67c3175f23
 $chaines = getAllChaine();
 $salons = getAllSalon9();
 // $userChaines = getUtilisateur($_GET['id']);
