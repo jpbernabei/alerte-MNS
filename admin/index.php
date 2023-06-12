@@ -23,7 +23,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
 
     <script src="https://kit.fontawesome.com/18cbf17047.js" crossorigin="anonymous"></script>
     <title>Accueil</title>
-    <link rel="icon" class="logo" href="/images/LOGO_ALERT_MNS_transparent.ico">
+    <!-- <link rel="icon" class="logo" href="/images/LOGO_ALERT_MNS_transparent.ico"> -->
 </head>
 
 <body>
@@ -97,7 +97,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
                 </div>
 
         </nav>
-        <div class="desigend-scrollbar nav-salon   ">
+        <div class="desigend-scrollbar nav-salon">
             <nav class="navSalonMobile" id="mesSalons">
                 <!-- Affichage de salon en automatique-->
             </nav>
