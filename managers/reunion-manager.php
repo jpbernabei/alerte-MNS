@@ -1,6 +1,7 @@
 <?php
 
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/inc-db-connect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/fonctions/valid-data.php';
 
 function getAllReunion()
 {
@@ -27,6 +28,14 @@ function getReunionById(int $id)
 
 function insertReunion(array $data, array $utilisateurs)
 {
+    $data['nom_reunion'] = valid_data($data['nom_reunion']);
+    $data['sujet_reunion'] = valid_data($data['sujet_reunion']);
+    $data['date_prevu_reunion'] = valid_data($data['date_prevu_reunion']);
+    $data['heure_prevu_reunion'] = valid_data($data['heure_prevu_reunion']);
+    $data['actif_reunion'] = valid_data($data['actif_reunion']);
+    $data['id_utilisateur'] = valid_data($data['id_utilisateur']);
+    
+
     $pdo = $GLOBALS['pdo'];
     $sql = "INSERT INTO reunion (nom_reunion, sujet_reunion,date_creation_reunion, date_prevu_reunion, heure_prevu_reunion,actif_reunion, id_utilisateur)
     VALUES(:nom_reunion,:sujet_reunion,:date_creation_reunion,:date_prevu_reunion,:heure_prevu_reunion,:actif_reunion,:id_utilisateur)";
@@ -67,9 +76,14 @@ function insertReunion(array $data, array $utilisateurs)
 
 function updateReunion(array $data)
 {
+    $data['nom_reunion'] = valid_data($data['nom_reunion']);
+    $data['sujet_reunion'] = valid_data($data['sujet_reunion']);
+    $data['date_prevu_reunion'] = valid_data($data['date_prevu_reunion']);
+    $data['heure_prevu_reunion'] = valid_data($data['heure_prevu_reunion']);
+   
     $pdo = $GLOBALS['pdo'];
     $sql = "UPDATE reunion
-    SET nom_reunion = :nom_reunion, sujet_reunion = :sujet_reunion , date_prevu_reunion = :date_prevu_reunion , heure_prevu_reunion = :heure_prevu_reunion, actif_reunion = :actif_reunion
+    SET nom_reunion = :nom_reunion, sujet_reunion = :sujet_reunion , date_prevu_reunion = :date_prevu_reunion , heure_prevu_reunion = :heure_prevu_reunion
     WHERE id_reunion = :id_reunion";
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);

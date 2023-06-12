@@ -176,7 +176,7 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 400px;
+    /* width: 600px; */
 }
 
 /* ________________________________________________ */
@@ -307,12 +307,12 @@ input[type="submit"] {
     padding: 0;
     width: 100px;
     height: 40px;
-    line-height: 100%; /* Si ça fonctionne pas mets 0 */
+    line-height: 100%; 
     border-radius: 20px;
     border: 0;
-    background:#ff6715; /* ou transparent je sais plus... */
+    background:#ff6715; 
     color: white;
-     /* Normalement */text-decoration: none;
+    text-decoration: none;
     
 }
 
@@ -332,24 +332,26 @@ input[type="submit"]:hover{
     width: 70%;
     border-radius: 50px;
     min-height: 300px;
-    max-height: 400px ;
+    max-height: 580px ;
     padding: 20px;
     margin-left: 15%;
     margin-top: 4%;
 }
 
-/* input[type="text"],[type="email"],[type="password"],[type="textarea"]{
+input[type="text"],[type="email"],[type="password"],[type="textarea"]{
     background-color: #81a4cdff;
     height: 30px;
     width: 300px;
     border-radius: 20px;
     border:none;
+    padding: 7px;
     
-} */
+}
 textarea{
     background-color: #81a4cdff;
     border-radius: 20px;
     border:none;
+    padding: 7px;
 }
 
 .desigend-scrollbar
@@ -362,7 +364,7 @@ textarea{
 {
     width: 10px;
     background-color: rgb(253, 253, 253);
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb
@@ -392,7 +394,20 @@ textarea{
 }
 
 /*----------- parametre reunion------------ */
-
+.container-formNewReunion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #313e74;
+    color: #81a4cdff;
+    width: 70%;
+    border-radius: 50px;
+    min-height: 300px;
+    max-height: 600px ;
+    padding: 20px;
+    margin-left: 15%;
+    margin-top: 4%;
+}
 .button-a{
 outline: none;
   text-decoration: none;
@@ -408,42 +423,116 @@ outline: none;
 .button-a:hover{
     background-color:#ffb289;
     color:black;
-
 }
 
+small{
+    color: #ff6715;
+}
 /*---------- edit réunion ----------*/
 
 .container-formEditReunion{
-  
+  display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #313e74;
     color: #81a4cdff;
-    width: 25%;
+    width: 20%;
     border-radius: 50px;
-    min-height: 100px;
     padding: 20px;
-    margin-left: 15%;
+    margin-left: 5%;
     margin-top: 4%;
 }
 .container-tableEditReunion{
     background-color: #313e74;
-    width: 30%;
+    width: 35%;
+    height: 100%;
     border-radius: 50px;
-    min-height: 500px;
+    
     padding: 20px;
     color: #81a4cdff;
-    margin-left: 15%;
+    margin-left: 10%;
     margin-top: 4%;
+    margin-right: 5%; 
 }
 .flexFormTab{
     display: flex;
     flex-direction: row;
+    min-height: 650px;
+    max-height: 800px;
 }
 
+.formForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+/* style balise select */
+
+.select-style {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    background: #fff;
+    position: relative;
+}
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background-color:  #81a4cdff;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.select-style:after {
+    top: 50%;
+    left: 85%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: #000000;
+    border-width: 5px;
+    margin-top: -2px;
+    z-index: 100;
+}
+.select-style select:focus {
+    outline: none;
+}
+.notLaptop{
+    display: none;
+}
+
+
+/* style message erreur */
+
+/* .messageErreur{
+    float: left;
+} */
 /* _______________________Media Query____________________________________ */
 
-@media screen and (min-width:0px ) and (max-width: 1400px){
+@media screen and (min-width:1050px ) and (max-width: 1400px){
+
+    input[type="text"],[type="email"],[type="password"],[type="textarea"]{
+        background-color: #81a4cdff;
+        height: 30px;
+        max-width: 250px;
+        border-radius: 20px;
+        border:none;
+        padding: 7px;
+        
+    }
     h1{
         text-align: center;
         color:#313e74;
@@ -472,7 +561,232 @@ outline: none;
         max-height: 350px;
         padding: 20px;
         margin-left: 15%;
+        margin-top: 1%;
+    }
+
+/* new réunion */
+.container-formNewReunion{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #313e74;
+    color: #81a4cdff;
+    width: 70%;
+    border-radius: 50px;
+    min-height: 100px;
+    max-height: 350px;
+    padding: 20px;
+    margin-left: 15%;
+    margin-top: 1%;
+}
+    /* edit reunion */
+    
+
+    .container-formEditReunion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #313e74;
+        color: #81a4cdff;
+        height: 550px;
+        width: 25%;
+        border-radius: 50px;
+        margin-left: 5%;
+        margin-top: 4%;
+        margin-right: 10px;
+    }
+    .container-tableEditReunion{
+        background-color: #313e74;
+        border-radius: 50px;
+        height: 100%;
+        color: #81a4cdff;
+        width: 100%;
+        margin: 0;
+        margin-right: 10px;
         margin-top: 4%;
     }
+    .flexFormTab{
+        display: flex;
+        flex-direction: row;
+        min-height: 200px;
+        max-height: 350px;
+        
+        
+    }
+   
+
+}
+
+/* ________________________media query mobile_________________________ */
+/* Parametre utilisateur Admin */
+@media screen and (max-width:1050px){
+
+    .notLaptop{
+        display: contents;
+    }
+ .noMobile{
+    display: none;
+ }
+
+ .container-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px auto auto 1fr;
+    grid-template-areas:
+        "header"
+        "nav-chaine"
+        "nav-salon"
+        "main"
+        ;
+}
+header{
+    grid-area: header;
+    background-color: #151b36;
+    width: 100%;
+    height:100px;
+ 
     
+}
+
+.nav-chaine{
+    display: flex;
+    flex-direction: column;
+    grid-area: nav-chaine;
+    height: 100%;
+    background-color: #151b36;
+    
+}
+.nav-salon{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+    
+    grid-area: nav-salon;
+    background-color: #313e74;
+   
+}
+.navSalonMobile{
+    display: flex;
+    flex-direction: column;
+    max-height: 100px;
+    width: 100%;
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    grid-area: main;
+    background-color: green;
+    
+}
+.side{
+    grid-area: side;
+    background-color:#313e74;
+    height: 100%;
+}
+/* Sidenav menu */
+.sidenav {
+    height: 50%;
+    width: 250px;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: -250px;
+    background-color: #81a4cdff;
+    padding-top: 60px;
+    transition: left 0.5s ease;
+  }
+  
+  /* Sidenav menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #151b36;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #111;
+  }
+  
+  .sidenav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Active class */
+  .sidenav.active {
+    left: 0;
+  }
+  
+  /* Close btn */
+  .sidenav .close {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+  
+  /* Icône burger */
+  .burger-icon span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: #ff6715;
+    margin: 6px 0;
+  }
+  .buttonAjout{
+    display: flex;
+    flex-direction: column;
+    margin: 0%;
+    padding: 0%
+    
+}
+input[type="text"],[type="email"],[type="password"],[type="textarea"]{
+    background-color: #81a4cdff;
+    height: 30px;
+    max-width: 250px;
+    border-radius: 20px;
+    border:none;
+    padding: 7px;
+    
+}
+h1{
+    margin: 0;
+}
+/* _________________________edit password________________________________ */
+.formNewUser
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ margin-top: 0px;
+ height: 100%;
+ 
+}
+.container-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #313e74;
+    color: #81a4cdff;
+    width: 70%;
+    border-radius: 50px;
+  
+    padding: 20px;
+  
+}
+.formForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 }

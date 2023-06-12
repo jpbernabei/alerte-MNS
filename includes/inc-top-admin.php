@@ -20,11 +20,32 @@ if($_SESSION['user']['is_admin_utilisateur'] == 0)
 <body>
     <div class="container-grid">
         <header>
-            <img class="logo" src="/images/LOGO_ALERT_MNS_transparent.ico" alt="">
-            <a href="/admin/parametre-utilisateurAdmin.php"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a>
-            <div class="police name-user"><?=$_SESSION['user']['firstname'] ?> <?=$_SESSION['user']['name'] ?></div>
-            <div><div class="police name-chaine">nom de la chaine </div><div class="police name-salon">nom du salon</div></div>
-            <input class="search" type="search">
-            <a href="/admin/affiche-reunionsAdmin.php"><i class="fa-solid fa-users fa-xl" style="color: #ffffff;"></i></a>
-            <a href="/logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
+        <div class="notLaptop">
+                <div id="mySidenav" class="sidenav">
+                    <a id="closeBtn" href="#" class="close">×</a>
+                    <ul>
+                        <li><a href="/admin/index.php">Accueil</a></li>
+                        <li><a href="/admin/parametre-utilisateurAdmin.php">Paramètre</a></li>
+                        <li><a href="/admin/affiche-reunionsAdmin.php">Réunions</a></li>
+                        <li><a href="#">Créer une réunion</a></li>
+                        <li><a href="#">Créer une chaîne</a></li>
+                        <li><a href="/logout.php">Déconnexion</a></li>
+                    </ul>
+                </div>
+
+                <a href="#" id="openBtn">
+                    <span class="burger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </a>
+            </div>
+            <img class="logo noMobile" src="/images/LOGO_ALERT_MNS_transparent.ico" alt="">
+            <a class="noMobile" href="/admin/parametre-utilisateurAdmin.php"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a>
+            <div class="police name-user noMobile"><?=$_SESSION['user']['firstname'] ?> <?=$_SESSION['user']['name'] ?></div>
+            <div><div class="police name-chaine noMobile"><?= isset($title)?$title:'' ?> </div><div class="police name-salon noMobile">nom du salon</div></div>
+            <input class="search noMobile " type="search">
+            <a class="noMobile" href="/admin/affiche-reunionsAdmin.php"><i class="fa-solid fa-users fa-xl" style="color: #ffffff;"></i></a>
+            <a class="noMobile" href="/logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
         </header>

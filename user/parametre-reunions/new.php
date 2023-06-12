@@ -74,7 +74,7 @@ $utilisateurs = getAllUser();
             <?php endforeach ?>
             </div>
 
-            <input type="hidden" value="<?= $_SESSION['user']['id'] ?>" name="">
+            <input type="hidden" value="<?= $_SESSION['user']['id'] ?>" name="<?= $_SESSION['user']['id'] ?>">
 
             <input type="submit"  name="submit">
         </form>
