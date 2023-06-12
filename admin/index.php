@@ -102,7 +102,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
                 </div>
 
         </nav>
-        <div class="desigend-scrollbar nav-salon   ">
+        <div class="scroller nav-salon   ">
             <nav class="navSalonMobile" id="mesSalons">
                 <!-- Affichage de salon en automatique-->
             </nav>
@@ -111,7 +111,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
         <main>
 
         </main>
-        <div class="desigend-scrollbar noMobile">
+        <div class="noMobile side">
             <div id="side">
 
             </div>
