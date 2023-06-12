@@ -1,6 +1,6 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/chaine-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 
@@ -8,7 +8,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 if (isset($_POST['modifier'])) {
     $count = updateChaine($_POST['chaine']);
     if ($count == 1) {
-        header("Location: /admin/parametre-chaines/edit.php");
+        header("Location: /user/parametre-chaines/edit.php");
         exit;
         echo ('Modifier réussi');
     } else {
@@ -22,13 +22,13 @@ if (isset($_POST['retirer'])) {
     if (!empty($_POST['id_utilisateur'])) {
         $retirerUser = deleteUserInChaine($_POST['id_utilisateur'], $_POST['id_chaine']);
         if ($retirerUser == 1) {
-            header("Location: /admin/parametre-chaines/edit.php?id=");
+            header("Location: /user/parametre-chaines/edit.php?id=");
             exit;
         } else {
             echo "Une erreur s'est produite lors de la suppression...";
         }
     } else {
-        header("Location: /admin/parametre-chaines/edit.php");
+        header("Location: /user/parametre-chaines/edit.php");
         exit;
     }
 }
@@ -37,14 +37,14 @@ if (isset($_POST['retirer'])) {
 if (isset($_POST['ajouter'])) {
     $addUserChaine = insertUserChaine($_POST['chaine_utilisateur']);
     if (!$addUserChaine) {
-        header("Location: /admin/parametre-chaines/edit.php");
+        header("Location: /user/parametre-chaines/edit.php");
     }
 }
 
 // 3.------------Vérification du paramètre de l'id de la chaine pour modifier 
 
 if (empty($_GET['id'])) {
-    header("Location: /admin/parametre-chaines/index.php");
+    header("Location: /user/parametre-chaines/index.php");
     die;
 }
 // 4.------------Pour voir les personnes qui sont dans la chaine
@@ -55,7 +55,7 @@ $utilisateurs = getUserChaine($_GET['id']);
 
 $chaine = getChaineId($_GET['id']);
 if (!$chaine) {
-    header("Location: /admin/parametre-chaines/index.php");
+    header("Location: /user/parametre-chaines/index.php");
     die;
 }
 
@@ -70,20 +70,15 @@ $utilisateurNotInChaines = getUserNotInChaine($_GET['id']);
 
 <nav class="nav-chaine">
     <div>
-        <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;"></i>Utilisateurs</button></a>
+        <button class="button-chaines police">Messagerie</button>
     </div>
     <div>
-        <a href="/admin/parametre-chaines/index.php"><button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button></a>
-    </div>
-    <div>
-        <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
-    </div>
-    <div>
-        <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
+        <button class="button-chaines police">MNS-Infos</button>
     </div>
     <div class="button-creation-container">
+        <a href="/user/parametre-reunions/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
+        <a href="/user/parametre-chaines/index.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button></a>
 
-        <a href="../index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
     </div>
 </nav>
 
@@ -91,12 +86,12 @@ $utilisateurNotInChaines = getUserNotInChaine($_GET['id']);
     <div class="container">
         <h1>Modifier les informations de la chaîne</h1>
         <div class="buttonAjout">
-            <a href="/admin/parametre-chaines/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
+            <a href="/user/parametre-chaines/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
 
         <div class="flexFormTab">
             <div class="container-formEditReunion">
-                <form class="formNewUser" action="/admin/parametre-chaines/edit.php" method="POST">
+                <form class="formNewUser" action="/user/parametre-chaines/edit.php" method="POST">
                     <input type="hidden" name="chaine[id_chaine]" value="<?= $chaine['id_chaine'] ?>">
                     <label for="nomChaine">Nom de la chaine</label>
                     <input for="nomChaine" type="text"  name="chaine[nom_chaine]" value="<?= $chaine['nom_chaine'] ?>" />
@@ -129,7 +124,7 @@ $utilisateurNotInChaines = getUserNotInChaine($_GET['id']);
                                 <td><?= $utilisateur['nom_utilisateur'] ?></td>
                                 <td><?= $utilisateur['prenom_utilisateur'] ?></td>
                                 <td>
-                                    <form action="/admin/parametre-chaines/edit.php" method="post">
+                                    <form action="/user/parametre-chaines/edit.php" method="post">
 
                                         <input type="hidden" name="id_utilisateur" value="<?= $utilisateur['id_utilisateur'] ?>">
                                         <input type="hidden" name="id_chaine" value="<?= $_GET['id'] ?>">
@@ -158,7 +153,7 @@ $utilisateurNotInChaines = getUserNotInChaine($_GET['id']);
                                 <td><?= $utilisateurNotInChaine['nom_utilisateur'] ?></td>
                                 <td><?= $utilisateurNotInChaine['prenom_utilisateur'] ?></td>
                                 <td>
-                                    <form action="/admin/parametre-chaines/edit.php" method="post">
+                                    <form action="/user/parametre-chaines/edit.php" method="post">
                                         <label>
                                             <input type="hidden" name="chaine_utilisateur[id_chaine]" value=<?= $_GET['id'] ?>>
                                             <input type="hidden" name="chaine_utilisateur[id_utilisateur]" value=<?= $utilisateurNotInChaine['id_utilisateur'] ?>>

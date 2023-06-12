@@ -60,11 +60,11 @@ if(isset($_POST['submit']))
                     <input type="hidden" class="form-control" name="salon[date_creation_salon]" value="<?=date('Y-m-d')?>"/>
                     <input type="hidden" name="salon[id_chaine]" value="<?=$_GET['id'] ?>">
        
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="actif_salon">actif/desactif</label>
                     <input id="actifSalon" type="checkbox" value="1" name="salon[actif_salon]">
                     <input id="noActifSalon" type="hidden" value="0" name="salon[actif_salon]">
-                </div>
+                </div> -->
                 <input type="submit" onclick='verificationActifChaine()' name="submit" value="Enregistrer" class="btn btn-primary">
             </form>
         </div>

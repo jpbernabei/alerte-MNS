@@ -11,7 +11,6 @@ if(isset($_POST['submit']))
 
     if($count == 1)
     {
-        
         echo('Modifier de ce salon réussi');
     }
     else

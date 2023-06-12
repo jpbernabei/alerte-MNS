@@ -42,7 +42,7 @@ $utilisateurs = getAllUser();
 </nav>
 <main>
     <div class="container-reunion">
-        <h1>creer une réunion :</h1>
+        <h1>créer une réunion :</h1>
         <!-- formulaire pour l'ajout d'utilisateur -->
         <div class="container-formReunion desigend-scrollbar">
         <form class="formNewUser" action="/user/parametre-reunions/new.php" method="POST">

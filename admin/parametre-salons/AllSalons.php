@@ -10,15 +10,16 @@ if (!empty($_POST['isActive']))
     
     $sql = "UPDATE salon 
             SET actif_salon = :actif_salon 
-            WHERE id_salon = :id";
+            WHERE id_salon = :id_salon";
     $query = $pdo->prepare($sql);
     $active = $query->execute([
         'actif_salon' => $isActive,
         'id_salon' => $_POST['id_salon']
     ]);
-}
+} 
 
 $salons = getAllSalon($_GET['id']);
+// var_dump($salons);die; 
 
 
 ?>
@@ -74,9 +75,9 @@ $salons = getAllSalon($_GET['id']);
                             <td class=""><a href="/admin/parametre-salons/edit.php?id=<?= $salon['id_salon'] ?>">Modifier </a></td>
 
                             <td>
-                                <form action="/admin/parametre-salons/AllSalons.php" method="post">
+                                <form action="/admin/parametre-salons/AllSalons.php?id=<?= $_GET['id'] ?>" method="post">
                                     <label class="toggle">
-                                        <input type="hidden" name="salon[id_salon]" value="<?= $salon['id_salon'] ?>">
+                                        <input type="hidden" name="id_salon" value="<?= $salon['id_salon'] ?>">
                                         <input class="toggle-checkbox" type="checkbox" <?= $salon['actif_salon'] == 1 ? 'checked' : '' ?> name="actif_salon">
 
                                         <div class="toggle-switch"></div>

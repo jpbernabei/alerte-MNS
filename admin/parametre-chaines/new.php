@@ -8,6 +8,20 @@ require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 
 // Traiter le formulaire si envoyé
 if (isset($_POST['submit'])) {
+
+$errors = [];
+
+    if(empty($_POST['chaine']['nom_chaine']))
+    $errors['nom_chaine'] = "le champ ne doit pas etre vide";
+    
+    if(count($errors) > 0)
+    {
+        $_SESSION['errors'] = $errors;
+        header("Location: /admin/parametre-chaines/new.php");
+        die;
+    }
+
+
     $chaine = insertChaine($_POST['chaine'], $_POST['utilisateur'], $_SESSION['user']['id']);
 
     if ($chaine) {
@@ -61,6 +75,9 @@ $utilisateurs = getAllUser();
                 <div class="form-group">
                     <label for="nom_chaine">Nom de la chaine</label>
                     <input type="text" class="form-control" name="chaine[nom_chaine]">
+                    <?php if (isset($_SESSION['errors']['nom_chaine'])) : ?>
+                        <p><small><?= $_SESSION['errors']['nom_chaine'] ?></small></p>
+                    <?php endif; ?>
                 </div>
                 <input type="hidden" class="form-control" name="chaine[date_creation_chaine]" value="<?= date('Y-m-d') ?>" />
                 <input type="hidden" name="chaine[id_utilisateur]" value="<?= $_SESSION['user']['id'] ?>">
@@ -92,6 +109,7 @@ $utilisateurs = getAllUser();
             </form>
 
         </div>
+        <?php unset($_SESSION['errors']);?>
     </div>
     <script src="/assets/script/chaines-script.js"></script>
 </main>

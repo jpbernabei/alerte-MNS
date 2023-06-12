@@ -1,12 +1,14 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php"; 
-
+<?php 
+require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php"; 
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/chaine-manager.php';
 
 if (!empty($_POST['isActive'])) 
 {
     $isActive = isset($_POST['actif_chaine']) ? 1 : 0;
 
-    $sql = "UPDATE chaine SET actif_chaine = :actif_chaine WHERE id_chaine = :id_chaine";
+    $sql = "UPDATE chaine 
+            SET actif_chaine = :actif_chaine 
+            WHERE id_chaine = :id_chaine";
     $query = $pdo->prepare($sql);
     $active = $query->execute([
         'actif_chaine' => $isActive,

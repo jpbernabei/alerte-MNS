@@ -6,12 +6,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
 $chaines = getAllChaine();
 $salons = getAllSalon9();
 // $userChaines = getUtilisateur($_GET['id']);
-
-
-
-
-
-
 if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
     header("Location: /logout.php");
     die;
@@ -26,10 +20,9 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/../assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/test.css">
-
-
     <script src="https://kit.fontawesome.com/18cbf17047.js" crossorigin="anonymous"></script>
     <title>Accueil</title>
+    <link rel="icon" class="logo" href="/images/LOGO_ALERT_MNS_transparent.ico">
 </head>
 
 <body>
@@ -73,8 +66,8 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
         </nav>
 
 
-        <main>
-
+        <main id="messageSalon">
+            <!--Affichage des messages lors d'un clique d'un salon en fonction de son ID-->
         </main>
         <div class="desigend-scrollbar" id="side">
             <!-- Affichage les utilisateurs qui sont connectés-->
