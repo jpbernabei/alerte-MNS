@@ -5,10 +5,34 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
 // Verification de l'envoie du formulaire updateReunion:
 if (isset($_POST['submit'])) {
+
+    $errors = [];
+
+    if (empty($_POST['reunion']['nom_reunion']))
+        $errors['nom_reunion'] = 'La réunion doit avoir un nom.';
+
+    if (empty($_POST['reunion']['sujet_reunion']))
+        $errors['sujet_reunion'] = 'La réunion doit avoir un sujet.';
+
+    if (empty($_POST['reunion']['date_prevu_reunion']))
+        $errors['date_prevu_reunion'] = 'La réunion doit avoir une date de prévu.';
+
+    if (empty($_POST['reunion']['heure_prevu_reunion']))
+        $errors['heure_prevu_reunion'] = 'La réunion doit avoir une heure de prévu.';
+
+
+    if (count($errors) > 0) {
+        $_SESSION['errors'] = $errors;
+        $_SESSION['values'] = $_POST;
+
+        header("Location: /admin/parametre-reunions/edit.php?id=" . $_GET['id']);
+        die;
+    }
+
     $count = updateReunion($_POST['reunion']);
 
     if ($count == 1) {
-        header("Location: admin/parametre-reunions/edit.php");
+        header("Location: /admin/parametre-reunions/edit.php");
         exit;
     }
 }
@@ -82,97 +106,118 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
             <a href="/admin/parametre-reunions/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
         <div class="flexFormTab desigend-scrollbar">
-            
+
             <div class="container-formEditReunion ">
                 <!-- formulaire pour l'ajout d'utilisateur -->
-                <form class="formNewUser" action="/admin/parametre-reunions/edit.php" method="POST">
+                <form id="form" class="formNewUser" action="/admin/parametre-reunions/edit.php?id=<?= $_GET['id'] ?>" method="POST">
 
-                    <input type="hidden" name="reunion[id_reunion]" value="<?= $reunion['id_reunion'] ?>">
+                    <input type="hidden" name="reunion[id_reunion]" value="<?= $_GET['id'] ?>">
 
-                    <label for="reunion[nom_reunion]">Nom de la réunion</label>
-                    <input type="text" name="reunion[nom_reunion]" value="<?= $reunion['nom_reunion'] ?>">
+                    <div class="formForm">
+                        <label for="reunion[nom_reunion]">Nom de la réunion</label>
+                        <input id="nomReunion" type="text" name="reunion[nom_reunion]" value="<?= $reunion['nom_reunion'] ?>">
+                        <small id="nomReunionError"></small>
+                        <?php if (isset($_SESSION['errors']['nom_reunion'])) : ?>
+                            <small><?= $_SESSION['errors']['nom_reunion'] ?></small>
 
-                    <label for="reunion[sujet_reunion]">Sujet de la réunion</label>
-                    <textarea name="reunion[sujet_reunion]" value="<?= $reunion['sujet_reunion'] ?>" cols="30" rows="10"><?= $reunion['sujet_reunion'] ?></textarea>
+                            <!-- <small id="nomReunionError"></small> -->
+                        <?php endif; ?>
+                    </div>
 
-                    <label for="">Date de la réunion</label>
-                    <input type="date" name="reunion[date_prevu_reunion]" value="<?= $reunion['date_prevu_reunion'] ?>">
+                    <div class="formForm">
+                        <label for="reunion[sujet_reunion]">Sujet de la réunion</label>
+                        <textarea id="sujetReunion" name="reunion[sujet_reunion]" value="<?= $reunion['sujet_reunion'] ?>" cols="30" rows="10"><?= $reunion['sujet_reunion'] ?></textarea>
+                        <small id="sujetReunionError"></small>
+                        <?php if (isset($_SESSION['errors']['sujet_reunion'])) : ?>
+                            <small><?= $_SESSION['errors']['sujet_reunion'] ?></small>
 
-                    <label for="">Heure de la réunion</label>
-                    <input type="time" name="reunion[heure_prevu_reunion]" value="<?= $reunion['heure_prevu_reunion'] ?>">
+                        <?php endif; ?>
+                    </div>
 
-                    <!-- toggle switch pour actif reunion -->
-                    <label class="toggle"> Réunion Actif
-                        <input id="actifReunion" class="toggle-checkbox" type="checkbox" value="<?= $reunion['actif_reunion'] ?>" name="reunion[actif_reunion]">
-                        <div class="toggle-switch"></div>
-                        <span class="toggle-label"></span>
-                    </label>
-                    <input id="noActifReunion" type="hidden" value="" name="reunion[actif_reunion]">
+                    <div class="formForm">
+                        <label for="">Date de la réunion</label>
+                        <input id="dateReunion" type="date" name="reunion[date_prevu_reunion]" value="<?= $reunion['date_prevu_reunion'] ?>">
+                        <small id="dateReunionError"></small>
+                        <?php if (isset($_SESSION['errors']['date_prevu_reunion'])) : ?>
+                            <small><?= $_SESSION['errors']['date_prevu_reunion'] ?></small>
+                        <?php endif; ?>
+                    </div>
 
-                    <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
-                    <input type="submit" onclick='verificationActifReunion()' name="submit">
+                    <div class="formForm">
+                        <label for="">Heure de la réunion</label>
+                        <input id="heureReunion" type="time" name="reunion[heure_prevu_reunion]" value="<?= $reunion['heure_prevu_reunion'] ?>">
+                        <small id="heureReunionError"></small>
+                        <?php if (isset($_SESSION['errors']['heure_prevu_reunion'])) : ?>
+                            <small><?= $_SESSION['errors']['heure_prevu_reunion'] ?></small>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="formForm">
+                        <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
+                        <input type="submit" onclick='verificationActifReunion()' name="submit">
+                    </div>
                 </form>
             </div>
+            <?php unset($_SESSION['errors']); ?>
 
-            
 
-                <table class="container-tableEditReunion">
-                    <thead>
+            <table class="container-tableEditReunion">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Retirer de la réunion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($utilisateurReunions as $utilisateurReunion) : ?>
                         <tr>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Retirer de la réunion</th>
+
+                            <td><?= $utilisateurReunion['nom_utilisateur'] ?></td>
+                            <td><?= $utilisateurReunion['prenom_utilisateur'] ?></td>
+                            <td>
+                                <form action="/admin/parametre-reunions/edit.php?id=<?= $_GET['id'] ?>" method="POST">
+                                    <input type="hidden" name="id_utilisateur" value=<?= $utilisateurReunion['id_utilisateur'] ?>>
+                                    <input type="hidden" name="id_reunion" value=<?= $_GET['id'] ?>>
+                                    <input type="submit" value="Retirer" name="retirer">
+                                </form>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($utilisateurReunions as $utilisateurReunion) : ?>
-                            <tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
 
-                                <td><?= $utilisateurReunion['nom_utilisateur'] ?></td>
-                                <td><?= $utilisateurReunion['prenom_utilisateur'] ?></td>
-                                <td>
-                                    <form action="/admin/parametre-reunions/edit.php?id=<?= $_GET['id'] ?>" method="POST">
-                                        <input type="hidden" name="id_utilisateur" value=<?= $utilisateurReunion['id_utilisateur'] ?>>
-                                        <input type="hidden" name="id_reunion" value=<?= $_GET['id'] ?>>
-                                        <input type="submit" value="Retirer" name="retirer">
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
 
-            
-            
 
-                <table class="container-tableEditReunion">
-                    <thead>
+
+            <table class="container-tableEditReunion">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Ajouter à la réunion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($utilisateurs as $utilisateur) : ?>
                         <tr>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Ajouter à la réunion</th>
+
+                            <td><?= $utilisateur['nom_utilisateur'] ?></td>
+                            <td><?= $utilisateur['prenom_utilisateur'] ?></td>
+                            <td>
+                                <form action="/admin/parametre-reunions/edit.php?id=<?= $_GET['id'] ?>" method="POST">
+                                    <input type="hidden" name="reunion_utilisateur[id_reunion]" value=<?= $_GET['id'] ?>>
+                                    <input type="hidden" name="reunion_utilisateur[id_utilisateur]" value=<?= $utilisateur['id_utilisateur'] ?>>
+                                    <input type="submit" value="Ajouter" name="ajouter">
+                                </form>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($utilisateurs as $utilisateur) : ?>
-                            <tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
 
-                                <td><?= $utilisateur['nom_utilisateur'] ?></td>
-                                <td><?= $utilisateur['prenom_utilisateur'] ?></td>
-                                <td>
-                                    <form action="/admin/parametre-reunions/edit.php?id=<?= $_GET['id'] ?>" method="POST">
-                                        <input type="hidden" name="reunion_utilisateur[id_reunion]" value=<?= $_GET['id'] ?>>
-                                        <input type="hidden" name="reunion_utilisateur[id_utilisateur]" value=<?= $utilisateur['id_utilisateur'] ?>>
-                                        <input type="submit" value="Ajouter" name="ajouter">
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-
-            </div>
         </div>
+    </div>
     </div>
 </main>
 

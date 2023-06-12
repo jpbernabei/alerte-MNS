@@ -9,6 +9,9 @@ html,body {
     width: 100%;
     overflow: hidden;
 }
+.notLaptop{
+    display: none;
+}
 .container{
     display: grid;
     grid-template-columns: 200px 200px 1fr 200px ;
@@ -60,6 +63,7 @@ header{
     background-color: #313e74;
     height: 100%;
 }
+
 
 main{
     display: flex;
@@ -359,6 +363,72 @@ input[type="submit"]:hover{
     
     
 }
+/* ------------------Pour mon Bouton des chaines à gauche --------------------------------*/
+.button-new-chaines{
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff6715;
+    width: 150px;
+    height: 60px;
+    border-radius: 20px;
+    margin-top: 20px;
+    scrollbar-color: grey black;
+}
+
+
+/*---------------------------Pour faire le scroll bar de navbar Chaines--------------------*/
+
+.desigend-scrollbar
+{
+    height: 45%;
+    overflow: auto;
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: rgb(253, 253, 253);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: rgb(97, 95, 93);
+    border-radius: 5px;
+}
+.container{
+    height: 100%;
+    width: 100%;
+    background-color: #81a4cdff;
+}
+
+.container-table{
+    background-color: #313e74;
+    width: 70%;
+    border-radius: 50px;
+    min-height: 500px;
+    padding: 20px;
+    color: #81a4cdff;
+    margin-left: 15%;
+    margin-top: 4%;
+}
+
+.container-table table {
+    width: 100%;
+}
+
+.container-table table thead {
+    color:#ff6715;
+    font-weight: bold;
+}
+
+.container-table table td {
+    text-align: center;
+}
+
 
 
 /* ______________________________________________________media query laptop_________________________________________________________________________ */
@@ -382,15 +452,294 @@ input[type="submit"]:hover{
 /* _________________________________________________Media query  Mobile_________________________________________________ */
 
 @media screen and (max-width:1050px){
-    
-
-.container{
-   display: flex;
-   flex-direction: column;
-        
+/* Media query page index */
+.container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 60px auto 1fr;
+    grid-template-areas:
+        "header"
+        "nav-chaine"
+        "nav-salon"
+        "main"
+        ;
 }
+header{
+    grid-area: header;
+    background-color: #151b36;
+    width: 100%;
+    height:100px;
+ 
+    
+}
+
+.nav-chaine{
+    display: flex;
+    flex-direction: column;
+    grid-area: nav-chaine;
+    height: 100%;
+    background-color: #151b36;
+    
+}
+.nav-salon{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+    
+    grid-area: nav-salon;
+    background-color: #313e74;
+   
+}
+.navSalonMobile{
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    width: 100%;
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    grid-area: main;
+    background-color: white;
+    
+}
+.side{
+    grid-area: side;
+    background-color:#313e74;
+    height: 100%;
+}
+.chaine-index{
+
+    padding: 0px;
+    margin-left: 00px;
+    height: 0px;
+    width: 100%;
+}
+
+/* .container{
+    display: grid;
+    grid-template-columns: 200px 200px 1fr 200px ;
+    grid-template-rows: 100px 1fr;
+    grid-template-areas: 
+        "header header header header"
+        "nav-chaine nav-salon main side";
+    height: 100%;
+        
+} */
 .noMobile{
     display: none;
 }
+.notLaptop{
+    display: flex;
+}
+/* Sidenav menu */
+.sidenav {
+    height: 50%;
+    width: 250px;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: -250px;
+    background-color: #81a4cdff;
+    padding-top: 60px;
+    transition: left 0.5s ease;
+  }
+  
+  /* Sidenav menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #151b36;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #111;
+  }
+  
+  .sidenav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Active class */
+  .sidenav.active {
+    left: 0;
+  }
+  
+  /* Close btn */
+  .sidenav .close {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+  
+  /* Icône burger */
+  .burger-icon span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: #ff6715;
+    margin: 6px 0;
+  }
 
+  /* ____________________menu chaine mobile___________________ */
+  .sidenavchaine {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    margin-top: -1000px;
+    background-color: #151b36;
+    
+  }
+  
+  /* Sidenav menu links */
+  .sidenavchaine a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #151b36;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenavchaine a:hover {
+    color: #111;
+  }
+  
+  .sidenavchaine ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Active class */
+  .sidenavchaine.activeChaine {
+    margin-top: 0px;
+  }
+  
+  /* Close btn */
+   .close {
+   
+    text-align: center;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    right: 20px;
+    font-size: 50px;
+    
+  }
+  
+  /* Icône Btn Chaine */
+  .BtnChaineMobile{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 10px;
+    padding: 0px;
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    border: 0;
+    background:#ff6715; /* ou transparent je sais plus... */
+    color: white;
+     /* Normalement */text-decoration: none;
+  }
+ 
+.button-new-chaines{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff6715;
+    width: 100%;
+    min-height: 30px;
+    height: 30px;
+    border-radius: 0px;
+    margin-top: 1px;
+}
+.mobile{
+    width: 100%;
+}
+/* Media query page parametre utilisateur */
+.navParamUtilisateur{
+    display: none;
+    height: 0px;
+}
+.mainParamUser{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    grid-area: main;
+    background-color: #313e74;
+    
+}
+.containerParamUser{
+    margin-top: -50%;
+}
+.container-form{
+    min-width: 0%;
+    margin: 0%;
+    padding: 0%;
+    height: 100vh;
+    width: 100%;
+    border-radius: 0%;
+}
+.formNewUser{
+    margin: 0%;
+    padding: 0%;
+    height: 100vh;
+    width: 100%;
+}
+
+.buttonAjout{
+    display: flex;
+    flex-direction: column;
+    margin: 0%;
+    padding: 5%;
+    width: 100%;
+}
+.button-creation{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff6715;
+    width: 100%;
+    height: 30px;
+    border-radius: 30px;
+    margin: 10px;
+    border: none;
+   
+    padding: 16px 12px;
+}
+.h1-ParamUser{
+    margin-top: 3%;
+}
+.button-mobile-salon{
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff6715;
+    width: 150px;
+    height: 60px;
+    border-radius: 20px;
+    margin-top: 20px;
+    scrollbar-color: grey black;
+}
 }

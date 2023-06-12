@@ -62,7 +62,7 @@ if(!empty($_POST['submit']))
 
 else  // 3. S'il n'existe pas, on redirige vers la page de login
 {
-    $_SESSION['error'] = "Identifiants invalides.";
+    $_SESSION['errors'] = "Identifiants invalides.";
     header("Location: /login.php"); die;
 }
 

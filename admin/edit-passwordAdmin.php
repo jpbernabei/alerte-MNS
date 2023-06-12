@@ -24,7 +24,7 @@ if (!empty($_POST['submit'])) {
     if (count($errors) > 0) {
         $_SESSION['errors'] = $errors;
         $_SESSION['values'] = $_POST;
-        header("Location: /edit-password.php");
+        header("Location: /admin/edit-passwordAdmin.php");
         die;
     }
 
@@ -55,13 +55,13 @@ if (!empty($_POST['submit'])) {
             ]);
         } else { // si mdp pas ok, on redirige vers la page login
             $_SESSION['errors'] = "Identifiants invalide.";
-            header("Location: /edit-passwordAdmin.php");
+            header("Location: /admin/edit-passwordAdmin.php");
             die;
         }
     } else  // 3. S'il n'existe pas, on redirige vers la page de login
     {
-        $_SESSION['error'] = "Identifiants invalides.";
-        header("Location: /edit-passwordAdmin.php");
+        $_SESSION['errors'] = "Identifiants invalides.";
+        header("Location: /admin/edit-passwordAdmin.php");
         die;
     }
 }
@@ -73,14 +73,14 @@ if (!empty($_POST['submit'])) {
 
 ?>
 
-<nav class="nav-chaine">
+<nav class="nav-chaine noMobile">
     <div>
-        <button class="button-chaines police">Messagerie</button>
+        <button class="button-chaines police noMobile">Messagerie</button>
     </div>
     <div>
-        <button class="button-chaines police">MNS-Infos</button>
+        <button class="button-chaines police noMobile">MNS-Infos</button>
     </div>
-    <div class="button-creation-container">
+    <div class="button-creation-container noMobile">
         <a href="/user/parametre-reunions/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
         <button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button>
         <div class="icone-parametre"><a class="icone-parametre" href="./parametre-admin.php"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
@@ -94,45 +94,61 @@ if (!empty($_POST['submit'])) {
         <div class="buttonAjout">
             <a href="/admin/parametre-utilisateurAdmin.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
-        <div class="container-form desigend-scrollbar">
-            <form id="form" class="formNewUser" action="edit-password.php" method="post">
+        <div class="container-form ">
+            <form id="form" class="formNewUser desigend-scrollbar " action="/admin/edit-passwordAdmin.php" method="post">
+
+            <div class="formForm">
                 <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['user']['id'] ?>">
                 <label for="">Email</label>
-                <input id="email" type="email" name="email">
+                <input id="emailEdit" type="email" name="email">
                 <?php if (isset($_SESSION['errors']['email'])) : ?>
                     <small><?= $_SESSION['errors']['email'] ?></small>
                 <?php endif; ?>
-                <div id="emailErrorEdit"></div>
+                <small id="emailErrorEdit"></small>
+            </div>
 
+            <div class="formForm">
                 <label for="">Ancien mot de passe</label>
                 <input id="oldPassword" type="password" name="password1">
                 <?php if (isset($_SESSION['errors']['password1'])) : ?>
                     <small class="text-errors"><?= $_SESSION['errors']['password1'] ?></small>
                 <?php endif; ?>
-                <div id="oldPasswordError"></div>
+                <small id="oldPasswordError"></small>
+            </div>
 
+            <div class="formForm">
                 <label for="">Nouveau mot de passe</label>
                 <input id="newPassword1" type="password" name="password2">
                 <?php if (isset($_SESSION['errors']['password2'])) : ?>
                     <small class="text-errors"><?= $_SESSION['errors']['password2'] ?></small>
                 <?php endif; ?>
-                <div id="newPassword1Error"></div>
+                <small id="newPassword1Error"></small>
+            </div>
+
+            <div class="formForm">
 
                 <label for="">Confirmer le nouveau mot de passe</label>
                 <input id="newPassword2" type="password" name="password3">
                 <?php if (isset($_SESSION['errors']['password3'])) : ?>
                     <small class="text-errors"><?= $_SESSION['errors']['password3'] ?></small>
                 <?php endif; ?>
-                <div id="newPassword2Error"></div>
+                <small id="newPassword2Error">
+                </small>
+            </div>
 
+            <div class="formForm">
                 <input type="submit" name="submit" value="modifier">
+            </div>
             </form>
         </div>
+        <?php unset($_SESSION['errors']);
+        unset($_SESSION['values']); ?>
     </div>
 </main>
 <div class="side">
 
 </div>
+<script src="/assets/script/burgerMenu-script.js"></script>
 <script src="/assets/script/editPassword-script.js"></script>
 </body>
 

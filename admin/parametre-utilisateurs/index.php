@@ -3,7 +3,7 @@
 require $_SERVER['DOCUMENT_ROOT']. '/includes/inc-db-connect.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
-
+$_SESSION['titre']['listeUtilisateur'] = 'Liste des utilisateurs';
 if (!empty($_POST['isActive'])) {
     $isActive = isset($_POST['actif_utilisateur']) ? 1 : 0;
 
@@ -16,6 +16,7 @@ if (!empty($_POST['isActive'])) {
 }
 
 $utilisateurs = getAllUser();
+$title='Liste utilisateur';
 
 ?>
 
