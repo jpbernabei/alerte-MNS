@@ -44,13 +44,13 @@ if(!$salon)
             <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;" ></i>Utilisateurs</button></a>
             </div>
             <div>
-                <button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button>
+                <a href="/admin/parametre-chaines/index.php"><button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button></a>
             </div>
             <div>
-                <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
+                <a href="/admin/parametre-salons/index.php"><button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button></a>
             </div>
             <div>
-                <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
+                <a href="/admin/parametre-reunions/index.php"><button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button></a>
             </div>
 
             <div class="button-creation-container">
@@ -72,7 +72,7 @@ if(!$salon)
                     <label for="nom">Nom du salon</label>
                     <input type="text" class="form-control" name="salon[nom_salon]" value="<?=$salon['nom_salon']?>">
                 <div>
-                <input type="submit" onclick='verificationActifSalon()' name="submit" value="submit">
+                <input type="submit" onclick='verificationActifSalon()' name="submit" value="Valider">
                 </div>
             </form>
      

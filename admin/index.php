@@ -84,8 +84,8 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
                 <?php endforeach; ?>
 
                 <div class="button-creation-container noMobile">
-                    <a href="/admin/creation-reunionAdmin.php"><button class="button-creation police "><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
-                    <button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button>
+                    <button class="button-creation police "><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button>
+                    <a href="/admin/parametre-chaines/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button></a>
                     <div class="icone-parametre"><a class="icone-parametre" href="/admin/parametre-admin.php"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
 
                     </div>
