@@ -28,7 +28,7 @@ $errors = [];
         header("Location: /admin/parametre-chaines/index.php");
         exit;
     } else {
-        echo "Un erreur est survenue...";
+        echo "Une erreur s'est produite lors de la suppression."; 
     }
 }
 $utilisateurs = getAllUser();
@@ -64,7 +64,7 @@ $utilisateurs = getAllUser();
         <h1>Ajouter une chaîne</h1>
 
         <div class="buttonAjout">
-            <a href="/admin/parametre-chaines/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
+            <a href="/admin/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
 
 
