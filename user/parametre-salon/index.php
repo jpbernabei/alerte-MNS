@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top.php";
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/chaine-manager.php';
 
@@ -8,31 +8,25 @@ $chaines = getAllChaine();
 
 
 <nav class="nav-chaine">
-    <div>
-        <a href="/admin/parametre-utilisateurs/index.php"><button class="button-chaines police"><i class="fa-solid fa-user" style="color: #ffffff ;"></i>Utilisateurs</button></a>
-    </div>
-    <div>
-        <button class="button-chaines police"><i class="fa-solid fa-fire" style="color: #ffffff;"></i>Chaînes</button>
-    </div>
-    <div>
-        <button class="button-chaines police"><i class="fa-solid fa-sitemap" style="color: #ffffff;"></i>Salons</button>
-    </div>
-    <div>
-        <button class="button-chaines police"><i class="fa-solid fa-users " style="color: #ffffff;"></i>Réunions</button>
-    </div>
-
-    <div class="button-creation-container">
-
-        <a href="../index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
-
-
-    </div>
-</nav>
+            <div>
+                <button class="button-chaines police">Messagerie</button>
+            </div>
+            <div >
+                <button class="button-chaines police">MNS-Infos</button>
+            </div>
+            <div class="button-creation-container">
+                <a href="/user/parametre-reunions/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus"
+                        style="color: #ffffff;"></i>Créer une réunion</button></a>
+                <a href="/user/parametre-chaines/index.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus"
+                        style="color: #ffffff;"></i>Créer une chaine</button></a>
+                       
+            </div>
+        </nav>
 <main>
     <div class="container">
         <h1>Paramétre des salons</h1>
         <div class="buttonAjout">
-            <a href="/admin/parametre-admin.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
+            <a href="/user/parametre-salon"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
         <div class="container-table desigend-scrollbar">
             <table class="">
@@ -41,7 +35,7 @@ $chaines = getAllChaine();
                         <th class="">Id</th>
                         <th class="">Date</th>
                         <th class="">Nom des chaînes</th>
-                        <th class="">Paramétre salon</th>
+                        <th>Paramétre salon</th>
                     </tr>
                 </thead>
                 <tbody class="">
@@ -51,12 +45,11 @@ $chaines = getAllChaine();
                             <td class=""><?= $chaine['date_creation_chaine'] ?></td>
                             <td class=""><?= $chaine['nom_chaine'] ?></td>
                             <td class=""><a href="/admin/parametre-salons/AllSalons?id=<?= $chaine['id_chaine'] ?>">
-                            <button class="button-creation police">Paramétre salon 
-                            </button></a></td>
+                                    Paramétre salon 
+                            <td class=""></td></a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-
 </main>

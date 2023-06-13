@@ -21,6 +21,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
     <link rel="stylesheet" href="/../assets/css/style.css">
     <script src="https://kit.fontawesome.com/18cbf17047.js" crossorigin="anonymous"></script>
     <title>Accueil</title>
+    <!-- <link rel="icon" class="logo" href="/images/LOGO_ALERT_MNS_transparent.ico"> -->
 </head>
 
 <body>
@@ -97,8 +98,8 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
             </nav>
         </div>
 
-        <main>
-
+        <main id="messageSalon">
+            <!--Affichage des messages lors d'un clique d'un salon en fonction de son ID-->
         </main>
         <div class="noMobile side">
             <div id="side">

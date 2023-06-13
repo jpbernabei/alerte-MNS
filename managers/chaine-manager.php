@@ -2,6 +2,15 @@
 
 require $_SERVER['DOCUMENT_ROOT'].'/includes/inc-db-connect.php'; 
 
+//fonction qui permet de sécuriser les donnés envoyé par l'utilisateur
+
+function verif_donnee($donnees){
+    $donnees = trim($donnees);
+    $donnees = stripslashes($donnees);
+    $donnees = htmlspecialchars($donnees);
+    return $donnees;
+}
+
 // La fonction qui récupere toutes les chaînes existantes avec ses utilisateurs pour l'admin 
 
 function getAllChaine()
@@ -11,6 +20,7 @@ function getAllChaine()
     FROM chaine"; 
     return $pdo->query($sql)->fetchAll(); 
 }
+
 
 // Fonction qui recupere les utilisateurs d'une chaine
 
@@ -41,9 +51,9 @@ function getChaineId(int $id)
 
 function insertChaine(array $data, array $utilisateurs)
 {
-    // Protection contre les injections SQL
+    // Protection contre les faille XSS
 
-    $data['nom_chaine'] = htmlspecialchars($data['nom_chaine']);
+    $data['nom_chaine'] = verif_donnee($data['nom_chaine']);
 
     $pdo = $GLOBALS['pdo'];
     $sql = "INSERT INTO chaine(nom_chaine, date_creation_chaine, actif_chaine, id_utilisateur) 
@@ -102,6 +112,7 @@ function insertChaine(array $data, array $utilisateurs)
 
 function updateUtilisateur(array $data)
 {
+    $data['nom_utilisateur']= verif_donnee($data['nom_utilisateur']);
     $pdo = $GLOBALS['pdo'];
     $sql = "UPDATE utilisateur
     SET nom_utilisateur = :nom_utilisateur
@@ -118,7 +129,7 @@ function updateChaine(array $data)
 {
     // Contre les injections 
 
-    $data['nom_chaine'] = htmlspecialchars($data['nom_chaine']);
+    $data['nom_chaine'] = verif_donnee($data['nom_chaine']);
 
     $pdo=$GLOBALS['pdo'];
     $sql="UPDATE chaine

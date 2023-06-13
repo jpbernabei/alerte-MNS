@@ -3,15 +3,24 @@ require $_SERVER['DOCUMENT_ROOT'].'/includes/inc-db-connect.php';
 
 // Requete pour récupérer toutes les chaines 
 
-// function getAllChaine(){
+// function getAllSalon(){
 //     $pdo = $GLOBALS['pdo']; 
 //     $sql = "SELECT *
-//     FROM chaine"; 
+//     FROM salon"; 
 //     return $pdo->query($sql)->fetchAll(); 
 // }
+
+function verif ($donnees){
+    $donnees = trim($donnees);
+    $donnees = stripslashes($donnees);
+    $donnees = htmlspecialchars($donnees);
+    return $donnees;
+}
+
 // Requete pour récuperer les salons avec ID de la chaine
 
 function getAllSalon(int $id){
+    
     $pdo = $GLOBALS['pdo']; 
     $sql = "SELECT id_salon, nom_salon, actif_salon, date_creation_salon
     FROM salon
@@ -39,7 +48,7 @@ function getAllSalon9(){
 function insertSalon(array $data)
 {
     // Contre les injections 
-    $data['nom_salon'] = htmlspecialchars($data['nom_salon']);
+    $data['nom_salon'] = verif($data['nom_salon']);
 
     $pdo = $GLOBALS['pdo'];
     $sql = "INSERT INTO salon(nom_salon, date_creation_salon, actif_salon, id_chaine) 
@@ -53,7 +62,7 @@ function insertSalon(array $data)
 
 function updateSalon(array $data)
 {
-    $data['nom_salon'] = htmlspecialchars($data['nom_salon']);
+    $data['nom_salon'] = verif($data['nom_salon']);
     
     $pdo = $GLOBALS['pdo'];
     $sql = "UPDATE salon
