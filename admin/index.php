@@ -97,7 +97,11 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
                 </div>
 
         </nav>
+<<<<<<< HEAD
         <div class="desigend-scrollbar nav-salon">
+=======
+        <div class="scroller nav-salon   ">
+>>>>>>> 7511301faac0c82fd08227cfd0a7368a69d7f8da
             <nav class="navSalonMobile" id="mesSalons">
                 <!-- Affichage de salon en automatique-->
             </nav>
@@ -106,7 +110,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
         <main id="messageSalon">
             <!--Affichage des messages lors d'un clique d'un salon en fonction de son ID-->
         </main>
-        <div class="desigend-scrollbar noMobile">
+        <div class="noMobile side">
             <div id="side">
 
             </div>

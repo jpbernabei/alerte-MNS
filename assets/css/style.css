@@ -20,6 +20,8 @@ html,body {
         "header header header header"
         "nav-chaine nav-salon main side";
     height: 100%;
+    width: 100%;
+    background-color:green;
         
 }
 
@@ -59,10 +61,15 @@ header{
     height: 100%;
 }
 .nav-salon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     grid-area: nav-salon;
     background-color: #313e74;
-    height: 100%;
+    height: 100vh;
 }
+
+
 
 
 main{
@@ -117,7 +124,6 @@ main{
     height: 60px;
     border-radius: 20px;
     margin-top: 20px;
-    
 }
 .button-creation{
     margin-bottom: 20px;
@@ -136,6 +142,7 @@ main{
     bottom:0;
     flex-direction: column;
     justify-content: flex-end;
+    background-color: #151b36;
 }
 .button-parametre-admin-container{
     display: grid;
@@ -166,14 +173,6 @@ main{
     align-items: center;
     margin-bottom: 10px;
 }
-.nav-salon{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    height: 100%;
-    
-} 
 
 /* user-creation-reunion*/
 .formNewUser
@@ -298,8 +297,8 @@ input[type="submit"]:hover{
     max-height: 600px;
     padding: 20px;
     color: #81a4cdff;
-    
     margin-top: 4%;
+
 }
 
 .contenuReunion{
@@ -327,7 +326,12 @@ input[type="submit"]:hover{
     border-radius: 5px;
 }
 
-
+.scroller {
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+  }
 
 /* ---------------parametres utilisateur------------------------------ */
 .container-form{
@@ -358,11 +362,7 @@ input[type="submit"]:hover{
     
     
 }
-#result-search{
-    
-    
-    
-}
+
 /* ------------------Pour mon Bouton des chaines à gauche --------------------------------*/
 .button-new-chaines{
     color: aliceblue;
@@ -381,7 +381,7 @@ input[type="submit"]:hover{
 
 /*---------------------------Pour faire le scroll bar de navbar Chaines--------------------*/
 
-.desigend-scrollbar
+/* .desigend-scrollbar
 {
     height: 45%;
     overflow: auto;
@@ -398,14 +398,14 @@ input[type="submit"]:hover{
 {
     background-color: rgb(97, 95, 93);
     border-radius: 5px;
-}
-.container{
+} */
+/* .container{
     height: 100%;
     width: 100%;
     background-color: #81a4cdff;
-}
+} */
 
-.container-table{
+/* .container-table{
     background-color: #313e74;
     width: 70%;
     border-radius: 50px;
@@ -414,9 +414,9 @@ input[type="submit"]:hover{
     color: #81a4cdff;
     margin-left: 15%;
     margin-top: 4%;
-}
+} */
 
-.container-table table {
+/* .container-table table {
     width: 100%;
 }
 
@@ -427,7 +427,7 @@ input[type="submit"]:hover{
 
 .container-table table td {
     text-align: center;
-}
+} */
 
 
 
@@ -447,6 +447,43 @@ input[type="submit"]:hover{
     margin-left: 15%;
     margin-top: 4%;
 }
+.button-creation-container{
+
+    margin-top: 0px;
+    display: flex;
+    position: fixed;
+    bottom:0;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #151b36;
+    
+}
+.desigend-scrollbar
+{
+    height: 30%;
+    overflow: auto;
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: rgb(253, 253, 253);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: rgb(97, 95, 93);
+    border-radius: 5px;
+}
+
+.scroller {
+    height: 63%;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+  }
+
 }
 
 /* _________________________________________________Media query  Mobile_________________________________________________ */
@@ -486,7 +523,7 @@ header{
     justify-content: start;
     align-items:center;
     width: 100%;
-    height: 100%;
+    max-height: 200px;
     
     grid-area: nav-salon;
     background-color: #313e74;
@@ -519,16 +556,6 @@ main{
     width: 100%;
 }
 
-/* .container{
-    display: grid;
-    grid-template-columns: 200px 200px 1fr 200px ;
-    grid-template-rows: 100px 1fr;
-    grid-template-areas: 
-        "header header header header"
-        "nav-chaine nav-salon main side";
-    height: 100%;
-        
-} */
 .noMobile{
     display: none;
 }
