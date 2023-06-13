@@ -4,13 +4,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/managers/chaine-manager.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
 $chaines = getAllChaine();
 $salons = getAllSalon9();
-// $userChaines = getUtilisateur($_GET['id']);
 
-
-
-
-
-
+// vérification si l'utilisateur est admin, si non, on le redirige vers la page login
 if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
     header("Location: /logout.php");
     die;
@@ -24,9 +19,6 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/../assets/css/style.css">
-    <!-- <link rel="stylesheet" href="/assets/css/test.css"> -->
-
-
     <script src="https://kit.fontawesome.com/18cbf17047.js" crossorigin="anonymous"></script>
     <title>Accueil</title>
 </head>
@@ -37,6 +29,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
             <div class="notLaptop">
                 <div id="mySidenav" class="sidenav">
                     <a id="closeBtn" href="#" class="close">×</a>
+                    <!-- menu burger pour mobile -->
                     <ul>
                         <li><a href="/admin/index.php">Accueil</a></li>
                         <li><a href="/admin/parametre-utilisateurAdmin.php">Paramètre</a></li>
@@ -58,13 +51,9 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
             <img class="logo noMobile" src="/images/LOGO_ALERT_MNS_transparent.ico" alt="">
             <a class="noMobile" href="/admin/parametre-utilisateurAdmin.php"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a>
             <div class="police name-user noMobile"><?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['name'] ?></div>
-            <div id="titre">
-
-                <!-- <div id="titreSalons">
-                    <p class="salon"></p>
-                </div> -->
-            </div>
-            <input class="search noMobile" type="search">
+            <div class="police name-user noMobile">Statut : <?= $_SESSION['user']['role_utilisateur'] ?></div>
+            <!-- div affiche le nom de la chaine -->
+            <div id="titre"></div>
             <a class="noMobile" href="/admin/affiche-reunionsAdmin.php"><i class="fa-solid fa-users fa-xl" style="color: #ffffff;"></i></a>
             <a class="noMobile" href="../logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
         </header>
@@ -94,7 +83,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
                 <?php endforeach; ?>
 
                 <div class="button-creation-container noMobile">
-                    <button class="button-creation police "><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button>
+                    <a href="/admin/creation-reunionAdmin.php"><button class="button-creation police "><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
                     <button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button>
                     <div class="icone-parametre"><a class="icone-parametre" href="/admin/parametre-admin.php"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
 

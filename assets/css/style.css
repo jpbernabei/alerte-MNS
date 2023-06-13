@@ -9,9 +9,11 @@ html,body {
     width: 100%;
     overflow: hidden;
 }
+/* élements invisibles pour laptop */
 .notLaptop{
     display: none;
 }
+/* conteneur en grid */
 .container{
     display: grid;
     grid-template-columns: 200px 200px 1fr 200px ;
@@ -22,7 +24,6 @@ html,body {
     height: 100%;
     width: 100%;
     background-color:green;
-        
 }
 
 h1{
@@ -50,7 +51,6 @@ header{
         background-color:  #151b36;
     }
     
-
 .nav-chaine{
     display: flex;
     flex-direction: column;
@@ -328,7 +328,7 @@ input[type="submit"]:hover{
 
 .scroller {
     height: 100%;
-    overflow-y: scroll;
+    overflow: auto;
     scrollbar-color: rebeccapurple green;
     scrollbar-width: thin;
   }
@@ -379,59 +379,8 @@ input[type="submit"]:hover{
 }
 
 
-/*---------------------------Pour faire le scroll bar de navbar Chaines--------------------*/
 
-/* .desigend-scrollbar
-{
-    height: 45%;
-    overflow: auto;
-}
-
-::-webkit-scrollbar
-{
-    width: 10px;
-    background-color: rgb(253, 253, 253);
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb
-{
-    background-color: rgb(97, 95, 93);
-    border-radius: 5px;
-} */
-/* .container{
-    height: 100%;
-    width: 100%;
-    background-color: #81a4cdff;
-} */
-
-/* .container-table{
-    background-color: #313e74;
-    width: 70%;
-    border-radius: 50px;
-    min-height: 500px;
-    padding: 20px;
-    color: #81a4cdff;
-    margin-left: 15%;
-    margin-top: 4%;
-} */
-
-/* .container-table table {
-    width: 100%;
-}
-
-.container-table table thead {
-    color:#ff6715;
-    font-weight: bold;
-}
-
-.container-table table td {
-    text-align: center;
-} */
-
-
-
-/* ______________________________________________________media query laptop_________________________________________________________________________ */
+/* __________________________________________________media query laptop_________________________________________________________________________ */
 
 @media screen and (min-width:1050px ) and (max-width: 1400px){
 .container-form{

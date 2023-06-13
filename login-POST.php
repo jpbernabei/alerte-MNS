@@ -24,8 +24,8 @@ if(!empty($_POST['submit']))
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
 
-
-    $sql = "SELECT * FROM utilisateur WHERE email_utilisateur = '" . $email . "'";
+    $sql = "SELECT * , role.libelle_role FROM utilisateur
+    JOIN role ON utilisateur.id_role = role.id_role WHERE email_utilisateur = '" . $email . "'";
 
     $result = $pdo->query($sql);
     $user = $result->fetch(PDO::FETCH_ASSOC);
@@ -44,7 +44,8 @@ if(!empty($_POST['submit']))
                 'id' => $user['id_utilisateur'],
                 'name'=> $user['nom_utilisateur'],
                 'firstname'=> $user['prenom_utilisateur'],
-                'is_admin_utilisateur'=> $user['is_admin_utilisateur']
+                'is_admin_utilisateur'=> $user['is_admin_utilisateur'],
+                'role_utilisateur'=> $user['libelle_role']
             ];
             if($user['is_admin_utilisateur'] == 1)
             {

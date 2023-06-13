@@ -44,8 +44,8 @@ if($_SESSION['user']['is_admin_utilisateur'] == 0)
             <img class="logo noMobile" src="/images/LOGO_ALERT_MNS_transparent.ico" alt="">
             <a class="noMobile" href="/admin/parametre-utilisateurAdmin.php"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a>
             <div class="police name-user noMobile"><?=$_SESSION['user']['firstname'] ?> <?=$_SESSION['user']['name'] ?></div>
-            <div><div class="police name-chaine noMobile"><?= isset($title)?$title:'' ?> </div><div class="police name-salon noMobile">nom du salon</div></div>
-            <input class="search noMobile " type="search">
+            <div class="police name-user noMobile">Statut : <?= $_SESSION['user']['role_utilisateur'] ?></div>
+            <div></div>
             <a class="noMobile" href="/admin/affiche-reunionsAdmin.php"><i class="fa-solid fa-users fa-xl" style="color: #ffffff;"></i></a>
             <a class="noMobile" href="/logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
         </header>
