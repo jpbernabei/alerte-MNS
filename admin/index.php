@@ -90,18 +90,14 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
 
                 <div class="button-creation-container noMobile">
                     <button class="button-creation police "><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button>
-                    <button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button>
+                    <a href="/admin/parametre-chaines/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button></a>
                     <div class="icone-parametre"><a class="icone-parametre" href="/admin/parametre-admin.php"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
 
                     </div>
                 </div>
 
         </nav>
-<<<<<<< HEAD
-        <div class="desigend-scrollbar nav-salon">
-=======
         <div class="scroller nav-salon   ">
->>>>>>> 7511301faac0c82fd08227cfd0a7368a69d7f8da
             <nav class="navSalonMobile" id="mesSalons">
                 <!-- Affichage de salon en automatique-->
             </nav>
