@@ -14,7 +14,7 @@
             <h4 data-text="La page que vous avez demandé, n'existe pas">La page que vous avez demandé, n'existe pas</h4>
             <p>Opps ! La page demandée n'exite pas ou n'est pas accessible</p>
             <div class="btns">
-                <a href="">Retourner vers la page d'accueil</a>
+                <a href="/admin/parametre-admin.php">Retourner vers la page d'accueil</a>
             </div>
         </div>
     </div>
