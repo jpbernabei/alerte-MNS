@@ -5,9 +5,9 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
 // Verification de l'envoie du formulaire updateReunion:
 if (isset($_POST['submit'])) {
-
+//on déclare une variable de type tableau où l'on mettra les messages d'erreurs
     $errors = [];
-
+// on vérifi si les champs son vide, si c'est le cas on créé un méssage d'érreur dans un tableau
     if (empty($_POST['reunion']['nom_reunion']))
         $errors['nom_reunion'] = 'La réunion doit avoir un nom.';
 
@@ -20,7 +20,8 @@ if (isset($_POST['submit'])) {
     if (empty($_POST['reunion']['heure_prevu_reunion']))
         $errors['heure_prevu_reunion'] = 'La réunion doit avoir une heure de prévu.';
 
-
+//on vérifie si il y a une erreur.Si il y a une erreur on la met dans le tableau $_SESSION['errors']
+//on met la valeur des champs dans le tableau $_SESSION['values']
     if (count($errors) > 0) {
         $_SESSION['errors'] = $errors;
         $_SESSION['values'] = $_POST;
@@ -28,7 +29,7 @@ if (isset($_POST['submit'])) {
         header("Location: /admin/parametre-reunions/edit.php?id=" . $_GET['id']);
         die;
     }
-
+// appel de la fonction pour modifier une réunion
     $count = updateReunion($_POST['reunion']);
 
     if ($count == 1) {
@@ -36,7 +37,7 @@ if (isset($_POST['submit'])) {
         exit;
     }
 }
-// Verification de l'envoie du formulaire deleteUserReunion:
+// Verification de l'envoie du formulaire pour retirer un utilisateur de la réunion:
 if (isset($_POST['retirer'])) {
     // verification de l'envoie de l'id_utilisateur à retirer 
     if (!empty($_POST['id_utilisateur'])) {
@@ -52,7 +53,7 @@ if (isset($_POST['retirer'])) {
         exit;
     }
 }
-// Verification de l'envoie du formulaire insertuserReunion:
+// Verification de l'envoie du formulaire pour insérer un utilisateur de la réunion:
 if (isset($_POST['ajouter'])) {
     $idNewUserReunion = insertUserReunion($_POST['reunion_utilisateur']);
     if (!$idNewUserReunion) {
@@ -64,15 +65,15 @@ if (empty($_GET['id'])) {
     header("Location: /admin/parametre-reunions/index.php");
     exit;
 }
-
+// appel de la fonction pour récupérer une réunion en fonction de son ID
 $reunion = getReunionById($_GET['id']);
-
+// appel de la fonction pour récupérer les utilisateurs de la réunion en fonction de leur ID
 $utilisateurReunions = getUserReunion($_GET['id']);
 if (!$reunion) {
     header("Location: /parametre-reunion");
     exit;
 }
-
+// appel de la fonction pour récupérer les utilisateurs qui ne son pas dans la réunion fonction de leur ID
 $utilisateurs = getUserNotInReunion($_GET['id']);
 
 
@@ -94,7 +95,6 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
     <div class="button-creation-container">
 
         <a href="../index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-rotate-left"></i>Accueil</button></a>
-
 
     </div>
 </nav>
@@ -120,7 +120,6 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                         <?php if (isset($_SESSION['errors']['nom_reunion'])) : ?>
                             <small><?= $_SESSION['errors']['nom_reunion'] ?></small>
 
-                            <!-- <small id="nomReunionError"></small> -->
                         <?php endif; ?>
                     </div>
 
@@ -153,14 +152,14 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                     </div>
 
                     <div class="formForm">
-                        <!-- verficationActifUser est une fonction JS pour donner une valeur booleen à la checkbox: 0 si elle n'est pas coché, 1 si elle l'est -->
-                        <input type="submit" onclick='verificationActifReunion()' name="submit">
+                       
+                        <input type="submit"  name="submit">
                     </div>
                 </form>
             </div>
             <?php unset($_SESSION['errors']); ?>
 
-
+            <!-- tableau pour afficher les utilisateurs de la réunion avec un formulaire pour les retirer -->
             <table class="container-tableEditReunion">
                 <thead>
                     <tr>
@@ -189,7 +188,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
 
 
 
-
+            <!-- tableau pour afficher les utilisateurs qui ne sont pas dans la réunion avec un formulaire pour les ajouter -->
             <table class="container-tableEditReunion">
                 <thead>
                     <tr>
@@ -220,8 +219,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
     </div>
     </div>
 </main>
-
-
+<!-- script js pour vérifier les champs du formulaire -->
 <script src="/assets/script/reunion-script.js"></script>
 </body>
 

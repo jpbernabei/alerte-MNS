@@ -36,7 +36,7 @@ session_start();
                     <small class="text-danger"><?= $_SESSION['errors']['password'] ?></small>
                 <?php endif; ?>
                 <div class="forgotPassword">
-                    <a href="#">Mot de passe oublié?</a>
+                    <!-- <a href="#">Mot de passe oublié?</a> -->
                 </div>
                 <div class="container-button">
                     <input class="police button" type="submit" value="connexion" name="submit">
@@ -44,7 +44,7 @@ session_start();
 
             </div>
             <div class="first-time">
-                <span class="sousText">Si c'est la première fois que vous vous connectez,&nbsp;</span><a href="change-first-password.html"> cliquez-ici !</a>
+                <!-- <span class="sousText">Si c'est la première fois que vous vous connectez,&nbsp;</span><a href="change-first-password.html"> cliquez-ici !</a> -->
             </div>
         </form>
     </div>

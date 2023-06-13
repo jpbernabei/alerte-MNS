@@ -175,7 +175,7 @@ $roles = getAllRoles();
             </div>
 
                 <input id="noActifUser" type="hidden" value="1" name="utilisateur[actif_utilisateur]">
-
+                <!-- toggle switch pour actif administrateur -->
                 <div class="formForm">
                 <label class="toggle">Administrateur
                     <input id="actifAdmin" class="toggle-checkbox" type="checkbox" value="1" >
@@ -194,6 +194,7 @@ $roles = getAllRoles();
                 </div>
             </form>
         </div>
+        <!-- on supprime les erreurs à chaque validation du formulaire -->
         <?php unset($_SESSION['errors']);
         unset($_SESSION['values']); ?>
     </main>

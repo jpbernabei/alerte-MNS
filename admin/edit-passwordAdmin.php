@@ -75,13 +75,14 @@ if (!empty($_POST['submit'])) {
 
 <nav class="nav-chaine noMobile">
     <div>
-        <button class="button-chaines police noMobile">Messagerie</button>
+       <a class="noMobile" href="/admin/index.php"><button class="button-chaines police">Accueil</button></a>
     </div>
     <div>
-        <button class="button-chaines police noMobile">MNS-Infos</button>
+    <a class="noMobile" href="/admin/affiche-reunionsAdmin.php"><button class="button-chaines police">Réunion</button>
     </div>
+    
     <div class="button-creation-container noMobile">
-        <a href="/user/parametre-reunions/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
+        <a href="/admin/creation-reunionAdmin.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
         <button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button>
         <div class="icone-parametre"><a class="icone-parametre" href="./parametre-admin.php"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
 

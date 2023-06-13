@@ -63,11 +63,9 @@ if (isset($_SESSION['user']['id'])) {
     <div>
     <a class="noMobile" href="/admin/affiche-reunionsAdmin.php"><button class="button-chaines police">Réunion</button>
     </div>
-    <div>
-        <button class="button-chaines police noMobile">Messagerie</button>
-    </div>
+    
     <div class="button-creation-container noMobile">
-        <a href="/user/parametre-reunions/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
+        <a href="/admin/creation-reunionAdmin.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
         <button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button>
         <div class="icone-parametre"><a class="icone-parametre" href="./parametre-admin.php"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
 

@@ -6,9 +6,9 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
 //on vérifie si le formulaire est envoyé
 if (isset($_POST['envoie'])) {
-    // var_dump($_POST);die;
+    //on déclare une variable de type tableau où l'on mettra les messages d'erreurs
     $errors = [];
-
+// on vérifie si les champ sont vide, si ils le sont on créé une phase d'erreur dans un tableau
     if(empty($_POST['reunion']['nom_reunion']))
     $errors['nom_reunion'] = 'La réunion doit avoir un nom.' ;
 
@@ -23,7 +23,8 @@ if (isset($_POST['envoie'])) {
 
     if(empty($_POST['utilisateur']))
     $errors['utilisateur'] = 'La réunion doit avoir un participant.' ;
-
+//on vérifie si il y a une erreur.Si il y a une erreur on la met dans le tableau $_SESSION['errors']
+//on met la valeur des champs dans le tableau $_SESSION['values']
     if(count($errors) > 0)
 {
     $_SESSION['errors'] = $errors;

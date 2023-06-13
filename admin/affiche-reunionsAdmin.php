@@ -9,19 +9,20 @@ $reunions = getReunionByIdUser($_SESSION['user']['id']);
 ?>
 
 <nav class="nav-chaine noMobile">
-            <div>
-                <button class="button-chaines police noMobile">Messagerie</button>
-            </div>
-                <button class="button-chaines police noMobile">MNS-Infos</button>
-                <div class="button-creation-container noMobile">
-                <button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button>
-                <button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button>
-                <div class="icone-parametre"><a class="icone-parametre" href="/admin/parametre-admin.php"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
+    <div>
+       <a class="noMobile" href="/admin/index.php"><button class="button-chaines police">Accueil</button></a>
+    </div>
+    <div>
+    <a class="noMobile" href="/admin/affiche-reunionsAdmin.php"><button class="button-chaines police">Réunion</button>
+    </div>
+    
+    <div class="button-creation-container noMobile">
+        <a href="/admin/creation-reunionAdmin.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
+        <button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button>
+        <div class="icone-parametre"><a class="icone-parametre" href="./parametre-admin.php"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
 
-                </div>
-            
-
-        </nav>
+        </div>
+</nav>
         
 
         <main>
