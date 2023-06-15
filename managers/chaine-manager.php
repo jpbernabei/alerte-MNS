@@ -37,7 +37,7 @@ function getUtilisateur(int $idChaine){
 
 // Fonction qui recupere l'Id de la chaine 
 
-function getChaineId(int $id)
+function getChaineId($id)
 {
     $pdo = $GLOBALS['pdo'];
     $sql = "SELECT * FROM chaine WHERE id_chaine = :id"; 

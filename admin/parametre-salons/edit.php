@@ -3,15 +3,26 @@
 
 require $_SERVER['DOCUMENT_ROOT'].'/managers/salons-managers.php';
 
+
+$salon = getSalonId($_GET['id']);
+// On verifie si le salon est bien présent en BDD 
+if (!$salon) {
+    header("Location: /admin/parametre-salons/index.php");
+    die;
+}
+
 // verification si c'est soumis
 
 if(isset($_POST['submit']))
 {
+
     $count = updateSalon($_POST['salon']); 
 
     if($count == 1)
     {
         echo('Modifier de ce salon réussi');
+        header("Location: /admin/parametre-salons/AllSalons?id=".$salon['id_chaine']);
+        die;
     }
     else
     {
@@ -27,15 +38,7 @@ if(empty($_GET['id']))
     die;
 }
 
-// On verifie si le salon est bien présent en BDD 
 
-$salon = getSalonId($_GET['id']);
-
-if(!$salon)
-{
-    header("Location: /admin/parametre-salons/index.php");
-    die; 
-}
 
 ?> 
 
@@ -60,22 +63,24 @@ if(!$salon)
         </nav>
 
 <main>
-<div class="container py-5">
+<div class="container">
     <h1>Modifier les informations du salon</h1>
     <div class="container">
             <div class="buttonAjout">
             <a href="/admin/parametre-salons/AllSalons.php?id=<?= $salon['id_chaine']?>"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>   
         </div>
-            <form action="/admin/parametre-salons/edit.php?id=<?= $_GET['id']?>" method="post">
+        <div class="container-tableEditReunion">
+            
+            <form  action="/admin/parametre-salons/edit.php?id=<?= $_GET['id']?>" method="post">
                 <input type="hidden" name="salon[id_salon]" value="<?= $salon['id_salon'] ?>">
-
                     <label for="nom">Nom du salon</label>
                     <input type="text" class="form-control" name="salon[nom_salon]" value="<?=$salon['nom_salon']?>">
                 <div>
                 <input type="submit" onclick='verificationActifSalon()' name="submit" value="Valider">
                 </div>
             </form>
-     
+        
+            </div>
     
 </div>
 <script src="/assets/script/salons-script.js"></script>

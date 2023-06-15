@@ -19,7 +19,7 @@ if (!empty($_POST['isActive']))
 } 
 
 $salons = getAllSalon($_GET['id']);
-// var_dump($salons);die; 
+
 
 
 ?>
@@ -60,10 +60,8 @@ $salons = getAllSalon($_GET['id']);
                         <th class="">Id</th>
                         <th class="">Date</th>
                         <th class="">Nom des salons</th>
-                        <th>Modifier les informations du salon</th>
+                        <th></th>
                         <th class="">Actif/Désactif</th>
-                        
-
                     </tr>
                 </thead>
                 <tbody class="">
@@ -72,7 +70,10 @@ $salons = getAllSalon($_GET['id']);
                             <td class=""><?= $salon['id_salon'] ?></td>
                             <td class=""><?= $salon['date_creation_salon'] ?></td>
                             <td class=""><?= $salon['nom_salon'] ?></td>
-                            <td class=""><a href="/admin/parametre-salons/edit.php?id=<?= $salon['id_salon'] ?>">Modifier </a></td>
+                            <!--Mettre au milieu le bouton en css-->
+                            <td class=""><a href="/admin/parametre-salons/edit.php?id=<?= $salon['id_salon'] ?>">
+                            <button class="button-creation police">Modifier 
+                            </button></a></td>
 
                             <td>
                                 <form action="/admin/parametre-salons/AllSalons.php?id=<?= $_GET['id'] ?>" method="post">

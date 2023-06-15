@@ -4,15 +4,30 @@
 
 
 require $_SERVER['DOCUMENT_ROOT'].'/managers/salons-managers.php';
+require $_SERVER['DOCUMENT_ROOT'].'/managers/chaine-manager.php';
 
 
 // Traiter le formulaire si envoyé
 if(isset($_POST['submit']))
 { 
-    $salons = insertSalon($_POST['salon']);
+    // On initialise la variable erreur comme un tableau vide
+    $errors=[];
+
+    if(empty($_POST['salon']['nom_salon']))
+    $errors['nom_salon']='le champs ne doit pas etre vide';
+
+    if(count($errors) > 0)
+    {
+        $_SESSION['errors'] = $errors;
+        header("Location: /admin/parametre-salons/new.php?id=".$_GET['id']);
+        die;
+    }
     
+    $salons = insertSalon($_POST['salon']);
     if($salons)
     {
+        unset($_SESSION['values']);
+        unset($_SESSION['errors']);
         header("Location: /admin/parametre-salons/index.php"); exit;
     }
     else
@@ -49,26 +64,21 @@ if(isset($_POST['submit']))
     <div class="buttonAjout">
             <a href="/admin/parametre-salons/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
-
-   
         <div class="container-table desigend-scrollbar">
-            <form action="/admin/parametre-salons/new.php" method="POST" enctype="multipart/form-data">
+            <form action="/admin/parametre-salons/new.php?id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data" id="form">
                 <div class="form-group">
-                    <label for="nom_salon">Nom du salon</label>
+                    <label for="nom_salon" id="salon">Nom du salon</label>
                     <input type="text" class="form-control" name="salon[nom_salon]" >
+                    <?php if (isset($_SESSION['errors']['nom_salon'])) : ?>
+                        <p><small><?= $_SESSION['errors']['nom_salon'] ?></small></p>
+                    <?php endif; ?>
                 </div>
                     <input type="hidden" class="form-control" name="salon[date_creation_salon]" value="<?=date('Y-m-d')?>"/>
-                    <input type="hidden" name="salon[id_chaine]" value="<?=$_GET['id'] ?>">
-       
-                <!-- <div class="form-group">
-                    <label for="actif_salon">actif/desactif</label>
-                    <input id="actifSalon" type="checkbox" value="1" name="salon[actif_salon]">
-                    <input id="noActifSalon" type="hidden" value="0" name="salon[actif_salon]">
-                </div> -->
-                <input type="submit" onclick='verificationActifChaine()' name="submit" value="Enregistrer" class="btn btn-primary">
+                    <input type="hidden" name="salon[id_chaine]" value="<?= $_GET['id'] ?>">
+                    <input type="submit" onclick='verificationActifChaine()' name="submit" value="Enregistrer" class="btn btn-primary">
             </form>
         </div>
-  
+        <?php unset($_SESSION['errors']);?>
 </div>
 <script src="/assets/script/salons-script.js"></script>
 </main>

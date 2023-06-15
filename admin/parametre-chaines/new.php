@@ -25,6 +25,8 @@ $errors = [];
     $chaine = insertChaine($_POST['chaine'], $_POST['utilisateur'], $_SESSION['user']['id']);
 
     if ($chaine) {
+        unset($_SESSION['errors']);
+        unset($_SESSION['values']);
         header("Location: /admin/parametre-chaines/index.php");
         exit;
     } else {

@@ -51,11 +51,11 @@ function insertSalon(array $data)
     $data['nom_salon'] = verif($data['nom_salon']);
 
     $pdo = $GLOBALS['pdo'];
-    $sql = "INSERT INTO salon(nom_salon, date_creation_salon, actif_salon, id_chaine) 
-    VALUES (:nom_salon, :date_creation_salon, :actif_salon, :id_chaine)";
+    $sql = "INSERT INTO salon(nom_salon, date_creation_salon, id_chaine) 
+    VALUES (:nom_salon, :date_creation_salon, :id_chaine)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute($data);
-    $id_salon=$pdo->lastInsertId();
+    $id_salon = $pdo->lastInsertId();
     return $id_salon;
 }
 // Requete pour modifier un salon d'une chaine

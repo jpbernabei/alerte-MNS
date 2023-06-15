@@ -41,7 +41,8 @@ $chaines = getAllChaine();
                         <th class="">Id</th>
                         <th class="">Date</th>
                         <th class="">Nom des chaînes</th>
-                        <th class="">Paramétre salon</th>
+                        
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="">
