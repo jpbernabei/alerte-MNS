@@ -18,7 +18,7 @@ if (!empty($_POST['submit'])) {
         $errors['password3'] = "Saississez votre mot de passe.";
 
     if ($_POST['password2'] != $_POST['password3']) {
-        $errors['password4']  = "Votre mot de passe doit etre identique";
+        $errors['password4']  = "Vos mots de passe doivent être identiques";
     }
 
     if (count($errors) > 0) {
@@ -38,9 +38,9 @@ if (!empty($_POST['submit'])) {
     $result = $pdo->query($sql);
     $user = $result->fetch(PDO::FETCH_ASSOC);
 
-    //on test si l'utilisateur existe
+    //on teste si l'utilisateur existe
     if ($user) {
-        //si il existe, alors on compare les mots de passes
+        //s'il existe, alors on compare les mots de passe
         //password_verify vérifie qu'un mot de passe correspond à un hachage
         if (password_verify($password1, $user['mot_de_passe_utilisateur'])) {
             $pdo = $GLOBALS['pdo'];
@@ -58,7 +58,7 @@ if (!empty($_POST['submit'])) {
             header("Location: /admin/edit-passwordAdmin.php");
             die;
         }
-    } else  // 3. S'il n'existe pas, on redirige vers la page de login
+    } else  // S'il n'existe pas, on redirige vers la page de login
     {
         $_SESSION['errors'] = "Identifiants invalides.";
         header("Location: /admin/edit-passwordAdmin.php");
@@ -90,13 +90,13 @@ if (!empty($_POST['submit'])) {
 </nav>
 
 <main>
-    <div class="container">
+    <div class="container ">
         <h1>Modification du mot de passe</h1>
         <div class="buttonAjout">
             <a href="/admin/parametre-utilisateurAdmin.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
-        <div class="container-form ">
-            <form id="form" class="formNewUser desigend-scrollbar " action="/admin/edit-passwordAdmin.php" method="post">
+        <div class="container-form desigend-scrollbar">
+            <form id="form" class="formNewUser  " action="/admin/edit-passwordAdmin.php" method="post">
 
             <div class="formForm">
                 <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['user']['id'] ?>">
@@ -143,7 +143,7 @@ if (!empty($_POST['submit'])) {
             </form>
         </div>
         <?php unset($_SESSION['errors']);
-        unset($_SESSION['values']); ?>
+         ?>
     </div>
 </main>
 <div class="side">

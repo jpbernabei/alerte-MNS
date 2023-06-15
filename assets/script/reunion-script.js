@@ -20,13 +20,13 @@
 
 function validateFormReunion(event) {
      
-    // Récupérer les valeurs des champs
+    // Récupére les valeurs des champs
     let nomReunion = document.querySelector("#nomReunion");
     let sujetReunion = document.querySelector("#sujetReunion");
     let dateReunion = document.querySelector('#dateReunion');
     let heureReunion = document.querySelector('#heureReunion');
 
-          // Réinitialiser les styles et les messages d'erreur
+          // Réinitialise les styles et les messages d'erreur
           nomReunion.style.backgroundColor = "none";
           document.querySelector("#nomReunionError").innerHTML = "";
       
@@ -39,17 +39,17 @@ function validateFormReunion(event) {
           heureReunion.style.backgroundColor = "none";
           document.querySelector("#heureReunionError").innerHTML = "";
 
-    // Vérifier les conditions pour valider le formulaire
+    // Vérifie les conditions pour valider le formulaire
       if (nomReunion.value == '' ) {
-        event.preventDefault()// Empêcher la soumission du formulaire par défaut
+        event.preventDefault()// Empêche la soumission du formulaire par défaut
         nomReunion.style.backgroundColor = "LightPink";
-        document.querySelector("#nomReunionError").innerHTML= "La réunion doit avoir un nom.";
+        document.querySelector("#nomReunionError").innerHTML= "La réunion doit avoir un nom";
         document.querySelector("#nomReunionError").style.color = "orange"
       }
       if (sujetReunion.value == '') {
-        event.preventDefault()// Empêcher la soumission du formulaire par défaut
+        event.preventDefault()// Empêche la soumission du formulaire par défaut
         sujetReunion.style.backgroundColor = "LightPink";
-        document.querySelector("#sujetReunionError").innerHTML = "La réunion doit avoir un sujet.";
+        document.querySelector("#sujetReunionError").innerHTML = "La réunion doit avoir un sujet";
         document.querySelector("#sujetReunionError").style.color = "orange"
       }
       if (dateReunion.value == '') {
@@ -66,7 +66,7 @@ function validateFormReunion(event) {
       }
   }
   
-  // Ajouter un gestionnaire d'événement pour le formulaire 
+  // Ajoute un gestionnaire d'événement pour le formulaire 
   document.querySelector("#form").addEventListener("submit", (e)=>validateFormReunion(e));
 
   

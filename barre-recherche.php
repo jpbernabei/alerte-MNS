@@ -33,7 +33,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script> 
     $(document).ready(function(){
-        // l'evenement se produit quand la touche du clavier est relaché (keyup)
+        // l'evenement se produit quand la touche du clavier est relachée (keyup)
         $('#search-user').keyup(function(){
             $("#result-search").html('');
            let utilisateur = $(this).val();

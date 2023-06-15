@@ -27,7 +27,7 @@ $errors['nom'] = "Le nom est obligatoire.";
 if(empty($_POST['utilisateur']['prenom_utilisateur']))
     $errors['prenom'] = "Le prénom est obligatoire.";
 
-//on vérifie si il y a une erreur.Si il y a une erreur on la met dans le tableau $_SESSION['errors']
+//on vérifie s'il y a une erreur.S'il y a une erreur on la met dans le tableau $_SESSION['errors']
 //on met la valeur des champs dans le tableau $_SESSION['values']
 
 if(count($errors) > 0)
@@ -35,8 +35,6 @@ if(count($errors) > 0)
     $_SESSION['errors'] = $errors;
     $_SESSION['values'] = $_POST;
     header("Location: /admin/parametre-utilisateurs/edit.php?id=".$_GET['id']); die;
-
-    // var_dump($_POST);die;
     //on redirige l'utilisateur sur la page et on arrete le traitement du formulaire
     
 }
@@ -44,14 +42,14 @@ $data = array(
     'email_utilisateur' => $_POST['utilisateur']['email_utilisateur'],
     'id_utilisateur' => $_POST['utilisateur']['id_utilisateur']
 );
-  //appel de la fonction qui vérifi si l'email est deja en base de donné
+  //appel de la fonction qui vérifie si l'email est déjà en base de donnée
   $verifEmail = verifEmailEdit($data);
 if($verifEmail>0){
     $_SESSION['errors']['email'] = "Cette adresse email est déjà utilisé.";
         header("Location: /admin/parametre-utilisateurs/edit.php?id=". $data['id_utilisateur'] );die;
 }
 
-    //si il est envoyé on appel la fonction insertUser et on stock l'id de l'utilisateur ajouté dans une varible
+    //s'il est envoyé on appelle la fonction insertUser et on stock l'id de l'utilisateur ajouté dans une variable
     $isAdmin = isset($_POST['is_admin_utilisateur']) ? 1 : 0;
   
     $count = updateUser($_POST['utilisateur'],$isAdmin);
@@ -117,35 +115,36 @@ if (!$user) // $user == null
             <form id="formEdit" class="formNewUser" action="/admin/parametre-utilisateurs/edit.php?id=<?= $_GET['id'] ?>" method="POST">
             <!-- on récupere son id -->
                 <input type="hidden" name="utilisateur[id_utilisateur]" value="<?= $user['id_utilisateur'] ?>">
-                <!-- on met des id pour les champ du formulaire pour le JS -->
+                <!-- on met des id pour les champs du formulaire pour le JS -->
                 <label>Email</label>
-                <!-- on fait une condition ternaire, si $_session[value]['utilisateur']['email_utilisateur'] existe, alors se sera la valeur du champ, sinon se sera l'email de l'utilisateur -->
+                <!-- on fait une condition ternaire, si $_session[value]['utilisateur']['email_utilisateur'] existe, alors ce sera la valeur du champ, sinon ce sera l'email de l'utilisateur -->
                 <input id="emailEdit" type="email" name="utilisateur[email_utilisateur]" value="<?= isset($_SESSION['values']['utilisateur']['email_utilisateur']) ? $_SESSION['values']['utilisateur']['email_utilisateur'] : $user['email_utilisateur'] ?>" required >
-                <!-- si il y a une erreurs, alors on retourne la phrase de l'erreur -->
+                <!-- s'il y a une erreur, alors on retourne la phrase de l'erreur -->
                 <?php if(isset($_SESSION['errors']['email'])): ?>
                     <small><?= $_SESSION['errors']['email'] ?></small>
                     <?php endif; ?>
-                    <div id="emailErrorEdit" ></div>
+                    <small id="emailErrorEdit"> </small>
 
                 <label>Nom</label>
-                <!-- on fait une condition ternaire, si $_SESSION['values']['utilisateur']['nom_utilisateur'] existe, alors se sera la valeur du champ, sinon se sera le nom de l'utilisateur -->
+                <!-- on fait une condition ternaire, si $_SESSION['values']['utilisateur']['nom_utilisateur'] existe, alors ce sera la valeur du champ, sinon ce sera le nom de l'utilisateur -->
                 <input id="nameEdit" type="text" name="utilisateur[nom_utilisateur]" 
                 value="<?= isset($_SESSION['values']['utilisateur']['nom_utilisateur']) ? $_SESSION['values']['utilisateur']['nom_utilisateur'] : $user['nom_utilisateur'] ?>">
-                <!-- si il y a une erreurs, alors on retourne la phrase de l'erreur -->
+                <!-- s'il y a une erreur, alors on retourne la phrase de l'erreur -->
                 <?php if(isset($_SESSION['errors']['nom'])): ?>
                     <small><?= $_SESSION['errors']['nom'] ?></small>
                     <?php endif; ?>
-                <div id="nameErrorEdit" ></div>
+                    <small id="nameErrorEdit"> </small>
+                
 
-                <label>Prenom</label>
-                <!-- on fait une condition ternaire, si $_SESSION['values']['utilisateur']['prenom_utilisateur'] existe, alors se sera la valeur du champ, sinon se sera le prénom de l'utilisateur -->
+                <label>Prénom</label>
+                <!-- on fait une condition ternaire, si $_SESSION['values']['utilisateur']['prenom_utilisateur'] existe, alors ce sera la valeur du champ, sinon ce sera le prénom de l'utilisateur -->
                 <input id="prenomEdit" type="text" name="utilisateur[prenom_utilisateur]" 
                 value="<?= isset($_SESSION['values']['utilisateur']['prenom_utilisateur']) ? $_SESSION['values']['utilisateur']['prenom_utilisateur'] : $user['prenom_utilisateur'] ?>">
-                <!-- si il y a une erreurs, alors on retourne la phrase de l'erreur -->
+                <!-- s'il y a une erreur, alors on retourne la phrase de l'erreur -->
                 <?php if(isset($_SESSION['errors']['prenom'])): ?>
                     <small><?= $_SESSION['errors']['prenom'] ?></small>
                     <?php endif; ?>
-                <div id="prenomErrorEdit" ></div>
+                    <small id="prenomErrorEdit"> </small>
                 
                 <div class="formForm">
                 <label class="toggle">Administrateur
@@ -158,9 +157,8 @@ if (!$user) // $user == null
                 <input type="submit"  name="submitForm">
             </form>
         </div>
-        <!-- on suprime les tableaux errors et values à chaque envoie du formulaire -->
-        <?php unset($_SESSION['errors']);
-        unset($_SESSION['values']); ?>
+        <!-- on suprime les tableaux errors à chaque envoi du formulaire -->
+        <?php unset($_SESSION['errors']); ?>
     </div>
 </main>
 

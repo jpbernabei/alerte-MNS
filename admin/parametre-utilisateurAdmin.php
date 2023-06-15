@@ -5,10 +5,10 @@ require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 
 if (isset($_POST['submit'])) {
     $errors = [];
-    // var_dump($_POST);die;
+
     $verifEmail = verifEmailEdit($_POST['utilisateur']);
     if ($verifEmail > 0) {
-        $errors['email'] = "Cette adresse email est déjà utilisé.";
+        $errors['email'] = "Cette adresse email est déjà utilisée.";
         header("Location: /admin/parametre-utilisateurAdmin.php");
         die;
     }
@@ -92,7 +92,7 @@ if (isset($_SESSION['user']['id'])) {
                     <?php if (isset($_SESSION['errors']['email'])) : ?>
                         <small><?= $_SESSION['errors']['email'] ?></small>
                     <?php endif; ?>
-                    <div id="emailErrorEdit"></div>
+                    <small id="emailErrorEdit"> </small>
                 </div>
 
                 <div class="formForm">
@@ -102,16 +102,16 @@ if (isset($_SESSION['user']['id'])) {
                     <?php if (isset($_SESSION['errors']['nom'])) : ?>
                         <small><?= $_SESSION['errors']['nom'] ?></small>
                     <?php endif; ?>
-                    <div id="nameErrorEdit"></div>
+                    <small id="nameErrorEdit"> </small>
                 </div>
 
                 <div class="formForm">
-                    <label>Prenom</label>
+                    <label>Prénom</label>
                     <input id="prenomEdit" type="text" name="utilisateur[prenom_utilisateur]" value="<?= isset($_SESSION['values']['utilisateur']['prenom_utilisateur']) ? $_SESSION['values']['utilisateur']['prenom_utilisateur'] : $user['prenom_utilisateur'] ?>">
                     <?php if (isset($_SESSION['errors']['prenom'])) : ?>
                         <small><?= $_SESSION['errors']['prenom'] ?></small>
                     <?php endif; ?>
-                    <div id="prenomErrorEdit"></div>
+                    <small id="prenomErrorEdit"> </small>
                 </div>
 
                 <div class="formForm">

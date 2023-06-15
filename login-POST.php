@@ -8,10 +8,10 @@ if(!empty($_POST['submit']))
     $errors = [];
 
     if(empty($_POST['email']))
-        $errors['email'] = "Saississez votre email.";
+        $errors['email'] = "Saisissez votre email.";
     
     if(empty($_POST['password']))
-        $errors['password'] = "Saississez votre mot de passe.";
+        $errors['password'] = "Saisissez votre mot de passe.";
 
     if(count($errors) > 0)
     {
@@ -33,13 +33,13 @@ if(!empty($_POST['submit']))
     //on test si l'utilisateur existe
     if($user)
     {
-        //si il existe, alors on compare les mots de passes
+        //s'il existe, alors on compare les mots de passe
         //password_verify vérifie qu'un mot de passe correspond à un hachage
         if(password_verify($password, $user['mot_de_passe_utilisateur']))
         {
             //si mdp ok alors on identifie l'utilisateur en SESSION
             session_start();
-
+            // on créé une variable de session et on stocke son ID, son nom, son prénom, s'il est admin et son role
             $_SESSION['user'] = [
                 'id' => $user['id_utilisateur'],
                 'name'=> $user['nom_utilisateur'],
@@ -52,26 +52,26 @@ if(!empty($_POST['submit']))
             // on redirige vers l'interface admin
             header("Location: /admin/index.php");
             }else{
+                // sinon vers l'interface utilisateur
                 header("Location: /index.php");
             }
         }
-        else{ // si mdp pas ok, on redirige vers la page login
-            $_SESSION['errors'] = "Identifiants invalide.";
+        else{ // si mdp pas correct, on redirige vers la page login avec un message d'erreur
+            $_SESSION['errors']['error'] = "Identifiant invalide";
             header("Location: /login.php"); die;
         }
     }
 
-else  // 3. S'il n'existe pas, on redirige vers la page de login
+else  //S'il n'existe pas, on redirige vers la page de login avec un message d'erreur
 {
-    $_SESSION['errors'] = "Identifiants invalides.";
+    $_SESSION['errors']['error'] = "Identifiant invalide";
     header("Location: /login.php"); die;
 }
-
-
 
 
 }
 else
 {
-header("Location: /login.php"); die;
+header("Location: /login.php"); die; 
+unset($_SESSION['errors']);
 }

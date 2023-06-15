@@ -6,10 +6,10 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 // on vérifie si le formulaire n'est pas vide
 if (!empty($_POST['isActive'])) {
     // formulaire pour acitiver/désactiver un utilisateur
-    // on vérifi si le champ est checked, si il est checked, on met 1 dans la variable, sinon on met 0
-    // (car quand une chekbox est checked elle renvoi ON,si elle n'est pas checked, elle ne renvoie rien)
+    // on vérifie si le champ est checked, s'il est checked, on met 1 dans la variable, sinon on met 0
+    // (car quand une chekbox est checked elle renvoie ON,si elle n'est pas checked, elle ne renvoie rien)
     $isActive = isset($_POST['actif_utilisateur']) ? 1 : 0;
-    // on fait la requed pour modifier la colonne actif_utilisateur en BDD en fonction de l'id_utilisateur
+    // on fait la requet pour modifier la colonne actif_utilisateur en BDD en fonction de l'id_utilisateur
     $sql = "UPDATE utilisateur SET actif_utilisateur = :actif_utilisateur WHERE id_utilisateur = :id_utilisateur";
     $query = $pdo->prepare($sql);
     $active = $query->execute([
@@ -65,7 +65,7 @@ $utilisateurs = getAllUser();
                                 <th></th>
                             </thead>
                             <tbody>
-                            <!-- on récupère les utilisateur et leur informations -->
+                            <!-- on récupère les utilisateurs et leurs informations -->
                                 <?php foreach ($utilisateurs as $utilisateur) : ?>
                                     <tr>
                                         <td><?= $utilisateur['id_utilisateur'] ?></td>
@@ -86,7 +86,7 @@ $utilisateurs = getAllUser();
                                                 <span class="toggle-label"></span>
                                             </label>
                                         </td>
-                                        <td>  <input class="button-lien" type="submit" name="isActive" value="valider"></td></form> 
+                                        <td>  <input class="button-lien" type="submit" name="isActive" value="Valider"></td></form> 
                                     </tr>
                                 <?php
                                 endforeach;  ?>

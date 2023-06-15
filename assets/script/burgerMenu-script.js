@@ -5,12 +5,12 @@ var closeBtn = document.getElementById("closeBtn");
 openBtn.onclick = openNav;
 closeBtn.onclick = closeNav;
 
-/* Set the width of the side navigation to 250px */
+
 function openNav() {
   sidenav.classList.add("active");
 }
 
-/* Set the width of the side navigation to 0 */
+
 function closeNav() {
   sidenav.classList.remove("active");
 }
@@ -23,12 +23,12 @@ var closeBtnChaine = document.getElementById("closeBtnChaine");
 openBtnChaine.onclick = openNavChaine;
 closeBtnChaine.onclick = closeNavChaine;
 
-/* Set the width of the side navigation to 250px */
+
 function openNavChaine() {
   sidenavChaine.classList.add("activeChaine");
 }
 
-/* Set the width of the side navigation to 0 */
+
 function closeNavChaine() {
   sidenavChaine.classList.remove("activeChaine");
 }

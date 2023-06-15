@@ -23,12 +23,12 @@
   
 function validateFormEdit(event) {
      
-    // Récupérer les valeurs des champs
+    // Récupére les valeurs des champs
     let emailInput = document.querySelector("#emailEdit");
     let nameInput = document.querySelector('#nameEdit');
     let prenomInput = document.querySelector('#prenomEdit');
   
-    // Vérifier l'adresse e-mail
+    // Vérifie l'adresse e-mail
     let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let isValidEmail = emailRegex.test(emailInput.value);
 
@@ -38,7 +38,7 @@ function validateFormEdit(event) {
     let prenomRegex = /^[a-zA-Z\-]+$/;
     let isValidPrenom = prenomRegex.test(prenomInput.value);
   
-          // Réinitialiser les styles et les messages d'erreur
+          // Réinitialise les styles et les messages d'erreur
           emailInput.style.border = "none";
           document.querySelector("#emailErrorEdit").innerHTML = "";
       
@@ -48,9 +48,9 @@ function validateFormEdit(event) {
           prenomInput.style.border = "none";
           document.querySelector("#prenomErrorEdit").innerHTML = "";
         
-    // Vérifier les conditions pour valider le formulaire
+    // Vérifie les conditions pour valider le formulaire
       if (!isValidEmail) {
-        event.preventDefault()// Empêcher la soumission du formulaire par défaut
+        event.preventDefault()// Empêche la soumission du formulaire par défaut
         emailInput.style.backgroundColor = "LightPink";
         document.querySelector("#emailErrorEdit").innerHTML= "Adresse email non valide";
         document.querySelector("#emailErrorEdit").style.color = "orange"
@@ -61,7 +61,7 @@ function validateFormEdit(event) {
       if (!isValidname) {
         event.preventDefault()
         nameInput.style.backgroundColor = "LightPink";
-        document.querySelector("#nameErrorEdit").innerHTML = "Le nom ne doit pas comporter de caractaires spécials";
+        document.querySelector("#nameErrorEdit").innerHTML = "Le nom ne doit pas comporter de caractères spéciaux";
         document.querySelector("#nameErrorEdit").style.color = "orange"
       }else {
         nameInput.style.backgroundColor = "#bef7e3";
@@ -71,14 +71,14 @@ function validateFormEdit(event) {
       if (!isValidPrenom) {
         event.preventDefault()
         prenomInput.style.backgroundColor = "LightPink";
-        document.querySelector("#prenomErrorEdit").innerHTML = "Le prénom ne doit pas comporter de caractaires spécials";
+        document.querySelector("#prenomErrorEdit").innerHTML = "Le prénom ne doit pas comporter de caractères spéciaux";
         document.querySelector("#prenomErrorEdit").style.color = "orange"
       } else {
         prenomInput.style.backgroundColor = "#bef7e3";
         document.querySelector("#prenomErrorEdit").innerHTML = "";}
   }
   
-  // Ajouter un gestionnaire d'événement pour le formulaire 
+  // Ajoute un gestionnaire d'événement pour le formulaire 
   document.querySelector("#formEdit").addEventListener("submit", (e)=>validateFormEdit(e));
 
   document.querySelector("#emailEdit").addEventListener("keyup", validateEmail);

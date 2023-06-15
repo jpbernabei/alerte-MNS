@@ -50,7 +50,7 @@ ChainesNav.forEach(function (chaine) {
             .then(function (affichage) {
                 salonNav.innerHTML = '';
                 if (affichage['nom_chaine'] != "") {
-                    titreChaineNav.innerHTML += '<button class="bouton-new-chaines">' + affichage['nom_chaine'] + '</button>'
+                    titreChaineNav.innerHTML += '<div class="bouton-new-chaines">' + affichage['nom_chaine'] + '</div>'
                 }
 
 

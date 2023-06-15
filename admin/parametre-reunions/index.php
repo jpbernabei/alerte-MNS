@@ -4,11 +4,11 @@
 include '../../includes/inc-db-connect.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/reunion-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
-// on vérifie l'envoie du formulaire
+// on vérifie l'envoi du formulaire
 if (!empty($_POST['isActive'])) {
      // formulaire pour acitiver/désactiver une réunion
-    // on vérifi si le champ est checked, si il est checked, on met 1 dans la variable, sinon on met 0
-    // (car quand une chekbox est checked elle renvoi ON,si elle n'est pas checked, elle ne renvoie rien)
+    // on vérifie si le champ est checked, s'il est checked, on met 1 dans la variable, sinon on met 0
+    // (car quand une chekbox est checked elle renvoie 'ON',si elle n'est pas checked, elle ne renvoie rien)
 
     $isActive = isset($_POST['actif_reunion']) ? 1 : 0;
 
@@ -19,7 +19,7 @@ if (!empty($_POST['isActive'])) {
         'id_reunion' => $_POST['id_reunion']
     ]);
 }
-// appel de la fonction qui selectionne toutes les réunions actifs
+// appel de la fonction qui selectionne toutes les réunions actives
 $reunions = getAllReunionActif();
 
 ?>
@@ -60,8 +60,8 @@ $reunions = getAllReunionActif();
                         <th>Nom</th>
                         <th>Sujet</th>
                         <th>Date de création</th>
-                        <th>Date prévu</th>
-                        <th>Heure prévu</th>
+                        <th>Date prévue</th>
+                        <th>Heure prévue</th>
                         <th>Id créateur de la réunion</th>
                         <th></th>
                         <th>Activé/Désactivé</th>
@@ -70,7 +70,7 @@ $reunions = getAllReunionActif();
                     
                     </thead>
                     <tbody>
-                        <!-- on récupere chaque réunions et leurs informations -->
+                        <!-- on récupere chaque réunion et leurs informations -->
                         <?php foreach ($reunions as $reunion) : ?>
                             <tr>
                                 <td><?= $reunion['id_reunion'] ?></td>

@@ -28,7 +28,7 @@ if(empty($_POST['utilisateur']['mot_de_passe_utilisateur']))
 // pour vérifier la conformité du MDP
 $validPassword= $_POST['utilisateur']['mot_de_passe_utilisateur'];
 if(!(valid_password($validPassword)))
-$errors['password'] = "Le mot de passe doit faire minimum 8 caractaire, dont une majuscule et un chiffre.";
+$errors['password'] = "Le mot de passe doit faire minimum 8 caractères, dont une majuscule et un chiffre.";
 
 //on vérifie si le champ n'est pas vide
 if(empty($_POST['utilisateur']['nom_utilisateur']))
@@ -38,24 +38,23 @@ $errors['nom'] = "Le nom est obligatoire.";
 if(empty($_POST['utilisateur']['prenom_utilisateur']))
     $errors['prenom'] = "Le prénom est obligatoire.";
 
-//on vérifie si il y a une erreur.Si il y a une erreur on la met dans le tableau $_SESSION['errors']
+//on vérifie s'il y a une erreur.S'il y a une erreur on la met dans le tableau $_SESSION['errors']
 //on met la valeur des champs dans le tableau $_SESSION['values']
 if(count($errors) > 0)
 {
     $_SESSION['errors'] = $errors;
     $_SESSION['values'] = $_POST;
 
-    // var_dump($_POST);die;
     //on redirige l'utilisateur sur la page et on arrete le traitement du formulaire
     header("Location: /admin/parametre-utilisateurs/new.php"); die;
 }
-    //appel de la fonction qui vérifie si l'email est deja en base de donné
+    //appel de la fonction qui vérifie si l'email est déjà en base de donnée
     verifUser($_POST['utilisateur']);
 
-    //si il est envoyé on appel la fonction insertUser et on stock l'id de l'utilisateur ajouté dans une varible
+    //s'il est envoyé on appelle la fonction insertUser et on stock l'id de l'utilisateur ajouté dans une varible
     $id = insertUser($_POST['utilisateur']);
-    // var_dump($_SESSION);die;
-    //si il y a bien un id on redirige vers l'index
+
+    //s'il y a bien un id on redirige vers l'index
     if ($id) {
         unset($_SESSION['errors']);
         unset($_SESSION['values']);
@@ -94,7 +93,7 @@ $roles = getAllRoles();
 
     <main>
         <div class="container">
-<!-- si une il y a eu une erreur et lors du traitement du formulaire on affiche la phrase d'erreur -->
+<!-- s'il y a eu une erreur lors du traitement du formulaire on affiche la phrase d'erreur -->
         <?php if(isset($_SESSION['errors']['error'])): ?>
             <small><?= $_SESSION['errors']['error'] ?></small>
             <?php endif; ?>
@@ -109,7 +108,7 @@ $roles = getAllRoles();
             
             <div class="formForm">
                 <label for="email">Email</label>
-                <!-- si l'utilisateur fait une erreur on stock et affiche se qu'il a tapé dans le champ
+                <!-- si l'utilisateur fait une erreur on stock et affiche ce qu'il a tapé dans le champ
             et on affiche le message d'erreur correspondant -->
                 <input id="email" type="email"  name="utilisateur[email_utilisateur]"
                 value="<?= isset($_SESSION['values']['utilisateur']['email_utilisateur']) ? $_SESSION['values']['utilisateur']['email_utilisateur'] : '' ?>">
@@ -155,7 +154,7 @@ $roles = getAllRoles();
 
             <div class="formForm">
                 <label for="">Rôle</label>
-                <!-- on récupere les roles avec foreach et on les mets dans un select -->
+                <!-- on récupère les roles avec foreach et on les met dans un select -->
                 <div class="select-style">
                 <select name="utilisateur[id_role]" id="">
                     <?php foreach ($roles as $role) : ?>

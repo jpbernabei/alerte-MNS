@@ -5,7 +5,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
 $chaines = getAllChaine();
 $salons = getAllSalon9();
 
-// vérification si l'utilisateur est admin, si non, on le redirige vers la page login
+// vérification si l'utilisateur est admin, sinon, on le redirige vers la page login
 if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
     header("Location: /logout.php");
     die;
@@ -85,11 +85,12 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
 
                 <div class="button-creation-container noMobile">
                     <a href="/admin/creation-reunionAdmin.php"><button class="button-creation police "><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une réunion</button></a>
-                    <a href="/admin/parametre-chaines/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaine</button></a>
+                    <a href="/admin/parametre-chaines/new.php"><button class="button-creation police"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>Créer une chaîne</button></a>
                     <div class="icone-parametre"><a class="icone-parametre" href="/admin/parametre-admin.php"><i class="fa-solid fa-gear fa-lg" style="color: #ffffff;"></i></a>
 
                     </div>
                 </div>
+            </div>
 
         </nav>
         <div class="scroller nav-salon   ">

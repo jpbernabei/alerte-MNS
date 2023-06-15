@@ -258,7 +258,7 @@ a{
 }
 
 
-  /*------------- parametre admin utilisateur ------------- */
+  /*------------- paramètre admin utilisateur ------------- */
 
 .container{
     height: 100%;
@@ -339,7 +339,7 @@ input[type="submit"]:hover{
     margin-top: 4%;
 }
 
-input[type="text"],[type="email"],[type="password"],[type="textarea"]{
+input[type="text"],[type="email"],[type="password"]{
     background-color: #81a4cdff;
     height: 30px;
     width: 300px;
@@ -347,6 +347,13 @@ input[type="text"],[type="email"],[type="password"],[type="textarea"]{
     border:none;
     padding: 7px;
     
+}
+input[type="date"],[type="time"]{
+    background-color: #81a4cdff;
+    height: 30px;
+    border-radius: 20px;
+    border:none;
+    padding: 7px;
 }
 textarea{
     background-color: #81a4cdff;
@@ -521,7 +528,7 @@ small{
 /* .messageErreur{
     float: left;
 } */
-/* _______________________Media Query____________________________________ */
+/* _______________________Media Queries____________________________________ */
 
 @media screen and (min-width:1050px ) and (max-width: 1400px){
 
@@ -619,7 +626,7 @@ small{
 
 }
 
-/* ________________________media query mobile_________________________ */
+/* ________________________media queries mobile_________________________ */
 /* Parametre utilisateur Admin */
 @media screen and (max-width:1050px){
 

@@ -6,7 +6,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
 //on vérifie si le formulaire est envoyé
 if (isset($_POST['envoie'])) {
-    // var_dump($_POST);die;
+
     $errors = [];
 
     if(empty($_POST['reunion']['nom_reunion']))
@@ -16,10 +16,10 @@ if (isset($_POST['envoie'])) {
     $errors['sujet_reunion'] = 'La réunion doit avoir un sujet.' ;
 
     if(empty($_POST['reunion']['date_prevu_reunion']))
-    $errors['date_prevu_reunion'] = 'La réunion doit avoir une date de prévu.' ;
+    $errors['date_prevu_reunion'] = 'La réunion doit avoir une date prévue.' ;
 
     if(empty($_POST['reunion']['heure_prevu_reunion']))
-    $errors['heure_prevu_reunion'] = 'La réunion doit avoir une heure de prévu.' ;
+    $errors['heure_prevu_reunion'] = 'La réunion doit avoir une heure prévue.' ;
 
     if(empty($_POST['utilisateur']))
     $errors['utilisateur'] = 'La réunion doit avoir un participant.' ;
@@ -31,11 +31,11 @@ if (isset($_POST['envoie'])) {
 
     header("Location: /admin/creation-reunionAdmin.php"); die;}
 
-    //si il est envoyé on appel la fonction insertReunion et on stock l'id de la reunion ajouté dans une varible
+    //s'il est envoyé on appelle la fonction insertReunion et on stocke l'id de la reunion ajouté dans une variable
     $id = insertReunion($_POST['reunion'], $_POST['utilisateur'], $_SESSION['user']['id']);
 
 
-    //si il y a bien un id on redirige vers l'index
+    //s'il y a bien un id on redirige vers l'index
     if ($id) {
         unset($_SESSION['errors']);
         unset($_SESSION['values']);
@@ -114,8 +114,8 @@ $utilisateurs = getAllUser();
                     <small><?= $_SESSION['errors']['utilisateur'] ?></small>
                     <?php endif; ?>
                 </div>
-                <!-- on récupere les utilisateur avec foreach et on les mets dans un select -->
-                <div class="formForm">
+                <!-- on récupere les utilisateurs avec foreach et on les met dans un select -->
+                <div >
                     <?php foreach ($utilisateurs as $utilisateur) : ?>
                         <p>
                             <?php if ($utilisateur["id_utilisateur"] != $_SESSION['user']['id']) : ?>
