@@ -5,11 +5,11 @@ function validateEditPassword(event){
     let newPassword1Input = document.querySelector('#newPassword1');
     let newPassword2Input = document.querySelector('#newPassword2');
 
-      // Vérifier l'adresse e-mail
+      // Vérifie l'adresse e-mail
       let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       let isValidEmail = emailRegex.test(emailInput.value);
     
-      // Vérifier le mot de passe (au moins une majuscule et un chiffre)
+      // Vérifie le mot de passe (au moins une majuscule et un chiffre)
       let passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 
       let isValidPassword1 = passwordRegex.test(oldPasswordInput.value);
@@ -18,9 +18,9 @@ function validateEditPassword(event){
 
       let isValidPassword3 = passwordRegex.test(newPassword2Input.value);
   
-      // Vérifier les conditions pour valider le formulaire
+      // Vérifie les conditions pour valider le formulaire
         if (!isValidEmail) {
-          event.preventDefault()// Empêcher la soumission du formulaire par défaut
+          event.preventDefault()// Empêche la soumission du formulaire par défaut
           emailInput.style.backgroundColor = "LightPink";
           document.querySelector("#emailErrorEdit").innerHTML= "Adresse email non valide";
           document.querySelector("#emailErrorEdit").style.color = "orange"
@@ -29,9 +29,9 @@ function validateEditPassword(event){
           document.querySelector("#emailErrorEdit").innerHTML = "";
         }
         if (!isValidPassword1) {
-          event.preventDefault()// Empêcher la soumission du formulaire par défaut
+          event.preventDefault()// Empêche la soumission du formulaire par défaut
           oldPasswordInput.style.backgroundColor = "LightPink";
-          document.querySelector("#oldPasswordError").innerHTML = "Le mot de passe doit contenir au moins 8 caractaires, dont une majuscule et un chiffre.";
+          document.querySelector("#oldPasswordError").innerHTML = "Le mot de passe doit contenir au moins 8 caractères, dont une majuscule et un chiffre.";
           document.querySelector("#oldPasswordError").style.color = "orange"
         }else {
           oldPasswordInput.style.backgroundColor = "#bef7e3";
@@ -40,7 +40,7 @@ function validateEditPassword(event){
         if (!isValidPassword2) {
           event.preventDefault()
           newPassword1Input.style.backgroundColor = "LightPink";
-          document.querySelector("#newPassword1Error").innerHTML = "Le mot de passe doit contenir au moins 8 caractaires, dont une majuscule et un chiffre";
+          document.querySelector("#newPassword1Error").innerHTML = "Le mot de passe doit contenir au moins 8 caractères, dont une majuscule et un chiffre";
           document.querySelector("#newPassword1Error").style.color = "orange"
         }else {
           newPassword1Input.style.backgroundColor = "#bef7e3";
@@ -48,7 +48,7 @@ function validateEditPassword(event){
         if (!isValidPassword3) {
           event.preventDefault()
           newPassword2Input.style.backgroundColor = "LightPink";
-          document.querySelector("#newPassword2Error").innerHTML = "Le mot de passe doit contenir au moins 8 caractaires, dont une majuscule et un chiffre";
+          document.querySelector("#newPassword2Error").innerHTML = "Le mot de passe doit contenir au moins 8 caractères, dont une majuscule et un chiffre";
           document.querySelector("#newPassword2Error").style.color = "orange"
         }
         else if(newPassword1Input.value != newPassword2Input.value) {
@@ -61,7 +61,7 @@ function validateEditPassword(event){
           document.querySelector("#newPassword2Error").innerHTML = "";}
     }
     
-    // Ajouter un gestionnaire d'événement pour le formulaire 
+    // Ajoute un gestionnaire d'événement pour le formulaire 
     document.querySelector("#form").addEventListener("submit", (e)=>validateEditPassword(e));
 
 

@@ -56,18 +56,16 @@ if (isset($_GET['user'])) {
       </div>
       <img class="logo noMobile" src="/images/LOGO_ALERT_MNS_transparent.ico" alt="">
       <a class="noMobile" href="/parametre-utilisateur.php"><i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i></a>
-      <div class="police name-user noMobile"><?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['name'] ?></div>
-      <div>
-        <div class="police name-chaine noMobile">nom de la chaine </div>
-        <div class="police name-salon noMobile">nom du salon</div>
-      </div>
-      <div class="noMobile"><input type="text" id='search-user' value="" placeholder="Rechercher"></div>
-
+      <div class="police name-user noMobile"><?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['name'] ?></div>    
+      <div class="police name-user noMobile">Statut : <?= $_SESSION['user']['role_utilisateur'] ?></div>
+      
+      <!-- <div class="noMobile"><input type="text" id='search-user' value="" placeholder="Rechercher"></div> -->
+      <div id="titre" class="titreChaine"></div>
       <a class="noMobile" href="/affiche-reunion.php"><i class="fa-solid fa-users fa-xl" style="color: #ffffff;"></i></a>
       <a class="noMobile" href="/logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
     </header>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -95,4 +93,4 @@ if (isset($_GET['user'])) {
           }
         });
       });
-    </script>
+    </script> -->

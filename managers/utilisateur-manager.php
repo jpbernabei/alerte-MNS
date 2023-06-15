@@ -2,7 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/inc-db-connect.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/fonctions/valid-data.php';
 
-//fonction qui permet de sécuriser les donnés envoyé par l'utilisateur
+//fonction qui permet de sécuriser les données envoyées par l'utilisateur
 
 function verifUser(array $data){
 
@@ -22,8 +22,8 @@ function verifUser(array $data){
     return $res;
 }
 
-// fonction qui verifie si l'adresse email existe deja pour update
-// (elle laisse si l'adresse est celle de l'utilisateur qu'on modifie
+// fonction qui verifie si l'adresse email existe déjà pour update
+// (elle laisse si l'adresse est celle de l'utilisateur qu'on modifie)
 function verifEmailEdit(array $data){
 
     $pdo = $GLOBALS['pdo'];
@@ -176,7 +176,7 @@ function uploadImageFile(string $inputFileName)
 
     if(!empty($_FILES[$inputFileName]) && $_FILES[$inputFileName]['error'] == 0)
     {
-        // On vérifie le poid de l'image
+        // On vérifie le poids de l'image
         if($_FILES[$inputFileName]['size'] < 1000000)
         {
 

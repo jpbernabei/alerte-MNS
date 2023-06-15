@@ -21,6 +21,16 @@ function getAllChaine()
     return $pdo->query($sql)->fetchAll(); 
 }
 
+function getChaineUtilisateur(int $utilisateur)
+{
+    $pdo = $GLOBALS['pdo']; 
+    $sql =" SELECT *
+            FROM chaine
+            JOIN chaine_utilisateur ON chaine.id_chaine = chaine_utilisateur.id_chaine
+            JOIN utilisateur ON chaine_utilisateur.id_utilisateur = utilisateur.id_utilisateur
+            WHERE utilisateur.id_utilisateur = $utilisateur ";
+            return $pdo->query($sql)->fetchAll(); 
+}
 
 // Fonction qui recupere les utilisateurs d'une chaine
 

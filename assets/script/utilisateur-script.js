@@ -101,7 +101,7 @@ function validateForm(event) {
       if (!isValidPassword) {
         event.preventDefault()// Empêcher la soumission du formulaire par défaut
         passwordInput.style.backgroundColor = "LightPink";
-        document.querySelector("#passwordError").innerHTML = "Le mot de passe doit contenir au moins 8 caractaires, dont une majuscule et un chiffre.";
+        document.querySelector("#passwordError").innerHTML = "Le mot de passe doit contenir au moins 8 caractères, dont une majuscule et un chiffre.";
         document.querySelector("#passwordError").style.color = "orange"
       } else {
     passwordInput.style.backgroundColor = "#bef7e3";
@@ -111,7 +111,7 @@ function validateForm(event) {
       if (!isValidname) {
         event.preventDefault()
         nameInput.style.backgroundColor ="LightPink";
-        document.querySelector("#nameError").innerHTML = "Le nom ne doit pas comporter de caractaires spécials";
+        document.querySelector("#nameError").innerHTML = "Le nom ne doit pas comporter de caractères spéciaux";
         document.querySelector("#nameError").style.color = "orange"
       }else {
         nameInput.style.backgroundColor = "#bef7e3";
@@ -121,7 +121,7 @@ function validateForm(event) {
       if (!isValidPrenom) {
         event.preventDefault()
         prenomInput.style.backgroundColor ="LightPink";
-        document.querySelector("#prenomError").innerHTML = "Le prénom ne doit pas comporter de caractaires spécials";
+        document.querySelector("#prenomError").innerHTML = "Le prénom ne doit pas comporter de caractères spéciaux";
         document.querySelector("#prenomError").style.color = "orange"
       } else {
         prenomInput.style.backgroudColor = "#bef7e3";

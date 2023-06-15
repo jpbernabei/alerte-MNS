@@ -20,8 +20,9 @@ form{
     box-sizing: border-box;
 }
 
-
-
+small{
+    color: #ff6715;
+}
 .police{
     font-family: 'Prompt', sans-serif;
     color: white;
@@ -131,7 +132,7 @@ label{
     padding-bottom:18% ;  
 }
 
-/* _________________responcive mobile____________________________ */
+/* _________________responsive mobile____________________________ */
 
 @media screen and (max-width:768px) {
 

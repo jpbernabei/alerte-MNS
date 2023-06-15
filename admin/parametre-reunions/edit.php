@@ -3,11 +3,11 @@ require $_SERVER['DOCUMENT_ROOT'] . "/managers/reunion-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/managers/utilisateur-manager.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
-// Verification de l'envoie du formulaire updateReunion:
+// Verification de l'envoi du formulaire updateReunion:
 if (isset($_POST['submit'])) {
 //on déclare une variable de type tableau où l'on mettra les messages d'erreurs
     $errors = [];
-// on vérifi si les champs son vide, si c'est le cas on créé un méssage d'érreur dans un tableau
+// on vérifie si les champs sont vides, si c'est le cas on créé un message d'erreur dans un tableau
     if (empty($_POST['reunion']['nom_reunion']))
         $errors['nom_reunion'] = 'La réunion doit avoir un nom.';
 
@@ -15,12 +15,12 @@ if (isset($_POST['submit'])) {
         $errors['sujet_reunion'] = 'La réunion doit avoir un sujet.';
 
     if (empty($_POST['reunion']['date_prevu_reunion']))
-        $errors['date_prevu_reunion'] = 'La réunion doit avoir une date de prévu.';
+        $errors['date_prevu_reunion'] = 'La réunion doit avoir une date prévue.';
 
     if (empty($_POST['reunion']['heure_prevu_reunion']))
-        $errors['heure_prevu_reunion'] = 'La réunion doit avoir une heure de prévu.';
+        $errors['heure_prevu_reunion'] = 'La réunion doit avoir une heure prévue.';
 
-//on vérifie si il y a une erreur.Si il y a une erreur on la met dans le tableau $_SESSION['errors']
+//on vérifie s'il y a une erreur.s'il y a une erreur on la met dans le tableau $_SESSION['errors']
 //on met la valeur des champs dans le tableau $_SESSION['values']
     if (count($errors) > 0) {
         $_SESSION['errors'] = $errors;
@@ -37,9 +37,9 @@ if (isset($_POST['submit'])) {
         exit;
     }
 }
-// Verification de l'envoie du formulaire pour retirer un utilisateur de la réunion:
+// Verification de l'envoi du formulaire pour retirer un utilisateur de la réunion:
 if (isset($_POST['retirer'])) {
-    // verification de l'envoie de l'id_utilisateur à retirer 
+    // verification de l'envoi de l'id_utilisateur à retirer 
     if (!empty($_POST['id_utilisateur'])) {
         $countRetirerUser = deleteUserReunion($_POST['id_utilisateur'], $_POST['id_reunion']);
         if ($countRetirerUser == 1) {
@@ -53,7 +53,7 @@ if (isset($_POST['retirer'])) {
         exit;
     }
 }
-// Verification de l'envoie du formulaire pour insérer un utilisateur de la réunion:
+// Verification de l'envoi du formulaire pour insérer un utilisateur de la réunion:
 if (isset($_POST['ajouter'])) {
     $idNewUserReunion = insertUserReunion($_POST['reunion_utilisateur']);
     if (!$idNewUserReunion) {
@@ -65,15 +65,15 @@ if (empty($_GET['id'])) {
     header("Location: /admin/parametre-reunions/index.php");
     exit;
 }
-// appel de la fonction pour récupérer une réunion en fonction de son ID
+// appel de la fonction pour récupérer une réunion avec de son ID
 $reunion = getReunionById($_GET['id']);
-// appel de la fonction pour récupérer les utilisateurs de la réunion en fonction de leur ID
+// appel de la fonction pour récupérer les utilisateurs de la réunion avec de leur ID
 $utilisateurReunions = getUserReunion($_GET['id']);
 if (!$reunion) {
-    header("Location: /parametre-reunion");
+    header("Location: /404.php");
     exit;
 }
-// appel de la fonction pour récupérer les utilisateurs qui ne son pas dans la réunion fonction de leur ID
+// appel de la fonction pour récupérer les utilisateurs qui ne sont pas dans la réunion fonction de leur ID
 $utilisateurs = getUserNotInReunion($_GET['id']);
 
 
@@ -124,7 +124,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                     </div>
 
                     <div class="formForm">
-                        <label for="reunion[sujet_reunion]">Sujet de la réunion</label>
+                        <label for="reunion[sujet_reunion]">Sujet </label>
                         <textarea id="sujetReunion" name="reunion[sujet_reunion]" value="<?= $reunion['sujet_reunion'] ?>" cols="30" rows="10"><?= $reunion['sujet_reunion'] ?></textarea>
                         <small id="sujetReunionError"></small>
                         <?php if (isset($_SESSION['errors']['sujet_reunion'])) : ?>
@@ -134,7 +134,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                     </div>
 
                     <div class="formForm">
-                        <label for="">Date de la réunion</label>
+                        <label for="">Date </label>
                         <input id="dateReunion" type="date" name="reunion[date_prevu_reunion]" value="<?= $reunion['date_prevu_reunion'] ?>">
                         <small id="dateReunionError"></small>
                         <?php if (isset($_SESSION['errors']['date_prevu_reunion'])) : ?>
@@ -143,7 +143,7 @@ $utilisateurs = getUserNotInReunion($_GET['id']);
                     </div>
 
                     <div class="formForm">
-                        <label for="">Heure de la réunion</label>
+                        <label for="">Heure </label>
                         <input id="heureReunion" type="time" name="reunion[heure_prevu_reunion]" value="<?= $reunion['heure_prevu_reunion'] ?>">
                         <small id="heureReunionError"></small>
                         <?php if (isset($_SESSION['errors']['heure_prevu_reunion'])) : ?>

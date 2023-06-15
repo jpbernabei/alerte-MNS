@@ -35,7 +35,28 @@ a{
     text-decoration: none;
     color: white;
 }
+input[type="text"],[type="email"],[type="password"]{
+    background-color: #81a4cdff;
+    height: 30px;
+    width: 300px;
+    border-radius: 20px;
+    border:none;
+    padding: 7px;
+}
+input[type="date"],[type="time"]{
+    background-color: #81a4cdff;
+    height: 30px;
+    border-radius: 20px;
+    border:none;
+    padding: 7px;
+}
 
+textarea{
+    background-color: #81a4cdff;
+    border-radius: 20px;
+    border:none;
+    padding: 7px;
+}
 
 header{
     grid-area: header;
@@ -50,6 +71,16 @@ header{
  
         background-color:  #151b36;
     }
+
+.titreChaine{
+    background-color:  #ff6715;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  width: 10vh;
+  
+  
+}
     
 .nav-chaine{
     display: flex;
@@ -184,6 +215,10 @@ main{
     width: 400px;
 }
 
+small{
+    color:#ff6715 ;
+}
+
 /* toggle switch */
 *,
 *:before,
@@ -254,6 +289,7 @@ main{
     background-color: #313e74;
     color: #81a4cdff;
     width: 70%;
+    max-height: 700px;
     border-radius: 50px;
     padding: 20px;
     margin-left: 15%;
@@ -265,12 +301,12 @@ input[type="submit"] {
     padding: 0;
     width: 100px;
     height: 40px;
-    line-height: 100%; /* Si ça fonctionne pas mets 0 */
+    line-height: 100%; 
     border-radius: 20px;
     border: 0;
-    background:#ff6715; /* ou transparent je sais plus... */
+    background:#ff6715; 
     color: white;
-     /* Normalement */text-decoration: none;
+     text-decoration: none;
     
 }
 
@@ -380,7 +416,7 @@ input[type="submit"]:hover{
 
 
 
-/* __________________________________________________media query laptop_________________________________________________________________________ */
+/* __________________________________________________media queries laptop_________________________________________________________________________ */
 
 @media screen and (min-width:1050px ) and (max-width: 1400px){
 .container-form{
@@ -427,18 +463,18 @@ input[type="submit"]:hover{
 }
 
 .scroller {
-    height: 63%;
-    overflow-y: scroll;
+    height: 100%;
+    overflow: auto;
     scrollbar-color: rebeccapurple green;
     scrollbar-width: thin;
   }
 
 }
 
-/* _________________________________________________Media query  Mobile_________________________________________________ */
+/* _________________________________________________Media queries  Mobile_________________________________________________ */
 
 @media screen and (max-width:1050px){
-/* Media query page index */
+/* Media queries page index */
 .container {
     grid-template-columns: 1fr;
     grid-template-rows: 100px 60px auto 1fr;
@@ -631,9 +667,9 @@ main{
     height: 50px;
     border-radius: 20px;
     border: 0;
-    background:#ff6715; /* ou transparent je sais plus... */
+    background:#ff6715; 
     color: white;
-     /* Normalement */text-decoration: none;
+    text-decoration: none;
   }
  
 .button-new-chaines{
@@ -651,7 +687,7 @@ main{
 .mobile{
     width: 100%;
 }
-/* Media query page parametre utilisateur */
+/* Media queries page parametre utilisateur */
 .navParamUtilisateur{
     display: none;
     height: 0px;
