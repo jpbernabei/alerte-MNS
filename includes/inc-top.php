@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+if (!isset($_SESSION['user'])){
+   header("Location: /login.php"); die;
+}
 if (isset($_GET['user'])) {
   $user = (string) trim($_GET['user']);
 

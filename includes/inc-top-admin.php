@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['user'])){
+    header("Location: /login.php"); die;
+ }
+ 
 if($_SESSION['user']['is_admin_utilisateur'] == 0)
 {
     header("Location: /logout.php");die;
