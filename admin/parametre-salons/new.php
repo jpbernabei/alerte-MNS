@@ -1,11 +1,15 @@
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/includes/inc-top-admin.php";
 
 // Pour ajouter une chaine 
-
-
 require $_SERVER['DOCUMENT_ROOT'].'/managers/salons-managers.php';
 require $_SERVER['DOCUMENT_ROOT'].'/managers/chaine-manager.php';
 
+$salon = getChaineId($_GET['id']);
+// On verifie si le salon est bien présent en BDD 
+if (!$salon) {
+    header("Location: /admin/parametre-salons/index.php");
+    die;
+}
 
 // Traiter le formulaire si envoyé
 if(isset($_POST['submit']))
@@ -62,7 +66,7 @@ if(isset($_POST['submit']))
 <div class="container">
     <h1>Ajouter un salon </h1>
     <div class="buttonAjout">
-            <a href="/admin/parametre-salons/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
+            <a href="/admin/parametre-salons/AllSalons?id=<?=$salon['id_chaine']?>"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
         <div class="container-table desigend-scrollbar">
             <form action="/admin/parametre-salons/new.php?id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data" id="form">

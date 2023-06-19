@@ -66,7 +66,7 @@ $utilisateurs = getAllUser();
         <h1>Ajouter une chaîne</h1>
 
         <div class="buttonAjout">
-            <a href="/admin/parametre-chaines/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
+            <a href="/admin/index.php"><button class="button-creation police"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>Retour</button></a>
         </div>
 
 
