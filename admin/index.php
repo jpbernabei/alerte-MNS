@@ -5,6 +5,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/managers/salons-managers.php';
 $chaines = getAllChaine();
 $salons = getAllSalon9();
 
+//vérification si l'utilisateur est connecté
+if (!isset($_SESSION['user'])){
+    header("Location: /login.php"); die;
+ }
 // vérification si l'utilisateur est admin, sinon, on le redirige vers la page login
 if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
     header("Location: /logout.php");
