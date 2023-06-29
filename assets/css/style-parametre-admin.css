@@ -40,7 +40,15 @@ header{
  
         background-color:  #151b36;
     }
-    
+    .titreChaine{
+        background-color:  #ff6715;
+      border-radius: 3px;
+      color: white;
+      text-align: center;
+      width: 10vh;
+      
+      
+    }
 
 .nav-chaine{
     display: flex;

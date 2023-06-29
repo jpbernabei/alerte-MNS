@@ -23,7 +23,6 @@ html,body {
         "nav-chaine nav-salon main side";
     height: 100%;
     width: 100%;
-    background-color:green;
 }
 
 h1{
@@ -117,6 +116,8 @@ main{
     grid-area: side;
     background-color:#313e74;
     height: 100%;
+    color: #fff;
+    padding: 10px;
 }
 .logo{
     justify-self: stretch;

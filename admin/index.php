@@ -58,7 +58,7 @@ if ($_SESSION['user']['is_admin_utilisateur'] == 0) {
             <div class="police name-user noMobile"><?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['name'] ?></div>
             <div class="police name-user noMobile">Statut : <?= $_SESSION['user']['role_utilisateur'] ?></div>
             <!-- div affiche le nom de la chaine -->
-            <div id="titre"></div>
+            <div class="titreChaine" id="titre"></div>
             <a class="noMobile" href="/admin/affiche-reunionsAdmin.php"><i class="fa-solid fa-users fa-xl" style="color: #ffffff;"></i></a>
             <a class="noMobile" href="../logout.php"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
         </header>
